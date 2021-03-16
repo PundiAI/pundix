@@ -1,0 +1,8 @@
+build
+*.log
+.idea
+.vscode
+.DS_Store
+go.sum
+github.com
+tmp-swagger-gen
