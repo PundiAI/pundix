@@ -1,0 +1,2187 @@
+{
+  "genesis_time": "2021-11-17T3:45:00.000000Z",
+  "chain_id": "payalebar",
+  "initial_height": "1",
+  "consensus_params": {
+    "block": {
+      "max_bytes": "1048576",
+      "max_gas": "-1",
+      "time_iota_ms": "1000"
+    },
+    "evidence": {
+      "max_age_num_blocks": "1000000",
+      "max_age_duration": "172800000000000",
+      "max_bytes": "100000"
+    },
+    "validator": {
+      "pub_key_types": [
+        "ed25519"
+      ]
+    },
+    "version": {}
+  },
+  "app_hash": "",
+  "app_state": {
+    "auth": {
+      "params": {
+        "max_memo_characters": "256",
+        "tx_sig_limit": "7",
+        "tx_size_cost_per_byte": "10",
+        "sig_verify_cost_ed25519": "590",
+        "sig_verify_cost_secp256k1": "1000"
+      },
+      "accounts": [
+        {
+          "@type": "/cosmos.auth.v1beta1.BaseAccount",
+          "address": "px1a53udazy8ayufvy0s434pfwjcedzqv34hargq6",
+          "pub_key": null,
+          "account_number": "0",
+          "sequence": "0"
+        },
+        {
+          "@type": "/cosmos.auth.v1beta1.BaseAccount",
+          "address": "px1agjg9sthlwzkrycpg9k6qulqw00f0vc8cax7uj",
+          "pub_key": null,
+          "account_number": "0",
+          "sequence": "0"
+        },
+        {
+          "@type": "/cosmos.auth.v1beta1.BaseAccount",
+          "address": "px1mhdcuq46zlha2m0sas9q967lgrgkgv090sww5m",
+          "pub_key": null,
+          "account_number": "0",
+          "sequence": "0"
+        },
+        {
+          "@type": "/cosmos.auth.v1beta1.BaseAccount",
+          "address": "px1m9glwgj8uyq743df35rsmjcdun6fuvhattq0gr",
+          "pub_key": null,
+          "account_number": "0",
+          "sequence": "0"
+        },
+        {
+          "@type": "/cosmos.auth.v1beta1.BaseAccount",
+          "address": "px1j833plugrcjev9du08hf0w29a2jg2qgn9zrhjg",
+          "pub_key": null,
+          "account_number": "0",
+          "sequence": "0"
+        },
+        {
+          "@type": "/cosmos.auth.v1beta1.BaseAccount",
+          "address": "px1mhngp7qn36f8acv3uvprvvndpd0j4ppp7zkfx7",
+          "pub_key": null,
+          "account_number": "0",
+          "sequence": "0"
+        },
+        {
+          "@type": "/cosmos.auth.v1beta1.BaseAccount",
+          "address": "px1avlfja8nd9s6lrjsqs3xgas5qsu54zmq4t2dcu",
+          "pub_key": null,
+          "account_number": "0",
+          "sequence": "0"
+        },
+        {
+          "@type": "/cosmos.auth.v1beta1.BaseAccount",
+          "address": "px12zd4spp0rmcdqkcr9l3pmgtur4xqhpjte4pfnz",
+          "pub_key": null,
+          "account_number": "0",
+          "sequence": "0"
+        },
+        {
+          "@type": "/cosmos.auth.v1beta1.BaseAccount",
+          "address": "px1qe9xe6apn6cfuc2hwfv78qd7lh557zys7at2jh",
+          "pub_key": null,
+          "account_number": "0",
+          "sequence": "0"
+        },
+        {
+          "@type": "/cosmos.auth.v1beta1.BaseAccount",
+          "address": "px1klf24l3hkc0x6x4d345v7925hn8vemvxuaxyrl",
+          "pub_key": null,
+          "account_number": "0",
+          "sequence": "0"
+        },
+        {
+          "@type": "/cosmos.auth.v1beta1.BaseAccount",
+          "address": "px1psruzz2rcnltfmhtau3pvj074eq5gkqfnaqeu7",
+          "pub_key": null,
+          "account_number": "0",
+          "sequence": "0"
+        },
+        {
+          "@type": "/cosmos.auth.v1beta1.BaseAccount",
+          "address": "px1fq2e8hypx6cfvvdpqawarftls7t7vfm65d0hkl",
+          "pub_key": null,
+          "account_number": "0",
+          "sequence": "0"
+        },
+        {
+          "@type": "/cosmos.auth.v1beta1.BaseAccount",
+          "address": "px1s67l9ewjrjqypmuu9dvuahpjh4hets5l8w8h50",
+          "pub_key": null,
+          "account_number": "0",
+          "sequence": "0"
+        },
+        {
+          "@type": "/cosmos.auth.v1beta1.BaseAccount",
+          "address": "px1kwx36ug4ld4fq5yu9zudv35er6thvfm6dgml49",
+          "pub_key": null,
+          "account_number": "0",
+          "sequence": "0"
+        },
+        {
+          "@type": "/cosmos.auth.v1beta1.BaseAccount",
+          "address": "px1a8rrfwknek9hecjqfmtvzxzq4sr2h8zhnzf60q",
+          "pub_key": null,
+          "account_number": "0",
+          "sequence": "0"
+        },
+        {
+          "@type": "/cosmos.auth.v1beta1.BaseAccount",
+          "address": "px18exq3tg246npqx8usn579ywqqyazcalpxjqusy",
+          "pub_key": null,
+          "account_number": "0",
+          "sequence": "0"
+        },
+        {
+          "@type": "/cosmos.auth.v1beta1.BaseAccount",
+          "address": "px1k83ptwx22kkgprxljrvrhfu5swzsqd0zqhjs58",
+          "pub_key": null,
+          "account_number": "0",
+          "sequence": "0"
+        },
+        {
+          "@type": "/cosmos.auth.v1beta1.BaseAccount",
+          "address": "px1kxx5htlwy2ehw6chljwjdyvjdtk249u6022lpj",
+          "pub_key": null,
+          "account_number": "0",
+          "sequence": "0"
+        },
+        {
+          "@type": "/cosmos.auth.v1beta1.BaseAccount",
+          "address": "px1ntmnjrefrr0wa2r38qme06cyhpnufa4eey68kd",
+          "pub_key": null,
+          "account_number": "0",
+          "sequence": "0"
+        },
+        {
+          "@type": "/cosmos.auth.v1beta1.BaseAccount",
+          "address": "px1hk5zs2fnh0d66d549fqf6erxzxwekw5jf8tgcy",
+          "pub_key": null,
+          "account_number": "0",
+          "sequence": "0"
+        },
+        {
+          "@type": "/cosmos.auth.v1beta1.BaseAccount",
+          "address": "px1fvzxwsewdgvzdh9d3w9tavjf4h05krsjce89mw",
+          "pub_key": null,
+          "account_number": "0",
+          "sequence": "0"
+        },
+        {
+          "@type": "/cosmos.auth.v1beta1.BaseAccount",
+          "address": "px1d82u8tvhqrd8rfnc60pvvytgrhud838hhgv670",
+          "pub_key": null,
+          "account_number": "0",
+          "sequence": "0"
+        },
+        {
+          "@type": "/cosmos.auth.v1beta1.BaseAccount",
+          "address": "px19szkufwltshwedtkh4l3dly9je0n9z5kq8rz3q",
+          "pub_key": null,
+          "account_number": "0",
+          "sequence": "0"
+        },
+        {
+          "@type": "/cosmos.auth.v1beta1.BaseAccount",
+          "address": "px1sc2xfyc00946xj3449c4scpdjd895h8x3l3hfr",
+          "pub_key": null,
+          "account_number": "0",
+          "sequence": "0"
+        },
+        {
+          "@type": "/cosmos.auth.v1beta1.BaseAccount",
+          "address": "px1ykng86al8ymndm4xa7vnklecutkj4l8ggtt990",
+          "pub_key": null,
+          "account_number": "0",
+          "sequence": "0"
+        },
+        {
+          "@type": "/cosmos.auth.v1beta1.BaseAccount",
+          "address": "px1dkvv4xa4500exvda6pyq3uw3e37pv933ftzkey",
+          "pub_key": null,
+          "account_number": "0",
+          "sequence": "0"
+        },
+        {
+          "@type": "/cosmos.auth.v1beta1.BaseAccount",
+          "address": "px17ec3snctf4h4f8t9cz74r0swxyqdycazkl9wrj",
+          "pub_key": null,
+          "account_number": "0",
+          "sequence": "0"
+        }
+      ]
+    },
+    "bank": {
+      "params": {
+        "send_enabled": [],
+        "default_send_enabled": true
+      },
+      "balances": [
+        {
+          "address": "px1qe9xe6apn6cfuc2hwfv78qd7lh557zys7at2jh",
+          "coins": [
+            {
+              "denom": "ibc/169A52CA4862329131348484982CE75B3D6CC78AFB94C3107026C70CB66E7B2E",
+              "amount": "100000000000000000000"
+            }
+          ]
+        },
+        {
+          "address": "px1psruzz2rcnltfmhtau3pvj074eq5gkqfnaqeu7",
+          "coins": [
+            {
+              "denom": "ibc/169A52CA4862329131348484982CE75B3D6CC78AFB94C3107026C70CB66E7B2E",
+              "amount": "100000000000000000000"
+            }
+          ]
+        },
+        {
+          "address": "px1ykng86al8ymndm4xa7vnklecutkj4l8ggtt990",
+          "coins": [
+            {
+              "denom": "ibc/169A52CA4862329131348484982CE75B3D6CC78AFB94C3107026C70CB66E7B2E",
+              "amount": "100000000000000000000"
+            }
+          ]
+        },
+        {
+          "address": "px19szkufwltshwedtkh4l3dly9je0n9z5kq8rz3q",
+          "coins": [
+            {
+              "denom": "ibc/169A52CA4862329131348484982CE75B3D6CC78AFB94C3107026C70CB66E7B2E",
+              "amount": "100000000000000000000"
+            }
+          ]
+        },
+        {
+          "address": "px18exq3tg246npqx8usn579ywqqyazcalpxjqusy",
+          "coins": [
+            {
+              "denom": "ibc/169A52CA4862329131348484982CE75B3D6CC78AFB94C3107026C70CB66E7B2E",
+              "amount": "100000000000000000000"
+            }
+          ]
+        },
+        {
+          "address": "px1fq2e8hypx6cfvvdpqawarftls7t7vfm65d0hkl",
+          "coins": [
+            {
+              "denom": "ibc/169A52CA4862329131348484982CE75B3D6CC78AFB94C3107026C70CB66E7B2E",
+              "amount": "100000000000000000000"
+            }
+          ]
+        },
+        {
+          "address": "px1fvzxwsewdgvzdh9d3w9tavjf4h05krsjce89mw",
+          "coins": [
+            {
+              "denom": "ibc/169A52CA4862329131348484982CE75B3D6CC78AFB94C3107026C70CB66E7B2E",
+              "amount": "100000000000000000000"
+            }
+          ]
+        },
+        {
+          "address": "px12zd4spp0rmcdqkcr9l3pmgtur4xqhpjte4pfnz",
+          "coins": [
+            {
+              "denom": "ibc/169A52CA4862329131348484982CE75B3D6CC78AFB94C3107026C70CB66E7B2E",
+              "amount": "100000000000000000000"
+            }
+          ]
+        },
+        {
+          "address": "px1d82u8tvhqrd8rfnc60pvvytgrhud838hhgv670",
+          "coins": [
+            {
+              "denom": "ibc/169A52CA4862329131348484982CE75B3D6CC78AFB94C3107026C70CB66E7B2E",
+              "amount": "100000000000000000000"
+            }
+          ]
+        },
+        {
+          "address": "px1dkvv4xa4500exvda6pyq3uw3e37pv933ftzkey",
+          "coins": [
+            {
+              "denom": "ibc/169A52CA4862329131348484982CE75B3D6CC78AFB94C3107026C70CB66E7B2E",
+              "amount": "100000000000000000000"
+            }
+          ]
+        },
+        {
+          "address": "px1sc2xfyc00946xj3449c4scpdjd895h8x3l3hfr",
+          "coins": [
+            {
+              "denom": "ibc/169A52CA4862329131348484982CE75B3D6CC78AFB94C3107026C70CB66E7B2E",
+              "amount": "100000000000000000000"
+            }
+          ]
+        },
+        {
+          "address": "px1s67l9ewjrjqypmuu9dvuahpjh4hets5l8w8h50",
+          "coins": [
+            {
+              "denom": "ibc/169A52CA4862329131348484982CE75B3D6CC78AFB94C3107026C70CB66E7B2E",
+              "amount": "100000000000000000000"
+            }
+          ]
+        },
+        {
+          "address": "px1j833plugrcjev9du08hf0w29a2jg2qgn9zrhjg",
+          "coins": [
+            {
+              "denom": "ibc/169A52CA4862329131348484982CE75B3D6CC78AFB94C3107026C70CB66E7B2E",
+              "amount": "100000000000000000000"
+            }
+          ]
+        },
+        {
+          "address": "px1ntmnjrefrr0wa2r38qme06cyhpnufa4eey68kd",
+          "coins": [
+            {
+              "denom": "ibc/169A52CA4862329131348484982CE75B3D6CC78AFB94C3107026C70CB66E7B2E",
+              "amount": "100000000000000000000"
+            }
+          ]
+        },
+        {
+          "address": "px1kxx5htlwy2ehw6chljwjdyvjdtk249u6022lpj",
+          "coins": [
+            {
+              "denom": "ibc/169A52CA4862329131348484982CE75B3D6CC78AFB94C3107026C70CB66E7B2E",
+              "amount": "100000000000000000000"
+            }
+          ]
+        },
+        {
+          "address": "px1k83ptwx22kkgprxljrvrhfu5swzsqd0zqhjs58",
+          "coins": [
+            {
+              "denom": "ibc/169A52CA4862329131348484982CE75B3D6CC78AFB94C3107026C70CB66E7B2E",
+              "amount": "100000000000000000000"
+            }
+          ]
+        },
+        {
+          "address": "px1kwx36ug4ld4fq5yu9zudv35er6thvfm6dgml49",
+          "coins": [
+            {
+              "denom": "ibc/169A52CA4862329131348484982CE75B3D6CC78AFB94C3107026C70CB66E7B2E",
+              "amount": "100000000000000000000"
+            }
+          ]
+        },
+        {
+          "address": "px1klf24l3hkc0x6x4d345v7925hn8vemvxuaxyrl",
+          "coins": [
+            {
+              "denom": "ibc/169A52CA4862329131348484982CE75B3D6CC78AFB94C3107026C70CB66E7B2E",
+              "amount": "100000000000000000000"
+            }
+          ]
+        },
+        {
+          "address": "px1hk5zs2fnh0d66d549fqf6erxzxwekw5jf8tgcy",
+          "coins": [
+            {
+              "denom": "ibc/169A52CA4862329131348484982CE75B3D6CC78AFB94C3107026C70CB66E7B2E",
+              "amount": "100000000000000000000"
+            }
+          ]
+        },
+        {
+          "address": "px1m9glwgj8uyq743df35rsmjcdun6fuvhattq0gr",
+          "coins": [
+            {
+              "denom": "ibc/169A52CA4862329131348484982CE75B3D6CC78AFB94C3107026C70CB66E7B2E",
+              "amount": "100000000000000000000"
+            }
+          ]
+        },
+        {
+          "address": "px1mhdcuq46zlha2m0sas9q967lgrgkgv090sww5m",
+          "coins": [
+            {
+              "denom": "ibc/169A52CA4862329131348484982CE75B3D6CC78AFB94C3107026C70CB66E7B2E",
+              "amount": "100000000000000000000"
+            }
+          ]
+        },
+        {
+          "address": "px1mhngp7qn36f8acv3uvprvvndpd0j4ppp7zkfx7",
+          "coins": [
+            {
+              "denom": "ibc/169A52CA4862329131348484982CE75B3D6CC78AFB94C3107026C70CB66E7B2E",
+              "amount": "100000000000000000000"
+            }
+          ]
+        },
+        {
+          "address": "px1a8rrfwknek9hecjqfmtvzxzq4sr2h8zhnzf60q",
+          "coins": [
+            {
+              "denom": "ibc/169A52CA4862329131348484982CE75B3D6CC78AFB94C3107026C70CB66E7B2E",
+              "amount": "100000000000000000000"
+            }
+          ]
+        },
+        {
+          "address": "px1agjg9sthlwzkrycpg9k6qulqw00f0vc8cax7uj",
+          "coins": [
+            {
+              "denom": "ibc/169A52CA4862329131348484982CE75B3D6CC78AFB94C3107026C70CB66E7B2E",
+              "amount": "100000000000000000000"
+            }
+          ]
+        },
+        {
+          "address": "px1avlfja8nd9s6lrjsqs3xgas5qsu54zmq4t2dcu",
+          "coins": [
+            {
+              "denom": "ibc/169A52CA4862329131348484982CE75B3D6CC78AFB94C3107026C70CB66E7B2E",
+              "amount": "100000000000000000000"
+            }
+          ]
+        },
+        {
+          "address": "px1a53udazy8ayufvy0s434pfwjcedzqv34hargq6",
+          "coins": [
+            {
+              "denom": "bsc0x0BEdB58eC8D603E71556ef8aA4014c68DBd57AD7",
+              "amount": "64000000000000000000000000000"
+            }
+          ]
+        },
+        {
+          "address": "px17ec3snctf4h4f8t9cz74r0swxyqdycazkl9wrj",
+          "coins": [
+            {
+              "denom": "ibc/169A52CA4862329131348484982CE75B3D6CC78AFB94C3107026C70CB66E7B2E",
+              "amount": "1000000000000000000000"
+            }
+          ]
+        }
+      ],
+      "supply": [],
+      "denom_metadata": [
+        {
+          "description": "PURSE Token",
+          "denom_units": [
+            {
+              "denom": "bsc0x0bedb58ec8d603e71556ef8aa4014c68dbd57ad7",
+              "exponent": 0,
+              "aliases": []
+            },
+            {
+              "denom": "PURSE",
+              "exponent": 18,
+              "aliases": []
+            }
+          ],
+          "base": "bsc0x0bedb58ec8d603e71556ef8aa4014c68dbd57ad7",
+          "display": "PURSE",
+          "name": "PURSE Token",
+          "symbol": "PURSE"
+        },
+        {
+          "description": "Pundi X Token",
+          "denom_units": [
+            {
+              "denom": "ibc/169a52ca4862329131348484982ce75b3d6cc78afb94c3107026c70cb66e7b2e",
+              "exponent": 0,
+              "aliases": []
+            },
+            {
+              "denom": "PUNDIX",
+              "exponent": 18,
+              "aliases": []
+            }
+          ],
+          "base": "ibc/169a52ca4862329131348484982ce75b3d6cc78afb94c3107026c70cb66e7b2e",
+          "display": "PUNDIX",
+          "name": "Pundi X Token",
+          "symbol": "PUNDIX"
+        }
+      ]
+    },
+    "capability": {
+      "index": "1",
+      "owners": []
+    },
+    "crisis": {
+      "constant_fee": {
+        "denom": "ibc/169A52CA4862329131348484982CE75B3D6CC78AFB94C3107026C70CB66E7B2E",
+        "amount": "13333000000000000000000"
+      }
+    },
+    "distribution": {
+      "params": {
+        "community_tax": "0.250000000000000000",
+        "base_proposer_reward": "0.010000000000000000",
+        "bonus_proposer_reward": "0.040000000000000000",
+        "withdraw_addr_enabled": true
+      },
+      "fee_pool": {
+        "community_pool": []
+      },
+      "delegator_withdraw_infos": [],
+      "previous_proposer": "",
+      "outstanding_rewards": [],
+      "validator_accumulated_commissions": [],
+      "validator_historical_rewards": [],
+      "validator_current_rewards": [],
+      "delegator_starting_infos": [],
+      "validator_slash_events": []
+    },
+    "evidence": {
+      "evidence": []
+    },
+    "genutil": {
+      "gen_txs": [
+        {
+          "body": {
+            "messages": [
+              {
+                "@type": "/cosmos.staking.v1beta1.MsgCreateValidator",
+                "description": {
+                  "moniker": "Black Hole",
+                  "identity": "",
+                  "website": "pundix.com",
+                  "security_contact": "contact@pundix.com",
+                  "details": "Details A PUNDIX self-hosted validator."
+                },
+                "commission": {
+                  "rate": "0.030000000000000000",
+                  "max_rate": "0.200000000000000000",
+                  "max_change_rate": "0.010000000000000000"
+                },
+                "min_self_delegation": "10000000000000000",
+                "delegator_address": "px12zd4spp0rmcdqkcr9l3pmgtur4xqhpjte4pfnz",
+                "validator_address": "pxvaloper12zd4spp0rmcdqkcr9l3pmgtur4xqhpjtqe5564",
+                "pubkey": {
+                  "@type": "/cosmos.crypto.ed25519.PubKey",
+                  "key": "xuMTkllPER7kruXFUrhK0HVvzIf8wlQm2FtAFSoF8yA="
+                },
+                "value": {
+                  "denom": "ibc/169A52CA4862329131348484982CE75B3D6CC78AFB94C3107026C70CB66E7B2E",
+                  "amount": "100000000000000000000"
+                }
+              }
+            ],
+            "memo": "",
+            "timeout_height": "0",
+            "extension_options": [],
+            "non_critical_extension_options": []
+          },
+          "auth_info": {
+            "signer_infos": [
+              {
+                "public_key": {
+                  "@type": "/cosmos.crypto.secp256k1.PubKey",
+                  "key": "AuCeKWg088nzRr9KEn0eppBYgiL5ykaZqfPiH4oj1USd"
+                },
+                "mode_info": {
+                  "single": {
+                    "mode": "SIGN_MODE_LEGACY_AMINO_JSON"
+                  }
+                },
+                "sequence": "0"
+              }
+            ],
+            "fee": {
+              "amount": [],
+              "gas_limit": "200000",
+              "payer": "",
+              "granter": ""
+            }
+          },
+          "signatures": [
+            "2PCMcJwvXQNJaCnFbqFRTjzTvwUMzgGFRjFLboD1SfQqMI3DovLKf8Q5HaPQKOXvm4PoxssSlDb5iKiCOSVdmA=="
+          ]
+        },
+        {
+          "body": {
+            "messages": [
+              {
+                "@type": "/cosmos.staking.v1beta1.MsgCreateValidator",
+                "description": {
+                  "moniker": "Blazar",
+                  "identity": "",
+                  "website": "pundix.com",
+                  "security_contact": "contact@pundix.com",
+                  "details": "Details A PUNDIX self-hosted validator."
+                },
+                "commission": {
+                  "rate": "0.030000000000000000",
+                  "max_rate": "0.200000000000000000",
+                  "max_change_rate": "0.010000000000000000"
+                },
+                "min_self_delegation": "10000000000000000",
+                "delegator_address": "px1mhngp7qn36f8acv3uvprvvndpd0j4ppp7zkfx7",
+                "validator_address": "pxvaloper1mhngp7qn36f8acv3uvprvvndpd0j4ppp8wr50f",
+                "pubkey": {
+                  "@type": "/cosmos.crypto.ed25519.PubKey",
+                  "key": "6IAvotQ0Vh78zcldCRGPUe+OuAK/H2rXAGIu42WBoqk="
+                },
+                "value": {
+                  "denom": "ibc/169A52CA4862329131348484982CE75B3D6CC78AFB94C3107026C70CB66E7B2E",
+                  "amount": "100000000000000000000"
+                }
+              }
+            ],
+            "memo": "",
+            "timeout_height": "0",
+            "extension_options": [],
+            "non_critical_extension_options": []
+          },
+          "auth_info": {
+            "signer_infos": [
+              {
+                "public_key": {
+                  "@type": "/cosmos.crypto.secp256k1.PubKey",
+                  "key": "AtZEHXhHZshNclWDCrRhH/bPhIjIoSPrZvp6sO/Qn8VJ"
+                },
+                "mode_info": {
+                  "single": {
+                    "mode": "SIGN_MODE_LEGACY_AMINO_JSON"
+                  }
+                },
+                "sequence": "0"
+              }
+            ],
+            "fee": {
+              "amount": [],
+              "gas_limit": "200000",
+              "payer": "",
+              "granter": ""
+            }
+          },
+          "signatures": [
+            "5ZERInl6pzDgNMUEZlEkNA3xXonze4T4pjzYIxn5/EI95Ys4eWYGm95u3ob0NDXes92hffpVR2+/Scgjc8dXJA=="
+          ]
+        },
+        {
+          "body": {
+            "messages": [
+              {
+                "@type": "/cosmos.staking.v1beta1.MsgCreateValidator",
+                "description": {
+                  "moniker": "Blitzar",
+                  "identity": "",
+                  "website": "pundix.com",
+                  "security_contact": "contact@pundix.com",
+                  "details": "Details A PUNDIX self-hosted validator."
+                },
+                "commission": {
+                  "rate": "0.030000000000000000",
+                  "max_rate": "0.200000000000000000",
+                  "max_change_rate": "0.010000000000000000"
+                },
+                "min_self_delegation": "10000000000000000",
+                "delegator_address": "px1fq2e8hypx6cfvvdpqawarftls7t7vfm65d0hkl",
+                "validator_address": "pxvaloper1fq2e8hypx6cfvvdpqawarftls7t7vfm6dp62lg",
+                "pubkey": {
+                  "@type": "/cosmos.crypto.ed25519.PubKey",
+                  "key": "fQyJSBqLFCnZW/aehseC0+pd1qqykIxhTyyL0xQOmOQ="
+                },
+                "value": {
+                  "denom": "ibc/169A52CA4862329131348484982CE75B3D6CC78AFB94C3107026C70CB66E7B2E",
+                  "amount": "100000000000000000000"
+                }
+              }
+            ],
+            "memo": "",
+            "timeout_height": "0",
+            "extension_options": [],
+            "non_critical_extension_options": []
+          },
+          "auth_info": {
+            "signer_infos": [
+              {
+                "public_key": {
+                  "@type": "/cosmos.crypto.secp256k1.PubKey",
+                  "key": "AzzcmAOimLZDOfI7aGirliX3VAtskBsUI0OSFlZY9owD"
+                },
+                "mode_info": {
+                  "single": {
+                    "mode": "SIGN_MODE_LEGACY_AMINO_JSON"
+                  }
+                },
+                "sequence": "0"
+              }
+            ],
+            "fee": {
+              "amount": [],
+              "gas_limit": "200000",
+              "payer": "",
+              "granter": ""
+            }
+          },
+          "signatures": [
+            "8zehzrJwKnXKfVHYqthoaR9MuWuesCb3yNiOa9qtzaV/Y4Q3wjVdHPIWh6/yj4++Q2mkr/b6e5GqieLJeOJxcA=="
+          ]
+        },
+        {
+          "body": {
+            "messages": [
+              {
+                "@type": "/cosmos.staking.v1beta1.MsgCreateValidator",
+                "description": {
+                  "moniker": "ClaudioxBarros",
+                  "identity": "",
+                  "website": "pundix.com",
+                  "security_contact": "contact@pundix.com",
+                  "details": "Details A PUNDIX self-hosted validator."
+                },
+                "commission": {
+                  "rate": "0.030000000000000000",
+                  "max_rate": "0.200000000000000000",
+                  "max_change_rate": "0.010000000000000000"
+                },
+                "min_self_delegation": "10000000000000000",
+                "delegator_address": "px1m9glwgj8uyq743df35rsmjcdun6fuvhattq0gr",
+                "validator_address": "pxvaloper1m9glwgj8uyq743df35rsmjcdun6fuvhaj84jp5",
+                "pubkey": {
+                  "@type": "/cosmos.crypto.ed25519.PubKey",
+                  "key": "8PsKNnTq7zizznlqSQkDgH0riwjCSF/1qGQqhm1ncpA="
+                },
+                "value": {
+                  "denom": "ibc/169A52CA4862329131348484982CE75B3D6CC78AFB94C3107026C70CB66E7B2E",
+                  "amount": "100000000000000000000"
+                }
+              }
+            ],
+            "memo": "",
+            "timeout_height": "0",
+            "extension_options": [],
+            "non_critical_extension_options": []
+          },
+          "auth_info": {
+            "signer_infos": [
+              {
+                "public_key": {
+                  "@type": "/cosmos.crypto.secp256k1.PubKey",
+                  "key": "A6IET9GOFG6BV+tpL1FS/DZta7LCFGVUKKzLg97YLWhP"
+                },
+                "mode_info": {
+                  "single": {
+                    "mode": "SIGN_MODE_LEGACY_AMINO_JSON"
+                  }
+                },
+                "sequence": "0"
+              }
+            ],
+            "fee": {
+              "amount": [],
+              "gas_limit": "200000",
+              "payer": "",
+              "granter": ""
+            }
+          },
+          "signatures": [
+            "bVn09HFZm/saBqJzLtE4RdscrotRrJ4Evz1lHZxCYBxjM1mp0lc0zv5ECjmc2PBKLfpDB9OwZWsZBIk7TOcFVQ=="
+          ]
+        },
+        {
+          "body": {
+            "messages": [
+              {
+                "@type": "/cosmos.staking.v1beta1.MsgCreateValidator",
+                "description": {
+                  "moniker": "Comet",
+                  "identity": "",
+                  "website": "pundix.com",
+                  "security_contact": "contact@pundix.com",
+                  "details": "Details A PUNDIX self-hosted validator."
+                },
+                "commission": {
+                  "rate": "0.030000000000000000",
+                  "max_rate": "0.200000000000000000",
+                  "max_change_rate": "0.010000000000000000"
+                },
+                "min_self_delegation": "10000000000000000",
+                "delegator_address": "px1hk5zs2fnh0d66d549fqf6erxzxwekw5jf8tgcy",
+                "validator_address": "pxvaloper1hk5zs2fnh0d66d549fqf6erxzxwekw5jst743n",
+                "pubkey": {
+                  "@type": "/cosmos.crypto.ed25519.PubKey",
+                  "key": "eViNan38LWX2ElmONKh4nH7lL5eKUuTnZIMeCBce74Y="
+                },
+                "value": {
+                  "denom": "ibc/169A52CA4862329131348484982CE75B3D6CC78AFB94C3107026C70CB66E7B2E",
+                  "amount": "100000000000000000000"
+                }
+              }
+            ],
+            "memo": "",
+            "timeout_height": "0",
+            "extension_options": [],
+            "non_critical_extension_options": []
+          },
+          "auth_info": {
+            "signer_infos": [
+              {
+                "public_key": {
+                  "@type": "/cosmos.crypto.secp256k1.PubKey",
+                  "key": "Ar3Zn7rghsnTU1jQ4MYXUb0crJ6qdMvQQpcZYL2KC/pC"
+                },
+                "mode_info": {
+                  "single": {
+                    "mode": "SIGN_MODE_LEGACY_AMINO_JSON"
+                  }
+                },
+                "sequence": "0"
+              }
+            ],
+            "fee": {
+              "amount": [],
+              "gas_limit": "200000",
+              "payer": "",
+              "granter": ""
+            }
+          },
+          "signatures": [
+            "RqQ4/3LxNYWlU7QUkRf8mhKqymkP83vGIZLUwFFzLtoLsLl4kofg/LqoVc13MWyWJifjq0ty348aWlUZMb6KMg=="
+          ]
+        },
+        {
+          "body": {
+            "messages": [
+              {
+                "@type": "/cosmos.staking.v1beta1.MsgCreateValidator",
+                "description": {
+                  "moniker": "Earth",
+                  "identity": "",
+                  "website": "pundix.com",
+                  "security_contact": "contact@pundix.com",
+                  "details": "Details A PUNDIX self-hosted validator."
+                },
+                "commission": {
+                  "rate": "0.030000000000000000",
+                  "max_rate": "0.200000000000000000",
+                  "max_change_rate": "0.010000000000000000"
+                },
+                "min_self_delegation": "10000000000000000",
+                "delegator_address": "px1k83ptwx22kkgprxljrvrhfu5swzsqd0zqhjs58",
+                "validator_address": "pxvaloper1k83ptwx22kkgprxljrvrhfu5swzsqd0zem8das",
+                "pubkey": {
+                  "@type": "/cosmos.crypto.ed25519.PubKey",
+                  "key": "JmyT5KdlSba3rrpGxcfhYLOKO0dsv5fU0lsTY+E2kzw="
+                },
+                "value": {
+                  "denom": "ibc/169A52CA4862329131348484982CE75B3D6CC78AFB94C3107026C70CB66E7B2E",
+                  "amount": "100000000000000000000"
+                }
+              }
+            ],
+            "memo": "",
+            "timeout_height": "0",
+            "extension_options": [],
+            "non_critical_extension_options": []
+          },
+          "auth_info": {
+            "signer_infos": [
+              {
+                "public_key": {
+                  "@type": "/cosmos.crypto.secp256k1.PubKey",
+                  "key": "A1lUDLO7us+QL+oT8PBnMgqwNtUel03U83+PhQPrCfHC"
+                },
+                "mode_info": {
+                  "single": {
+                    "mode": "SIGN_MODE_LEGACY_AMINO_JSON"
+                  }
+                },
+                "sequence": "0"
+              }
+            ],
+            "fee": {
+              "amount": [],
+              "gas_limit": "200000",
+              "payer": "",
+              "granter": ""
+            }
+          },
+          "signatures": [
+            "K/TvVKsixIOLgouHAnKpmklO1AaCR/GcPjKoBUnD2qoxpSQWSlI5kl4Dr4ZW3LEXZTpNXibWuojF733WxTJUvA=="
+          ]
+        },
+        {
+          "body": {
+            "messages": [
+              {
+                "@type": "/cosmos.staking.v1beta1.MsgCreateValidator",
+                "description": {
+                  "moniker": "Galaxy",
+                  "identity": "",
+                  "website": "pundix.com",
+                  "security_contact": "contact@pundix.com",
+                  "details": "Details A PUNDIX self-hosted validator."
+                },
+                "commission": {
+                  "rate": "0.030000000000000000",
+                  "max_rate": "0.200000000000000000",
+                  "max_change_rate": "0.010000000000000000"
+                },
+                "min_self_delegation": "10000000000000000",
+                "delegator_address": "px1kwx36ug4ld4fq5yu9zudv35er6thvfm6dgml49",
+                "validator_address": "pxvaloper1kwx36ug4ld4fq5yu9zudv35er6thvfm65ywzuj",
+                "pubkey": {
+                  "@type": "/cosmos.crypto.ed25519.PubKey",
+                  "key": "nKQWsRW7zP8s/yZUT+NNCehQ2e9gA/Kk2xfWvA5sKjk="
+                },
+                "value": {
+                  "denom": "ibc/169A52CA4862329131348484982CE75B3D6CC78AFB94C3107026C70CB66E7B2E",
+                  "amount": "100000000000000000000"
+                }
+              }
+            ],
+            "memo": "",
+            "timeout_height": "0",
+            "extension_options": [],
+            "non_critical_extension_options": []
+          },
+          "auth_info": {
+            "signer_infos": [
+              {
+                "public_key": {
+                  "@type": "/cosmos.crypto.secp256k1.PubKey",
+                  "key": "AyeJZpZdvzOAqG5fhLBdQxxEuD74UKHEB+PAKfWqZjoF"
+                },
+                "mode_info": {
+                  "single": {
+                    "mode": "SIGN_MODE_LEGACY_AMINO_JSON"
+                  }
+                },
+                "sequence": "0"
+              }
+            ],
+            "fee": {
+              "amount": [],
+              "gas_limit": "200000",
+              "payer": "",
+              "granter": ""
+            }
+          },
+          "signatures": [
+            "r7NEyooI3vRdDpS71CwTvAdgfXMPgxlh7ws5JVlU6T8JV+LsbVbokqlMRlRtDJVNAyr+4oflp9tsxk+TAqw6Ow=="
+          ]
+        },
+        {
+          "body": {
+            "messages": [
+              {
+                "@type": "/cosmos.staking.v1beta1.MsgCreateValidator",
+                "description": {
+                  "moniker": "Great Attractor",
+                  "identity": "",
+                  "website": "pundix.com",
+                  "security_contact": "contact@pundix.com",
+                  "details": "Details A PUNDIX self-hosted validator."
+                },
+                "commission": {
+                  "rate": "0.030000000000000000",
+                  "max_rate": "0.200000000000000000",
+                  "max_change_rate": "0.010000000000000000"
+                },
+                "min_self_delegation": "10000000000000000",
+                "delegator_address": "px19szkufwltshwedtkh4l3dly9je0n9z5kq8rz3q",
+                "validator_address": "pxvaloper19szkufwltshwedtkh4l3dly9je0n9z5ketklch",
+                "pubkey": {
+                  "@type": "/cosmos.crypto.ed25519.PubKey",
+                  "key": "NhQNo5q/qKkB/P+jb6fDDgfqDxrdsAvMv4Y+QJyPebo="
+                },
+                "value": {
+                  "denom": "ibc/169A52CA4862329131348484982CE75B3D6CC78AFB94C3107026C70CB66E7B2E",
+                  "amount": "100000000000000000000"
+                }
+              }
+            ],
+            "memo": "",
+            "timeout_height": "0",
+            "extension_options": [],
+            "non_critical_extension_options": []
+          },
+          "auth_info": {
+            "signer_infos": [
+              {
+                "public_key": {
+                  "@type": "/cosmos.crypto.secp256k1.PubKey",
+                  "key": "A35Euhdfc9aN2K/qYK/L7k7rFrnCqUGa+oyB6GHPGHsG"
+                },
+                "mode_info": {
+                  "single": {
+                    "mode": "SIGN_MODE_LEGACY_AMINO_JSON"
+                  }
+                },
+                "sequence": "0"
+              }
+            ],
+            "fee": {
+              "amount": [],
+              "gas_limit": "200000",
+              "payer": "",
+              "granter": ""
+            }
+          },
+          "signatures": [
+            "MXpZ2Kd/oc1m+GfOZ+tsKgI1jXVkWRkXxGEx278u+yZ4CPTLkWEx5/lCVbhf/TCHaLT/ogTdLJdnrWP88YopFg=="
+          ]
+        },
+        {
+          "body": {
+            "messages": [
+              {
+                "@type": "/cosmos.staking.v1beta1.MsgCreateValidator",
+                "description": {
+                  "moniker": "Hypernova",
+                  "identity": "",
+                  "website": "pundix.com",
+                  "security_contact": "contact@pundix.com",
+                  "details": "Details A PUNDIX self-hosted validator."
+                },
+                "commission": {
+                  "rate": "0.030000000000000000",
+                  "max_rate": "0.200000000000000000",
+                  "max_change_rate": "0.010000000000000000"
+                },
+                "min_self_delegation": "10000000000000000",
+                "delegator_address": "px1avlfja8nd9s6lrjsqs3xgas5qsu54zmq4t2dcu",
+                "validator_address": "pxvaloper1avlfja8nd9s6lrjsqs3xgas5qsu54zmqv8ls3t",
+                "pubkey": {
+                  "@type": "/cosmos.crypto.ed25519.PubKey",
+                  "key": "uPmInGn07NYJ1LslXIdG1J8+FZndZy50/HPOrdyjDnI="
+                },
+                "value": {
+                  "denom": "ibc/169A52CA4862329131348484982CE75B3D6CC78AFB94C3107026C70CB66E7B2E",
+                  "amount": "100000000000000000000"
+                }
+              }
+            ],
+            "memo": "",
+            "timeout_height": "0",
+            "extension_options": [],
+            "non_critical_extension_options": []
+          },
+          "auth_info": {
+            "signer_infos": [
+              {
+                "public_key": {
+                  "@type": "/cosmos.crypto.secp256k1.PubKey",
+                  "key": "A/2uMQ5SYjkyP7DVyAFuxJ9VNHgpH1d0tnWMpgbSSygm"
+                },
+                "mode_info": {
+                  "single": {
+                    "mode": "SIGN_MODE_LEGACY_AMINO_JSON"
+                  }
+                },
+                "sequence": "0"
+              }
+            ],
+            "fee": {
+              "amount": [],
+              "gas_limit": "200000",
+              "payer": "",
+              "granter": ""
+            }
+          },
+          "signatures": [
+            "Ia6/nVG9PpAZg6otGUfbv0EMaMNsyY6RFB4fuDfwClgu2zKffvprUBgaPIHIsA/iMi8FGemjlgqpNXJao0Yjag=="
+          ]
+        },
+        {
+          "body": {
+            "messages": [
+              {
+                "@type": "/cosmos.staking.v1beta1.MsgCreateValidator",
+                "description": {
+                  "moniker": "Jupiter",
+                  "identity": "",
+                  "website": "pundix.com",
+                  "security_contact": "contact@pundix.com",
+                  "details": "Details A PUNDIX self-hosted validator."
+                },
+                "commission": {
+                  "rate": "0.030000000000000000",
+                  "max_rate": "0.200000000000000000",
+                  "max_change_rate": "0.010000000000000000"
+                },
+                "min_self_delegation": "10000000000000000",
+                "delegator_address": "px1ykng86al8ymndm4xa7vnklecutkj4l8ggtt990",
+                "validator_address": "pxvaloper1ykng86al8ymndm4xa7vnklecutkj4l8g387cvc",
+                "pubkey": {
+                  "@type": "/cosmos.crypto.ed25519.PubKey",
+                  "key": "fImqPAuJWBfxxg94yYBtWIvsbk06ZTuiA3GiyoJUflQ="
+                },
+                "value": {
+                  "denom": "ibc/169A52CA4862329131348484982CE75B3D6CC78AFB94C3107026C70CB66E7B2E",
+                  "amount": "100000000000000000000"
+                }
+              }
+            ],
+            "memo": "",
+            "timeout_height": "0",
+            "extension_options": [],
+            "non_critical_extension_options": []
+          },
+          "auth_info": {
+            "signer_infos": [
+              {
+                "public_key": {
+                  "@type": "/cosmos.crypto.secp256k1.PubKey",
+                  "key": "A0JDVz411tHz17xPVv+vA0BcQgl6q8EKX/xz5aH8kHci"
+                },
+                "mode_info": {
+                  "single": {
+                    "mode": "SIGN_MODE_LEGACY_AMINO_JSON"
+                  }
+                },
+                "sequence": "0"
+              }
+            ],
+            "fee": {
+              "amount": [],
+              "gas_limit": "200000",
+              "payer": "",
+              "granter": ""
+            }
+          },
+          "signatures": [
+            "c+2dy9XTPOoG94Po9PSzwCwJ8gddCMD8eVLTawSoiW0DgUkfA28S+RMdu8xI9uz8rDlkP5Sb4knZmaFhE72gQg=="
+          ]
+        },
+        {
+          "body": {
+            "messages": [
+              {
+                "@type": "/cosmos.staking.v1beta1.MsgCreateValidator",
+                "description": {
+                  "moniker": "Mars",
+                  "identity": "",
+                  "website": "pundix.com",
+                  "security_contact": "contact@pundix.com",
+                  "details": "Details A PUNDIX self-hosted validator."
+                },
+                "commission": {
+                  "rate": "0.030000000000000000",
+                  "max_rate": "0.200000000000000000",
+                  "max_change_rate": "0.010000000000000000"
+                },
+                "min_self_delegation": "10000000000000000",
+                "delegator_address": "px18exq3tg246npqx8usn579ywqqyazcalpxjqusy",
+                "validator_address": "pxvaloper18exq3tg246npqx8usn579ywqqyazcalpl74pen",
+                "pubkey": {
+                  "@type": "/cosmos.crypto.ed25519.PubKey",
+                  "key": "7blr2dOrcJfPK/8TMSv475iV2eEY6GpCREks/nAeYE4="
+                },
+                "value": {
+                  "denom": "ibc/169A52CA4862329131348484982CE75B3D6CC78AFB94C3107026C70CB66E7B2E",
+                  "amount": "100000000000000000000"
+                }
+              }
+            ],
+            "memo": "",
+            "timeout_height": "0",
+            "extension_options": [],
+            "non_critical_extension_options": []
+          },
+          "auth_info": {
+            "signer_infos": [
+              {
+                "public_key": {
+                  "@type": "/cosmos.crypto.secp256k1.PubKey",
+                  "key": "A1luhUhkBmoN3ouGIA/gvO5z/jAQIbYjzopqoPRojBH7"
+                },
+                "mode_info": {
+                  "single": {
+                    "mode": "SIGN_MODE_LEGACY_AMINO_JSON"
+                  }
+                },
+                "sequence": "0"
+              }
+            ],
+            "fee": {
+              "amount": [],
+              "gas_limit": "200000",
+              "payer": "",
+              "granter": ""
+            }
+          },
+          "signatures": [
+            "ASojJ0Z8zviO0FM5Ht3pL0NjUZ7GDcMHLosntWP8kB1nTB3QEGApAaK/tT7q3rKrQI+lmat7joZm9MsDRV1xaQ=="
+          ]
+        },
+        {
+          "body": {
+            "messages": [
+              {
+                "@type": "/cosmos.staking.v1beta1.MsgCreateValidator",
+                "description": {
+                  "moniker": "Mercury",
+                  "identity": "",
+                  "website": "pundix.com",
+                  "security_contact": "contact@pundix.com",
+                  "details": "Details A PUNDIX self-hosted validator."
+                },
+                "commission": {
+                  "rate": "0.030000000000000000",
+                  "max_rate": "0.200000000000000000",
+                  "max_change_rate": "0.010000000000000000"
+                },
+                "min_self_delegation": "10000000000000000",
+                "delegator_address": "px1ntmnjrefrr0wa2r38qme06cyhpnufa4eey68kd",
+                "validator_address": "pxvaloper1ntmnjrefrr0wa2r38qme06cyhpnufa4eqg06l6",
+                "pubkey": {
+                  "@type": "/cosmos.crypto.ed25519.PubKey",
+                  "key": "I9bogq0Ox0kXL3JmPc8tfpxcCi0uTZLyHhOWz5Nh22g="
+                },
+                "value": {
+                  "denom": "ibc/169A52CA4862329131348484982CE75B3D6CC78AFB94C3107026C70CB66E7B2E",
+                  "amount": "100000000000000000000"
+                }
+              }
+            ],
+            "memo": "",
+            "timeout_height": "0",
+            "extension_options": [],
+            "non_critical_extension_options": []
+          },
+          "auth_info": {
+            "signer_infos": [
+              {
+                "public_key": {
+                  "@type": "/cosmos.crypto.secp256k1.PubKey",
+                  "key": "AruM0PBDXhMlCWVuV1IK57cX1OyDxJGxtyca20xYKXWt"
+                },
+                "mode_info": {
+                  "single": {
+                    "mode": "SIGN_MODE_LEGACY_AMINO_JSON"
+                  }
+                },
+                "sequence": "0"
+              }
+            ],
+            "fee": {
+              "amount": [],
+              "gas_limit": "200000",
+              "payer": "",
+              "granter": ""
+            }
+          },
+          "signatures": [
+            "FCBw/NWFlePuVvsMfiHIGUOPiTaWlynhmFcZApgUJjUv2VtuJKhoK+VXq7DfMpYt2AS0yYXb/ehq6UBb5U9CKQ=="
+          ]
+        },
+        {
+          "body": {
+            "messages": [
+              {
+                "@type": "/cosmos.staking.v1beta1.MsgCreateValidator",
+                "description": {
+                  "moniker": "Moon",
+                  "identity": "",
+                  "website": "pundix.com",
+                  "security_contact": "contact@pundix.com",
+                  "details": "Details A PUNDIX self-hosted validator."
+                },
+                "commission": {
+                  "rate": "0.030000000000000000",
+                  "max_rate": "0.200000000000000000",
+                  "max_change_rate": "0.010000000000000000"
+                },
+                "min_self_delegation": "10000000000000000",
+                "delegator_address": "px1klf24l3hkc0x6x4d345v7925hn8vemvxuaxyrl",
+                "validator_address": "pxvaloper1klf24l3hkc0x6x4d345v7925hn8vemvx93ne2g",
+                "pubkey": {
+                  "@type": "/cosmos.crypto.ed25519.PubKey",
+                  "key": "wDGGWurFx0Rvyt/gtcER7pOJN6L0pDwQeBa17kc9ojM="
+                },
+                "value": {
+                  "denom": "ibc/169A52CA4862329131348484982CE75B3D6CC78AFB94C3107026C70CB66E7B2E",
+                  "amount": "100000000000000000000"
+                }
+              }
+            ],
+            "memo": "",
+            "timeout_height": "0",
+            "extension_options": [],
+            "non_critical_extension_options": []
+          },
+          "auth_info": {
+            "signer_infos": [
+              {
+                "public_key": {
+                  "@type": "/cosmos.crypto.secp256k1.PubKey",
+                  "key": "AuIwhEFYrKg9oJJKreHxwefcFPqbvPiUSk2LoZz2mgqr"
+                },
+                "mode_info": {
+                  "single": {
+                    "mode": "SIGN_MODE_LEGACY_AMINO_JSON"
+                  }
+                },
+                "sequence": "0"
+              }
+            ],
+            "fee": {
+              "amount": [],
+              "gas_limit": "200000",
+              "payer": "",
+              "granter": ""
+            }
+          },
+          "signatures": [
+            "lDMG5NH0EQxeCBltZl/HR9bhqQ1YkPvZe8hq9aYZJ2IAaY+pyoAmZq7EO4aCur6PJarmf+2ieFNz1gfnaqt1IQ=="
+          ]
+        },
+        {
+          "body": {
+            "messages": [
+              {
+                "@type": "/cosmos.staking.v1beta1.MsgCreateValidator",
+                "description": {
+                  "moniker": "MrSinaN",
+                  "identity": "",
+                  "website": "pundix.com",
+                  "security_contact": "contact@pundix.com",
+                  "details": "Details A PUNDIX self-hosted validator."
+                },
+                "commission": {
+                  "rate": "0.030000000000000000",
+                  "max_rate": "0.200000000000000000",
+                  "max_change_rate": "0.010000000000000000"
+                },
+                "min_self_delegation": "10000000000000000",
+                "delegator_address": "px1j833plugrcjev9du08hf0w29a2jg2qgn9zrhjg",
+                "validator_address": "pxvaloper1j833plugrcjev9du08hf0w29a2jg2qgnuwk2ml",
+                "pubkey": {
+                  "@type": "/cosmos.crypto.ed25519.PubKey",
+                  "key": "0gS7gNLwBYlfRRA64fGf5OtXJYMtwdjY+Z1Ym9KCzm4="
+                },
+                "value": {
+                  "denom": "ibc/169A52CA4862329131348484982CE75B3D6CC78AFB94C3107026C70CB66E7B2E",
+                  "amount": "100000000000000000000"
+                }
+              }
+            ],
+            "memo": "",
+            "timeout_height": "0",
+            "extension_options": [],
+            "non_critical_extension_options": []
+          },
+          "auth_info": {
+            "signer_infos": [
+              {
+                "public_key": {
+                  "@type": "/cosmos.crypto.secp256k1.PubKey",
+                  "key": "Amdu6whXf5GT1v7wbAichVE2+Vw9SIlNMg2AbLlZo8+A"
+                },
+                "mode_info": {
+                  "single": {
+                    "mode": "SIGN_MODE_LEGACY_AMINO_JSON"
+                  }
+                },
+                "sequence": "0"
+              }
+            ],
+            "fee": {
+              "amount": [],
+              "gas_limit": "200000",
+              "payer": "",
+              "granter": ""
+            }
+          },
+          "signatures": [
+            "NizVs+NXejhDijoCI+F35Sgd5r43pL4qynJ1skST2dE2e5p2u+TAAsBlzD/5FhTBvzV4yhBSqHO/8KMO6DDXCg=="
+          ]
+        },
+        {
+          "body": {
+            "messages": [
+              {
+                "@type": "/cosmos.staking.v1beta1.MsgCreateValidator",
+                "description": {
+                  "moniker": "Nebula",
+                  "identity": "",
+                  "website": "pundix.com",
+                  "security_contact": "contact@pundix.com",
+                  "details": "Details A PUNDIX self-hosted validator."
+                },
+                "commission": {
+                  "rate": "0.030000000000000000",
+                  "max_rate": "0.200000000000000000",
+                  "max_change_rate": "0.010000000000000000"
+                },
+                "min_self_delegation": "10000000000000000",
+                "delegator_address": "px1qe9xe6apn6cfuc2hwfv78qd7lh557zys7at2jh",
+                "validator_address": "pxvaloper1qe9xe6apn6cfuc2hwfv78qd7lh557zys837hmq",
+                "pubkey": {
+                  "@type": "/cosmos.crypto.ed25519.PubKey",
+                  "key": "XCL4hcpdQMVVY7JB0Gd46ec5BedSXEYYJVnHfwJQXoE="
+                },
+                "value": {
+                  "denom": "ibc/169A52CA4862329131348484982CE75B3D6CC78AFB94C3107026C70CB66E7B2E",
+                  "amount": "100000000000000000000"
+                }
+              }
+            ],
+            "memo": "",
+            "timeout_height": "0",
+            "extension_options": [],
+            "non_critical_extension_options": []
+          },
+          "auth_info": {
+            "signer_infos": [
+              {
+                "public_key": {
+                  "@type": "/cosmos.crypto.secp256k1.PubKey",
+                  "key": "Ajzhr/Bj3BGmWjZiXHKmQJizM8kvSp7Wh2lBX/4lW/Gf"
+                },
+                "mode_info": {
+                  "single": {
+                    "mode": "SIGN_MODE_LEGACY_AMINO_JSON"
+                  }
+                },
+                "sequence": "0"
+              }
+            ],
+            "fee": {
+              "amount": [],
+              "gas_limit": "200000",
+              "payer": "",
+              "granter": ""
+            }
+          },
+          "signatures": [
+            "Tx0A4q1qMzq4aVefCnYJDDysxc/iutC1zJBQtDNVFqxJ0h2XsTVGNupKvGwRBRlELhVMKfszKJy4J93hI5xSkQ=="
+          ]
+        },
+        {
+          "body": {
+            "messages": [
+              {
+                "@type": "/cosmos.staking.v1beta1.MsgCreateValidator",
+                "description": {
+                  "moniker": "Nebulae",
+                  "identity": "",
+                  "website": "pundix.com",
+                  "security_contact": "contact@pundix.com",
+                  "details": "Details A PUNDIX self-hosted validator."
+                },
+                "commission": {
+                  "rate": "0.030000000000000000",
+                  "max_rate": "0.200000000000000000",
+                  "max_change_rate": "0.010000000000000000"
+                },
+                "min_self_delegation": "10000000000000000",
+                "delegator_address": "px1a8rrfwknek9hecjqfmtvzxzq4sr2h8zhnzf60q",
+                "validator_address": "pxvaloper1a8rrfwknek9hecjqfmtvzxzq4sr2h8zh2wu8xh",
+                "pubkey": {
+                  "@type": "/cosmos.crypto.ed25519.PubKey",
+                  "key": "ywD0mK+66Tp2vfBynabbx29u9M3jkGvkXZRHIXhLk0E="
+                },
+                "value": {
+                  "denom": "ibc/169A52CA4862329131348484982CE75B3D6CC78AFB94C3107026C70CB66E7B2E",
+                  "amount": "100000000000000000000"
+                }
+              }
+            ],
+            "memo": "",
+            "timeout_height": "0",
+            "extension_options": [],
+            "non_critical_extension_options": []
+          },
+          "auth_info": {
+            "signer_infos": [
+              {
+                "public_key": {
+                  "@type": "/cosmos.crypto.secp256k1.PubKey",
+                  "key": "Azm2wopm598AuW/uJpOm5xf6/MwMJ0kNr/4CKh7J+5Fu"
+                },
+                "mode_info": {
+                  "single": {
+                    "mode": "SIGN_MODE_LEGACY_AMINO_JSON"
+                  }
+                },
+                "sequence": "0"
+              }
+            ],
+            "fee": {
+              "amount": [],
+              "gas_limit": "200000",
+              "payer": "",
+              "granter": ""
+            }
+          },
+          "signatures": [
+            "6EOhivKHozNJZdh/pgiQ9JM9lT8ZWcLHJ1fv7fYwR5tXVKslGE5oAuW/eufEOU+MYvTszRC4ScmWKlVuFs7t1w=="
+          ]
+        },
+        {
+          "body": {
+            "messages": [
+              {
+                "@type": "/cosmos.staking.v1beta1.MsgCreateValidator",
+                "description": {
+                  "moniker": "Neptune",
+                  "identity": "",
+                  "website": "pundix.com",
+                  "security_contact": "contact@pundix.com",
+                  "details": "Details A PUNDIX self-hosted validator."
+                },
+                "commission": {
+                  "rate": "0.030000000000000000",
+                  "max_rate": "0.200000000000000000",
+                  "max_change_rate": "0.010000000000000000"
+                },
+                "min_self_delegation": "10000000000000000",
+                "delegator_address": "px1sc2xfyc00946xj3449c4scpdjd895h8x3l3hfr",
+                "validator_address": "pxvaloper1sc2xfyc00946xj3449c4scpdjd895h8xgny2q5",
+                "pubkey": {
+                  "@type": "/cosmos.crypto.ed25519.PubKey",
+                  "key": "d2kFCgRHcSo9HfIyaQBPfZsktGYKlQgAPCKd+Gk7f7k="
+                },
+                "value": {
+                  "denom": "ibc/169A52CA4862329131348484982CE75B3D6CC78AFB94C3107026C70CB66E7B2E",
+                  "amount": "100000000000000000000"
+                }
+              }
+            ],
+            "memo": "",
+            "timeout_height": "0",
+            "extension_options": [],
+            "non_critical_extension_options": []
+          },
+          "auth_info": {
+            "signer_infos": [
+              {
+                "public_key": {
+                  "@type": "/cosmos.crypto.secp256k1.PubKey",
+                  "key": "AgY/146VhA+tweR3pdLjcvjNkNxtWg07CQvc7EeGQSZQ"
+                },
+                "mode_info": {
+                  "single": {
+                    "mode": "SIGN_MODE_LEGACY_AMINO_JSON"
+                  }
+                },
+                "sequence": "0"
+              }
+            ],
+            "fee": {
+              "amount": [],
+              "gas_limit": "200000",
+              "payer": "",
+              "granter": ""
+            }
+          },
+          "signatures": [
+            "/oBA3Zh1RXnENxVDqjDdnjlIjlrU7eVtX8M8YmqCGTR1gvdo/A2zMb5aVuzIOojcyiH5mpR5XpgoCkKlp4J/8w=="
+          ]
+        },
+        {
+          "body": {
+            "messages": [
+              {
+                "@type": "/cosmos.staking.v1beta1.MsgCreateValidator",
+                "description": {
+                  "moniker": "Pundix Sherif",
+                  "identity": "",
+                  "website": "pundix.com",
+                  "security_contact": "contact@pundix.com",
+                  "details": "Details A PUNDIX self-hosted validator."
+                },
+                "commission": {
+                  "rate": "0.030000000000000000",
+                  "max_rate": "0.200000000000000000",
+                  "max_change_rate": "0.010000000000000000"
+                },
+                "min_self_delegation": "10000000000000000",
+                "delegator_address": "px1mhdcuq46zlha2m0sas9q967lgrgkgv090sww5m",
+                "validator_address": "pxvaloper1mhdcuq46zlha2m0sas9q967lgrgkgv09kumnav",
+                "pubkey": {
+                  "@type": "/cosmos.crypto.ed25519.PubKey",
+                  "key": "7IBq4DfTdNc5VGNQNaYrr4cBSvjfbugbfLFFNHza7a0="
+                },
+                "value": {
+                  "denom": "ibc/169A52CA4862329131348484982CE75B3D6CC78AFB94C3107026C70CB66E7B2E",
+                  "amount": "100000000000000000000"
+                }
+              }
+            ],
+            "memo": "",
+            "timeout_height": "0",
+            "extension_options": [],
+            "non_critical_extension_options": []
+          },
+          "auth_info": {
+            "signer_infos": [
+              {
+                "public_key": {
+                  "@type": "/cosmos.crypto.secp256k1.PubKey",
+                  "key": "AsuVvaoNV/7DRG3Nf4WLxrRTmppWEQQSATu6tyzvMMTz"
+                },
+                "mode_info": {
+                  "single": {
+                    "mode": "SIGN_MODE_LEGACY_AMINO_JSON"
+                  }
+                },
+                "sequence": "0"
+              }
+            ],
+            "fee": {
+              "amount": [],
+              "gas_limit": "200000",
+              "payer": "",
+              "granter": ""
+            }
+          },
+          "signatures": [
+            "N4DZzJ/njU8zzILe0hORsIiW/7fSyXcR7t7khCAnh6gsoSPA3pdC0HKQcKR+1XLPVSpzGGcsMLEwATU49j9egQ=="
+          ]
+        },
+        {
+          "body": {
+            "messages": [
+              {
+                "@type": "/cosmos.staking.v1beta1.MsgCreateValidator",
+                "description": {
+                  "moniker": "Quasar",
+                  "identity": "",
+                  "website": "pundix.com",
+                  "security_contact": "contact@pundix.com",
+                  "details": "Details A PUNDIX self-hosted validator."
+                },
+                "commission": {
+                  "rate": "0.030000000000000000",
+                  "max_rate": "0.200000000000000000",
+                  "max_change_rate": "0.010000000000000000"
+                },
+                "min_self_delegation": "10000000000000000",
+                "delegator_address": "px1s67l9ewjrjqypmuu9dvuahpjh4hets5l8w8h50",
+                "validator_address": "pxvaloper1s67l9ewjrjqypmuu9dvuahpjh4hets5l7zj2ac",
+                "pubkey": {
+                  "@type": "/cosmos.crypto.ed25519.PubKey",
+                  "key": "GqKw1BvrBJDeQiZr1IktGnjF2HT9UhoDhUsCEdokNZY="
+                },
+                "value": {
+                  "denom": "ibc/169A52CA4862329131348484982CE75B3D6CC78AFB94C3107026C70CB66E7B2E",
+                  "amount": "100000000000000000000"
+                }
+              }
+            ],
+            "memo": "",
+            "timeout_height": "0",
+            "extension_options": [],
+            "non_critical_extension_options": []
+          },
+          "auth_info": {
+            "signer_infos": [
+              {
+                "public_key": {
+                  "@type": "/cosmos.crypto.secp256k1.PubKey",
+                  "key": "AtFcU22tVGgAo4hQ9z3HoRWJyxnxJbtqVT2IUoDXuV8a"
+                },
+                "mode_info": {
+                  "single": {
+                    "mode": "SIGN_MODE_LEGACY_AMINO_JSON"
+                  }
+                },
+                "sequence": "0"
+              }
+            ],
+            "fee": {
+              "amount": [],
+              "gas_limit": "200000",
+              "payer": "",
+              "granter": ""
+            }
+          },
+          "signatures": [
+            "en0R2YaJtEfT0EQdWAcJdBuEQwH5wsILH8kpRltrZ8lMHprtUHpF+4y9pF4cOCjcz79cAfPO0BNKZCEsHqppeQ=="
+          ]
+        },
+        {
+          "body": {
+            "messages": [
+              {
+                "@type": "/cosmos.staking.v1beta1.MsgCreateValidator",
+                "description": {
+                  "moniker": "Saturn",
+                  "identity": "",
+                  "website": "pundix.com",
+                  "security_contact": "contact@pundix.com",
+                  "details": "Details A PUNDIX self-hosted validator."
+                },
+                "commission": {
+                  "rate": "0.030000000000000000",
+                  "max_rate": "0.200000000000000000",
+                  "max_change_rate": "0.010000000000000000"
+                },
+                "min_self_delegation": "10000000000000000",
+                "delegator_address": "px1fvzxwsewdgvzdh9d3w9tavjf4h05krsjce89mw",
+                "validator_address": "pxvaloper1fvzxwsewdgvzdh9d3w9tavjf4h05krsjp4jcje",
+                "pubkey": {
+                  "@type": "/cosmos.crypto.ed25519.PubKey",
+                  "key": "tgxHWhGG5ooJM11KxYuG1hfXqjR7pydpLz7VjtPKdxU="
+                },
+                "value": {
+                  "denom": "ibc/169A52CA4862329131348484982CE75B3D6CC78AFB94C3107026C70CB66E7B2E",
+                  "amount": "100000000000000000000"
+                }
+              }
+            ],
+            "memo": "",
+            "timeout_height": "0",
+            "extension_options": [],
+            "non_critical_extension_options": []
+          },
+          "auth_info": {
+            "signer_infos": [
+              {
+                "public_key": {
+                  "@type": "/cosmos.crypto.secp256k1.PubKey",
+                  "key": "A0EzmdIWwcz2fUdS0niQwrUUKlEwAGDvzXWG2FXYxyY0"
+                },
+                "mode_info": {
+                  "single": {
+                    "mode": "SIGN_MODE_LEGACY_AMINO_JSON"
+                  }
+                },
+                "sequence": "0"
+              }
+            ],
+            "fee": {
+              "amount": [],
+              "gas_limit": "200000",
+              "payer": "",
+              "granter": ""
+            }
+          },
+          "signatures": [
+            "yOqUK1xHQxwBByl2njTMsGyjqnMpBZvqk4xYCzCxZ1JdTadvAO40Lr7qGYSBhlSdFQ8/TvSm9itoM6/Qp4c2mw=="
+          ]
+        },
+        {
+          "body": {
+            "messages": [
+              {
+                "@type": "/cosmos.staking.v1beta1.MsgCreateValidator",
+                "description": {
+                  "moniker": "Sloan Great Wall",
+                  "identity": "",
+                  "website": "pundix.com",
+                  "security_contact": "contact@pundix.com",
+                  "details": "Details A PUNDIX self-hosted validator."
+                },
+                "commission": {
+                  "rate": "0.030000000000000000",
+                  "max_rate": "0.200000000000000000",
+                  "max_change_rate": "0.010000000000000000"
+                },
+                "min_self_delegation": "10000000000000000",
+                "delegator_address": "px1d82u8tvhqrd8rfnc60pvvytgrhud838hhgv670",
+                "validator_address": "pxvaloper1d82u8tvhqrd8rfnc60pvvytgrhud838hwye8hc",
+                "pubkey": {
+                  "@type": "/cosmos.crypto.ed25519.PubKey",
+                  "key": "0VRWcWjt4DNjFF9hNh6BOgUSgHA91LozTK0SXjtEF9o="
+                },
+                "value": {
+                  "denom": "ibc/169A52CA4862329131348484982CE75B3D6CC78AFB94C3107026C70CB66E7B2E",
+                  "amount": "100000000000000000000"
+                }
+              }
+            ],
+            "memo": "",
+            "timeout_height": "0",
+            "extension_options": [],
+            "non_critical_extension_options": []
+          },
+          "auth_info": {
+            "signer_infos": [
+              {
+                "public_key": {
+                  "@type": "/cosmos.crypto.secp256k1.PubKey",
+                  "key": "A6l0lWhjNQfcq/VfSnrHh0boJ0AlgGzo1hD+ySmlVZ6D"
+                },
+                "mode_info": {
+                  "single": {
+                    "mode": "SIGN_MODE_LEGACY_AMINO_JSON"
+                  }
+                },
+                "sequence": "0"
+              }
+            ],
+            "fee": {
+              "amount": [],
+              "gas_limit": "200000",
+              "payer": "",
+              "granter": ""
+            }
+          },
+          "signatures": [
+            "jhNdhdQD+vxoVmbBZ/ZUTDsrHulqvYwGYtIjNvwgCBgiDw13QJqu6hlmxFsvs4CwE0jVs+cUHpFUvCpmVw+LJg=="
+          ]
+        },
+        {
+          "body": {
+            "messages": [
+              {
+                "@type": "/cosmos.staking.v1beta1.MsgCreateValidator",
+                "description": {
+                  "moniker": "Sun",
+                  "identity": "",
+                  "website": "pundix.com",
+                  "security_contact": "contact@pundix.com",
+                  "details": "Details A PUNDIX self-hosted validator."
+                },
+                "commission": {
+                  "rate": "0.030000000000000000",
+                  "max_rate": "0.200000000000000000",
+                  "max_change_rate": "0.010000000000000000"
+                },
+                "min_self_delegation": "10000000000000000",
+                "delegator_address": "px1psruzz2rcnltfmhtau3pvj074eq5gkqfnaqeu7",
+                "validator_address": "pxvaloper1psruzz2rcnltfmhtau3pvj074eq5gkqf234y4f",
+                "pubkey": {
+                  "@type": "/cosmos.crypto.ed25519.PubKey",
+                  "key": "RFkHzJT5KvKGzAKBKvXXHU0eK6lK9CMnXHm6N+Th+lA="
+                },
+                "value": {
+                  "denom": "ibc/169A52CA4862329131348484982CE75B3D6CC78AFB94C3107026C70CB66E7B2E",
+                  "amount": "100000000000000000000"
+                }
+              }
+            ],
+            "memo": "",
+            "timeout_height": "0",
+            "extension_options": [],
+            "non_critical_extension_options": []
+          },
+          "auth_info": {
+            "signer_infos": [
+              {
+                "public_key": {
+                  "@type": "/cosmos.crypto.secp256k1.PubKey",
+                  "key": "AuLXtF26b021Cx0Xl8qMtM8xZ2hC61xmBNBA4XyoD8wm"
+                },
+                "mode_info": {
+                  "single": {
+                    "mode": "SIGN_MODE_LEGACY_AMINO_JSON"
+                  }
+                },
+                "sequence": "0"
+              }
+            ],
+            "fee": {
+              "amount": [],
+              "gas_limit": "200000",
+              "payer": "",
+              "granter": ""
+            }
+          },
+          "signatures": [
+            "IcDFfoXTFyTqhaFolp3YG1NlShWE0Rbr299xO24Jw+cZ/5yiXVKssAGgBXTFymuH9SVEJghk5gJ7/eerg4sg6g=="
+          ]
+        },
+        {
+          "body": {
+            "messages": [
+              {
+                "@type": "/cosmos.staking.v1beta1.MsgCreateValidator",
+                "description": {
+                  "moniker": "Superbit123",
+                  "identity": "",
+                  "website": "pundix.com",
+                  "security_contact": "contact@pundix.com",
+                  "details": "Details A PUNDIX self-hosted validator."
+                },
+                "commission": {
+                  "rate": "0.030000000000000000",
+                  "max_rate": "0.200000000000000000",
+                  "max_change_rate": "0.010000000000000000"
+                },
+                "min_self_delegation": "10000000000000000",
+                "delegator_address": "px1agjg9sthlwzkrycpg9k6qulqw00f0vc8cax7uj",
+                "validator_address": "pxvaloper1agjg9sthlwzkrycpg9k6qulqw00f0vc8p3nr49",
+                "pubkey": {
+                  "@type": "/cosmos.crypto.ed25519.PubKey",
+                  "key": "+GBpts7A5bTBgwAW4bOFUlTmaZejcD/xFM6ljHogKnM="
+                },
+                "value": {
+                  "denom": "ibc/169A52CA4862329131348484982CE75B3D6CC78AFB94C3107026C70CB66E7B2E",
+                  "amount": "100000000000000000000"
+                }
+              }
+            ],
+            "memo": "",
+            "timeout_height": "0",
+            "extension_options": [],
+            "non_critical_extension_options": []
+          },
+          "auth_info": {
+            "signer_infos": [
+              {
+                "public_key": {
+                  "@type": "/cosmos.crypto.secp256k1.PubKey",
+                  "key": "AzJ7jYzyzMlL4b/f70CD2SsfvX9ngDIFi80eQ2flcN0O"
+                },
+                "mode_info": {
+                  "single": {
+                    "mode": "SIGN_MODE_LEGACY_AMINO_JSON"
+                  }
+                },
+                "sequence": "0"
+              }
+            ],
+            "fee": {
+              "amount": [],
+              "gas_limit": "200000",
+              "payer": "",
+              "granter": ""
+            }
+          },
+          "signatures": [
+            "gha4plqWeJ9k5/QnccUoA0eKXfgEj7lLmSukfBUee5pbFXQVgL0IV98/q7wlu9PEg5+KEs+E/5YCtMmqyeHqcQ=="
+          ]
+        },
+        {
+          "body": {
+            "messages": [
+              {
+                "@type": "/cosmos.staking.v1beta1.MsgCreateValidator",
+                "description": {
+                  "moniker": "Venus",
+                  "identity": "",
+                  "website": "pundix.com",
+                  "security_contact": "contact@pundix.com",
+                  "details": "Details A PUNDIX self-hosted validator."
+                },
+                "commission": {
+                  "rate": "0.030000000000000000",
+                  "max_rate": "0.200000000000000000",
+                  "max_change_rate": "0.010000000000000000"
+                },
+                "min_self_delegation": "10000000000000000",
+                "delegator_address": "px1kxx5htlwy2ehw6chljwjdyvjdtk249u6022lpj",
+                "validator_address": "pxvaloper1kxx5htlwy2ehw6chljwjdyvjdtk249u6kxlzg9",
+                "pubkey": {
+                  "@type": "/cosmos.crypto.ed25519.PubKey",
+                  "key": "MXaWVQMrN7s44TqlwErw9/mqlpHhcDroASxi3xf963E="
+                },
+                "value": {
+                  "denom": "ibc/169A52CA4862329131348484982CE75B3D6CC78AFB94C3107026C70CB66E7B2E",
+                  "amount": "100000000000000000000"
+                }
+              }
+            ],
+            "memo": "",
+            "timeout_height": "0",
+            "extension_options": [],
+            "non_critical_extension_options": []
+          },
+          "auth_info": {
+            "signer_infos": [
+              {
+                "public_key": {
+                  "@type": "/cosmos.crypto.secp256k1.PubKey",
+                  "key": "Aq/IdcG3+ScRDJqqWxUa1oWJ28QQBjizyMHBoPdrJXLm"
+                },
+                "mode_info": {
+                  "single": {
+                    "mode": "SIGN_MODE_LEGACY_AMINO_JSON"
+                  }
+                },
+                "sequence": "0"
+              }
+            ],
+            "fee": {
+              "amount": [],
+              "gas_limit": "200000",
+              "payer": "",
+              "granter": ""
+            }
+          },
+          "signatures": [
+            "n66MjZCXA54DQRte7nnciDFt82eaM28pNo9c6DCjja0eYEyxvKAXEa5TwJqFqoNvc85Xec73iPEF0ya4MbH6oA=="
+          ]
+        },
+        {
+          "body": {
+            "messages": [
+              {
+                "@type": "/cosmos.staking.v1beta1.MsgCreateValidator",
+                "description": {
+                  "moniker": "Voids",
+                  "identity": "",
+                  "website": "pundix.com",
+                  "security_contact": "contact@pundix.com",
+                  "details": "Details A PUNDIX self-hosted validator."
+                },
+                "commission": {
+                  "rate": "0.030000000000000000",
+                  "max_rate": "0.200000000000000000",
+                  "max_change_rate": "0.010000000000000000"
+                },
+                "min_self_delegation": "10000000000000000",
+                "delegator_address": "px1dkvv4xa4500exvda6pyq3uw3e37pv933ftzkey",
+                "validator_address": "pxvaloper1dkvv4xa4500exvda6pyq3uw3e37pv933s8htsn",
+                "pubkey": {
+                  "@type": "/cosmos.crypto.ed25519.PubKey",
+                  "key": "A9iCPUmQKfmhvpYyx7/2mG4IxEZwxQrlOtDyuCnekiI="
+                },
+                "value": {
+                  "denom": "ibc/169A52CA4862329131348484982CE75B3D6CC78AFB94C3107026C70CB66E7B2E",
+                  "amount": "100000000000000000000"
+                }
+              }
+            ],
+            "memo": "",
+            "timeout_height": "0",
+            "extension_options": [],
+            "non_critical_extension_options": []
+          },
+          "auth_info": {
+            "signer_infos": [
+              {
+                "public_key": {
+                  "@type": "/cosmos.crypto.secp256k1.PubKey",
+                  "key": "An0X1dCXNM9PcRzP0bSpx0oDpqUOrUJyHqr3+2mecZ0J"
+                },
+                "mode_info": {
+                  "single": {
+                    "mode": "SIGN_MODE_LEGACY_AMINO_JSON"
+                  }
+                },
+                "sequence": "0"
+              }
+            ],
+            "fee": {
+              "amount": [],
+              "gas_limit": "200000",
+              "payer": "",
+              "granter": ""
+            }
+          },
+          "signatures": [
+            "B6X84FVKE0Av2Ej5jjw7oTnf4uWWzoFomWxkJbEDCR88aptUNfDO5RzKxU3s9tjToKzJhsyKPcCTYMV353NUcQ=="
+          ]
+        }
+      ]
+    },
+    "gov": {
+      "starting_proposal_id": "1",
+      "deposits": [],
+      "votes": [],
+      "proposals": [],
+      "deposit_params": {
+        "min_deposit": [
+          {
+            "denom": "ibc/169A52CA4862329131348484982CE75B3D6CC78AFB94C3107026C70CB66E7B2E",
+            "amount": "10000000000000000000000"
+          }
+        ],
+        "max_deposit_period": "1209600s"
+      },
+      "voting_params": {
+        "voting_period": "1209600s"
+      },
+      "tally_params": {
+        "quorum": "0.400000000000000000",
+        "threshold": "0.500000000000000000",
+        "veto_threshold": "0.334000000000000000"
+      }
+    },
+    "ibc": {
+      "client_genesis": {
+        "clients": [],
+        "clients_consensus": [],
+        "clients_metadata": [],
+        "params": {
+          "allowed_clients": [
+            "07-tendermint"
+          ]
+        },
+        "create_localhost": false,
+        "next_client_sequence": "0"
+      },
+      "connection_genesis": {
+        "connections": [],
+        "client_connection_paths": [],
+        "next_connection_sequence": "0",
+        "params": {
+          "max_expected_time_per_block": "30000000000"
+        }
+      },
+      "channel_genesis": {
+        "channels": [],
+        "acknowledgements": [],
+        "commitments": [],
+        "receipts": [],
+        "send_sequences": [],
+        "recv_sequences": [],
+        "ack_sequences": [],
+        "next_channel_sequence": "0"
+      }
+    },
+    "mint": {
+      "minter": {
+        "inflation": "30.000000000000000000",
+        "annual_provisions": "0.000000000000000000"
+      },
+      "params": {
+        "mint_denom": "bsc0x0BEdB58eC8D603E71556ef8aA4014c68DBd57AD7",
+        "inflation_rate_change": "1.000000000000000000",
+        "inflation_max": "40.000000000000000000",
+        "inflation_min": "20.000000000000000000",
+        "goal_bonded": "0.510000000000000000",
+        "blocks_per_year": "6311520"
+      }
+    },
+    "other": null,
+    "params": null,
+    "slashing": {
+      "params": {
+        "signed_blocks_window": "20000",
+        "min_signed_per_window": "0.050000000000000000",
+        "downtime_jail_duration": "600s",
+        "slash_fraction_double_sign": "0.050000000000000000",
+        "slash_fraction_downtime": "0.001000000000000000"
+      },
+      "signing_infos": [],
+      "missed_blocks": []
+    },
+    "staking": {
+      "params": {
+        "unbonding_time": "1814400s",
+        "max_validators": 20,
+        "max_entries": 7,
+        "historical_entries": 20000,
+        "bond_denom": "ibc/169A52CA4862329131348484982CE75B3D6CC78AFB94C3107026C70CB66E7B2E"
+      },
+      "last_total_power": "0",
+      "last_validator_powers": [],
+      "validators": [],
+      "delegations": [],
+      "unbonding_delegations": [],
+      "redelegations": [],
+      "exported": false
+    },
+    "transfer": {
+      "port_id": "transfer",
+      "denom_traces": [],
+      "params": {
+        "send_enabled": true,
+        "receive_enabled": true
+      }
+    },
+    "upgrade": {},
+    "vesting": {}
+  }
+}
