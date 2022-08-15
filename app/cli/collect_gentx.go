@@ -3,7 +3,6 @@ package cli
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
 	"os"
 	"path/filepath"
 	"runtime"
@@ -134,8 +133,7 @@ func CollectTxs(cdc codec.Codec, txJSONDecoder sdk.TxDecoder, moniker, genTxsDir
 		return appGenTxs, persistentPeers, err
 	}
 
-	var fos []os.FileInfo
-	fos, err = ioutil.ReadDir(genTxsDir)
+	fos, err := os.ReadDir(genTxsDir)
 	if err != nil {
 		return appGenTxs, persistentPeers, err
 	}
@@ -159,7 +157,7 @@ func CollectTxs(cdc codec.Codec, txJSONDecoder sdk.TxDecoder, moniker, genTxsDir
 		}
 
 		// get the genTx
-		jsonRawTx, err := ioutil.ReadFile(filepath.Join(genTxsDir, fo.Name()))
+		jsonRawTx, err := os.ReadFile(filepath.Join(genTxsDir, fo.Name()))
 		if err != nil {
 			return appGenTxs, persistentPeers, err
 		}
