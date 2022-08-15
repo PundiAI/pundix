@@ -1,0 +1,7 @@
+http_server_config:
+  http2: false
+# Usernames and passwords required to connect to Prometheus.
+# Passwords are hashed with bcrypt: https://github.com/prometheus/exporter-toolkit/blob/master/docs/web-configuration.md#about-bcrypt
+basic_auth_users:
+  # pundix: pundix
+  pundix: $2y$10$SKjPXAShuM2YIKZNkN9l6OqrHkVvW090A5JZ8sFf1z/edN3txs342
