@@ -61,25 +61,26 @@ done
 # command to generate docs using protoc-gen-doc
 buf protoc \
   -I "proto" \
+  -I "build/ibc-go/proto" \
   -I "build/cosmos-sdk/proto" \
   -I "build/cosmos-sdk/third_party/proto" \
   --doc_out=./docs/proto \
   --doc_opt=./docs/proto/proto-doc-markdown.tmpl,pundix-proto-docs.md \
-  $(find "$(pwd)/proto" -maxdepth 5 -name '*.proto')
+  $(find "$(pwd)/proto" -maxdepth 6 -name '*.proto')
 
 buf protoc \
     -I "build/cosmos-sdk/proto" \
     -I "build/cosmos-sdk/third_party/proto" \
     --doc_out=./docs/proto \
     --doc_opt=./docs/proto/proto-doc-markdown.tmpl,cosmos-sdk-proto-docs.md \
-    $(find "$(pwd)/build/cosmos-sdk/proto" -maxdepth 5 -name '*.proto')
+    $(find "$(pwd)/build/cosmos-sdk/proto" -maxdepth 6 -name '*.proto')
 
 buf protoc \
     -I "build/ibc-go/proto" \
     -I "build/ibc-go/third_party/proto" \
     --doc_out=./docs/proto \
     --doc_opt=./docs/proto/proto-doc-markdown.tmpl,ibc-go-proto-docs.md \
-    $(find "$(pwd)/build/ibc-go/proto" -maxdepth 5 -name '*.proto')
+    $(find "$(pwd)/build/ibc-go/proto" -maxdepth 6 -name '*.proto')
 
 cp -r github.com/pundix/pundix/* ./
 rm -rf github.com
