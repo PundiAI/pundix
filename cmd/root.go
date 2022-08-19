@@ -2,11 +2,13 @@ package main
 
 import (
 	"errors"
+	"fmt"
 	"io"
 	"os"
 	"path/filepath"
 	"strings"
 
+	"github.com/cosmos/cosmos-sdk/server/config"
 	tmtypes "github.com/tendermint/tendermint/types"
 
 	"github.com/cosmos/cosmos-sdk/crypto/keyring"
@@ -48,6 +50,7 @@ import (
 // NewRootCmd creates a new root command for simd. It is called once in the
 // main function.
 func NewRootCmd() *cobra.Command {
+	pxtypes.SetConfig()
 
 	encodingConfig := app.MakeEncodingConfig()
 	initClientCtx := client.Context{}.
@@ -84,7 +87,13 @@ func NewRootCmd() *cobra.Command {
 				return err
 			}
 
-			if err := server.InterceptConfigsPreRunHandler(cmd, "", nil); err != nil {
+			if cmd.Name() != "start" && len(initClientCtx.ChainID) > 0 {
+				pxtypes.SetChainId(initClientCtx.ChainID)
+			}
+
+			defConfig := config.DefaultConfig()
+			defConfig.MinGasPrices = fmt.Sprintf("2000000000000%s", pxtypes.StakingBondDenom())
+			if err := server.InterceptConfigsPreRunHandler(cmd, config.DefaultConfigTemplate, defConfig); err != nil {
 				return err
 			}
 			return cli.AddCmdLogWrapFilterLogType(cmd)
@@ -93,15 +102,12 @@ func NewRootCmd() *cobra.Command {
 	rootCmd.PersistentFlags().StringSlice(cli.FlagLogFilter, []string{}, `The logging filter can discard custom log type (ABCIQuery) (default "")`)
 	initRootCmd(rootCmd, encodingConfig)
 	overwriteFlagDefaults(rootCmd, map[string]string{
-		flags.FlagChainID:        pxtypes.ChainID,
+		flags.FlagChainID:        pxtypes.ChainId(),
 		flags.FlagKeyringBackend: keyring.BackendOS,
-		flags.FlagGas:            "80000",
+		flags.FlagGas:            "auto",
+		flags.FlagGasAdjustment:  "1.2",
+		flags.FlagGasPrices:      fmt.Sprintf("2000000000000%s", pxtypes.StakingBondDenom()),
 	})
-	for _, command := range rootCmd.Commands() {
-		if command.Use == "" {
-			rootCmd.RemoveCommand(command)
-		}
-	}
 	return rootCmd
 }
 

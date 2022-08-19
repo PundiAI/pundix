@@ -3,6 +3,8 @@ package types
 import (
 	"os"
 	"sync"
+
+	sdk "github.com/cosmos/cosmos-sdk/types"
 )
 
 // testnet constant
@@ -30,6 +32,10 @@ func SetChainId(id string) {
 	}
 	once.Do(func() {
 		chainId = id
+
+		if err := sdk.RegisterDenom(StakingBondDenom(), sdk.NewDecWithPrec(1, 18)); err != nil {
+			panic(err)
+		}
 	})
 }
 
