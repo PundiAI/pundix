@@ -3,6 +3,9 @@ info:
   title: PUNDIX REST and gRPC Gateway docs
   description: 'A REST interface for state queries, legacy transactions'
   version: 0.0.1
+host: px-rest.pundix.com
+schemes:
+ - https
 paths:
   /ibc/applications/transfer/v1beta1/denom_traces:
     get:
