@@ -93,22 +93,27 @@ go.sum: go.mod
 	@echo "--> Download go modules to local cache"
 	@go mod download
 
-build: go.mod
-	@go build -mod=readonly -v $(BUILD_FLAGS) -o $(BUILDDIR)/bin/pundixd ./cmd
+build: go.sum
+	@go build -mod=readonly -v $(BUILD_FLAGS) -o $(BUILDDIR)/bin/pundixd ./cmd/pundixd
 
 build-linux:
 	@CGO_ENABLED=0 TARGET_CC=clang LEDGER_ENABLED=false GOOS=linux GOARCH=amd64 make build
 
-install:
-	@$(MAKE) build
-	@mv $(BUILDDIR)/bin/pundixd $(GOPATH)/bin/pundixd
+INSTALL_DIR := $(shell go env GOPATH)/bin
+install: build $(INSTALL_DIR)
+	mv $(BUILDDIR)/bin/pundixd $(shell go env GOPATH)/bin/pundixd
+	@echo "--> Run \"pundixd start\" or \"$(shell go env GOPATH)/bin/pundixd start\" to launch pundixd."
+
+$(INSTALL_DIR):
+	@echo "Folder $(INSTALL_DIR) does not exist"
+	mkdir -p $@
 
 run-local: install
 	@./develop/run_pundix.sh init
 
 draw-deps:
 	@# requires brew install graphviz or apt-get install graphviz go get github.com/RobotsAndPencils/goviz
-	@goviz -i github.com/pundix/pundix/cmd -d 2 | dot -Tpng -o dependency-graph.png
+	@goviz -i github.com/pundix/pundix/cmd/pundixd -d 2 | dot -Tpng -o dependency-graph.png
 
 .PHONY: go.sum build install run-local draw-deps
 

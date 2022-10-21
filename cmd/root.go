@@ -1,4 +1,4 @@
-package main
+package cmd
 
 import (
 	"errors"
@@ -8,26 +8,14 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/cosmos/cosmos-sdk/server/config"
-	tmtypes "github.com/tendermint/tendermint/types"
-
-	"github.com/cosmos/cosmos-sdk/crypto/keyring"
-
-	otherCli "github.com/pundix/pundix/x/other/client/cli"
-
-	"github.com/pundix/pundix/app/cli"
-
-	pxtypes "github.com/pundix/pundix/types"
-
-	"github.com/cosmos/cosmos-sdk/x/crisis"
-	ibchost "github.com/cosmos/ibc-go/modules/core/24-host"
-
 	"github.com/cosmos/cosmos-sdk/baseapp"
 	"github.com/cosmos/cosmos-sdk/client"
 	sdkCfg "github.com/cosmos/cosmos-sdk/client/config"
 	"github.com/cosmos/cosmos-sdk/client/flags"
 	"github.com/cosmos/cosmos-sdk/client/keys"
+	"github.com/cosmos/cosmos-sdk/crypto/keyring"
 	"github.com/cosmos/cosmos-sdk/server"
+	"github.com/cosmos/cosmos-sdk/server/config"
 	servertypes "github.com/cosmos/cosmos-sdk/server/types"
 	"github.com/cosmos/cosmos-sdk/snapshots"
 	"github.com/cosmos/cosmos-sdk/store"
@@ -36,15 +24,21 @@ import (
 	"github.com/cosmos/cosmos-sdk/x/auth/types"
 	vestingcli "github.com/cosmos/cosmos-sdk/x/auth/vesting/client/cli"
 	banktypes "github.com/cosmos/cosmos-sdk/x/bank/types"
+	"github.com/cosmos/cosmos-sdk/x/crisis"
 	genutilcli "github.com/cosmos/cosmos-sdk/x/genutil/client/cli"
+	ibchost "github.com/cosmos/ibc-go/modules/core/24-host"
 	"github.com/spf13/cast"
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
 	tmcli "github.com/tendermint/tendermint/libs/cli"
 	"github.com/tendermint/tendermint/libs/log"
+	tmtypes "github.com/tendermint/tendermint/types"
 	dbm "github.com/tendermint/tm-db"
 
 	"github.com/pundix/pundix/app"
+	"github.com/pundix/pundix/app/cli"
+	pxtypes "github.com/pundix/pundix/types"
+	otherCli "github.com/pundix/pundix/x/other/client/cli"
 )
 
 // NewRootCmd creates a new root command for simd. It is called once in the
