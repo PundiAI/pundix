@@ -315,6 +315,12 @@ func overwriteFlagDefaults(c *cobra.Command, defaults map[string]string) {
 			if err := f.Value.Set(val); err != nil {
 				panic(err)
 			}
+			if key == flags.FlagGasPrices {
+				f.Usage = "Gas prices in decimal format to determine the transaction fee"
+			}
+			if key == flags.FlagGas {
+				f.Usage = "gas limit to set per-transaction; set to 'auto' to calculate sufficient gas automatically"
+			}
 		}
 	}
 	for key, val := range defaults {
