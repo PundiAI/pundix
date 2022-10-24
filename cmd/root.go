@@ -93,13 +93,13 @@ func NewRootCmd() *cobra.Command {
 			return cli.AddCmdLogWrapFilterLogType(cmd)
 		},
 	}
-	rootCmd.PersistentFlags().StringSlice(cli.FlagLogFilter, []string{}, `The logging filter can discard custom log type (ABCIQuery) (default "")`)
+	rootCmd.PersistentFlags().StringSlice(cli.FlagLogFilter, nil, `The logging filter can discard custom log type (ABCIQuery)`)
 	initRootCmd(rootCmd, encodingConfig)
 	overwriteFlagDefaults(rootCmd, map[string]string{
 		flags.FlagChainID:        pxtypes.ChainId(),
 		flags.FlagKeyringBackend: keyring.BackendOS,
 		flags.FlagGas:            "auto",
-		flags.FlagGasAdjustment:  "1.2",
+		flags.FlagGasAdjustment:  "1.5",
 		flags.FlagGasPrices:      fmt.Sprintf("2000000000000%s", pxtypes.StakingBondDenom()),
 	})
 	return rootCmd
