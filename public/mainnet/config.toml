@@ -182,10 +182,10 @@ laddr = "tcp://0.0.0.0:26656"
 external_address = ""
 
 # Comma separated list of seed nodes to connect to
-seeds = "@mainnet-seed-node-1.pundix.com:26656"
+seeds = "78d3eb3f15a20ab1d567660d35776abe0dee71d0@pundix-mainnet-seed-node-1.pundix.com:26656,3c37c6c42dfd9094117549794299a62d49c122eb@pundix-mainnet-seed-node-2.pundix.com:26656"
 
 # Comma separated list of nodes to keep persistent connections to
-persistent_peers = "@mainnet-node-1.pundix.com:26656,@mainnet-node-2.pundix.com:26656,@mainnet-node-3.pundix.com:26656,x@mainnet-node-4.pundix.com:26656,@mainnet-node-5.pundix.com:26656"
+persistent_peers = "8bd41ea9f8ba7cfee4d19887cab487cdfc1177f4@pundix-mainnet-node-1.pundix.com:26656,6c1738220234a5e1b3caf94403ecd651e9759952@pundix-mainnet-node-2.pundix.com:26656,23abe2346d40f82cf0606e47931e58752f8b9348@pundix-mainnet-node-3.pundix.com:26656,20d275af6d025be144765291db5337ea059cce18@pundix-mainnet-node-4.pundix.com:26656,47f97d7baf028ddfd3b223baab0fa062eae75310@pundix-mainnet-node-5.pundix.com:26656"
 
 # UPNP port forwarding
 upnp = false
