@@ -47,7 +47,7 @@ func MintDenom() string {
 	if denom := os.Getenv("LOCAL_MINT_DENOM"); len(denom) > 0 {
 		return denom
 	}
-	if TestnetChainId == chainId {
+	if TestnetChainId == ChainId() {
 		return testnetMintDenom
 	}
 	return mainnetMintDenom
@@ -57,7 +57,7 @@ func StakingBondDenom() string {
 	if denom := os.Getenv("LOCAL_STAKING_BOND_DENOM"); len(denom) > 0 {
 		return denom
 	}
-	if TestnetChainId == chainId {
+	if TestnetChainId == ChainId() {
 		return testnetStakingBondDenom
 	}
 	return mainnetStakingBondDenom
