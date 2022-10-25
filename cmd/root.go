@@ -41,6 +41,8 @@ import (
 	otherCli "github.com/pundix/pundix/x/other/client/cli"
 )
 
+const envPrefix = "PX"
+
 // NewRootCmd creates a new root command for simd. It is called once in the
 // main function.
 func NewRootCmd() *cobra.Command {
@@ -57,7 +59,7 @@ func NewRootCmd() *cobra.Command {
 		WithAccountRetriever(types.AccountRetriever{}).
 		WithBroadcastMode(flags.BroadcastBlock).
 		WithHomeDir(app.DefaultNodeHome).
-		WithViper("PX")
+		WithViper(envPrefix)
 
 	rootCmd := &cobra.Command{
 		Use:   pxtypes.Name + "d",
@@ -94,10 +96,9 @@ func NewRootCmd() *cobra.Command {
 			if err := server.InterceptConfigsPreRunHandler(cmd, config.DefaultConfigTemplate, defConfig); err != nil {
 				return err
 			}
-			return cli.AddCmdLogWrapFilterLogType(cmd)
+			return nil
 		},
 	}
-	rootCmd.PersistentFlags().StringSlice(cli.FlagLogFilter, nil, `The logging filter can discard custom log type (ABCIQuery)`)
 	initRootCmd(rootCmd, encodingConfig)
 	overwriteFlagDefaults(rootCmd, map[string]string{
 		flags.FlagChainID:        pxtypes.ChainId(),
@@ -140,12 +141,28 @@ func initRootCmd(rootCmd *cobra.Command, encodingConfig app.EncodingConfig) {
 
 func addModuleInitFlags(startCmd *cobra.Command) {
 	crisis.AddModuleInitFlags(startCmd)
-	preRun := startCmd.PreRunE
+	startCmd.Flags().StringSlice(cli.FlagLogFilter, nil, `The logging filter can discard custom log type (ABCIQuery)`)
+
 	startCmd.PreRunE = func(cmd *cobra.Command, args []string) error {
-		if err := preRun(cmd, args); err != nil {
+		serverCtx := server.GetServerContextFromCmd(cmd)
+
+		if zeroLog, ok := serverCtx.Logger.(server.ZeroLogWrapper); ok {
+			filterLogTypes, _ := cmd.Flags().GetStringSlice(cli.FlagLogFilter)
+			if len(filterLogTypes) > 0 {
+				serverCtx.Logger = cli.NewFxZeroLogWrapper(zeroLog, filterLogTypes)
+			}
+		}
+
+		// Bind flags to the Context's Viper so the app construction can set
+		// options accordingly.
+		if err := serverCtx.Viper.BindPFlags(cmd.Flags()); err != nil {
 			return err
 		}
-		serverCtx := server.GetServerContextFromCmd(cmd)
+
+		if _, err := server.GetPruningOptionsFromFlags(serverCtx.Viper); err != nil {
+			return err
+		}
+
 		genesisDoc, err := tmtypes.GenesisDocFromFile(serverCtx.Config.GenesisFile())
 		if err != nil {
 			return err
