@@ -1,4 +1,4 @@
-package cli
+package cmd
 
 import (
 	"bufio"
@@ -9,7 +9,6 @@ import (
 	"path/filepath"
 
 	"github.com/cosmos/cosmos-sdk/codec"
-	tmrand "github.com/tendermint/tendermint/libs/rand"
 	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
 
 	"github.com/cosmos/cosmos-sdk/client"
@@ -24,6 +23,9 @@ import (
 	tmos "github.com/tendermint/tendermint/libs/os"
 	"github.com/tendermint/tendermint/types"
 	bip39 "github.com/tyler-smith/go-bip39"
+
+	"github.com/pundix/pundix/app/cli"
+	pxtypes "github.com/pundix/pundix/types"
 )
 
 const (
@@ -32,35 +34,11 @@ const (
 
 	// FlagRecover defines a flag to initialize the private validator key from a specific seed.
 	FlagRecover = "recover"
-
-	// FlagStakingDenom defines a flag to set the default coin denomination
-	FlagStakingDenom = "denom"
-
-	// FlagMintDistributionDenom x/mint module mint token denom.
-	FlagMintDistributionDenom = "mint-denom"
 )
-
-type PrintInfo struct {
-	Moniker    string          `json:"moniker" yaml:"moniker"`
-	ChainID    string          `json:"chain_id" yaml:"chain_id"`
-	NodeID     string          `json:"node_id" yaml:"node_id"`
-	GenTxsDir  string          `json:"gentxs_dir" yaml:"gentxs_dir"`
-	AppMessage json.RawMessage `json:"app_message" yaml:"app_message"`
-}
-
-func NewPrintInfo(moniker, chainID, nodeID, genTxsDir string, appMessage json.RawMessage) PrintInfo {
-	return PrintInfo{
-		Moniker:    moniker,
-		ChainID:    chainID,
-		NodeID:     nodeID,
-		GenTxsDir:  genTxsDir,
-		AppMessage: appMessage,
-	}
-}
 
 // InitCmd returns a command that initializes all files needed for Tendermint
 // and the respective application.
-func InitCmd(nodeHome, chainId, stakingDenom, mintDenom string, genGenesis func(stakingDenom, mintDenom string, cdc codec.JSONCodec) map[string]json.RawMessage, consensusParams *tmproto.ConsensusParams) *cobra.Command {
+func InitCmd(nodeHome string, genGenesis func(stakingDenom, mintDenom string, cdc codec.JSONCodec) map[string]json.RawMessage, consensusParams *tmproto.ConsensusParams) *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "init [moniker]",
 		Short: "Initialize private validator, p2p, genesis, and application configuration files",
@@ -76,7 +54,7 @@ func InitCmd(nodeHome, chainId, stakingDenom, mintDenom string, genGenesis func(
 
 			chainID, _ := cmd.Flags().GetString(flags.FlagChainID)
 			if chainID == "" {
-				chainID = fmt.Sprintf("test-chain-%v", tmrand.Str(6))
+				return fmt.Errorf("chain id cannot be empty")
 			}
 
 			// Get bip39 mnemonic
@@ -110,15 +88,7 @@ func InitCmd(nodeHome, chainId, stakingDenom, mintDenom string, genGenesis func(
 			if !overwrite && tmos.FileExists(genFile) {
 				return fmt.Errorf("genesis.json file already exists: %v", genFile)
 			}
-			flagStakingDenom, err := cmd.Flags().GetString(FlagStakingDenom)
-			if err != nil || flagStakingDenom == "" {
-				return fmt.Errorf("invalid staking denom: %v", err)
-			}
-			flagMintDistributionDenom, err := cmd.Flags().GetString(FlagMintDistributionDenom)
-			if err != nil || flagMintDistributionDenom == "" {
-				return fmt.Errorf("invalid mint denom: %v", err)
-			}
-			appState, err := json.MarshalIndent(genGenesis(flagStakingDenom, flagMintDistributionDenom, clientCtx.Codec), "", " ")
+			appState, err := json.MarshalIndent(genGenesis(pxtypes.StakingBondDenom(), pxtypes.MintDenom(), clientCtx.Codec), "", " ")
 			if err != nil {
 				return fmt.Errorf("failed to marshall default genesis state: %s", err.Error())
 			}
@@ -143,7 +113,7 @@ func InitCmd(nodeHome, chainId, stakingDenom, mintDenom string, genGenesis func(
 				return fmt.Errorf("failed to export gensis file: %s", err.Error())
 			}
 
-			toPrint := NewPrintInfo(config.Moniker, chainID, nodeID, "", appState)
+			toPrint := cli.NewPrintInfo(config.Moniker, chainID, nodeID, "", appState)
 
 			cfg.WriteConfigFile(filepath.Join(config.RootDir, "config", "config.toml"), config)
 
@@ -158,9 +128,7 @@ func InitCmd(nodeHome, chainId, stakingDenom, mintDenom string, genGenesis func(
 	cmd.Flags().String(tmcli.HomeFlag, nodeHome, "node's home directory")
 	cmd.Flags().Bool(FlagOverwrite, false, "overwrite the genesis.json file")
 	cmd.Flags().Bool(FlagRecover, false, "provide seed phrase to recover existing key instead of creating")
-	cmd.Flags().String(flags.FlagChainID, chainId, "genesis file chain-id, if left blank will be randomly created")
-	cmd.Flags().String(FlagStakingDenom, stakingDenom, "set the default staking coin denomination")
-	cmd.Flags().String(FlagMintDistributionDenom, mintDenom, "set the default mint coin denomination")
+	cmd.Flags().String(flags.FlagChainID, "", "genesis file chain-id, if left blank will be randomly created")
 	cmd.Flags().StringP(tmcli.OutputFlag, "o", "json", "Output format (text|json)")
 
 	return cmd

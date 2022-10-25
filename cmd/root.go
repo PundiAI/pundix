@@ -6,7 +6,6 @@ import (
 	"io"
 	"os"
 	"path/filepath"
-	"strings"
 
 	"github.com/cosmos/cosmos-sdk/baseapp"
 	"github.com/cosmos/cosmos-sdk/client"
@@ -91,6 +90,17 @@ func NewRootCmd() *cobra.Command {
 				pxtypes.SetChainId(initClientCtx.ChainID)
 			}
 
+			if f := cmd.Flags().Lookup(flags.FlagGasPrices); f != nil {
+				gasPricesStr, _ := cmd.Flags().GetString(flags.FlagGasPrices)
+				gasPrices, err := sdk.ParseCoinsNormalized(gasPricesStr)
+				if err != nil {
+					return err
+				}
+				if err := f.Value.Set(gasPrices.String()); err != nil {
+					panic(err)
+				}
+			}
+
 			defConfig := config.DefaultConfig()
 			defConfig.MinGasPrices = fmt.Sprintf("2000000000000%s", pxtypes.StakingBondDenom())
 			if err := server.InterceptConfigsPreRunHandler(cmd, config.DefaultConfigTemplate, defConfig); err != nil {
@@ -105,7 +115,7 @@ func NewRootCmd() *cobra.Command {
 		flags.FlagKeyringBackend: keyring.BackendOS,
 		flags.FlagGas:            "auto",
 		flags.FlagGasAdjustment:  "1.5",
-		flags.FlagGasPrices:      fmt.Sprintf("2000000000000%s", pxtypes.StakingBondDenom()),
+		flags.FlagGasPrices:      "0.000002PUNDIX",
 	})
 	return rootCmd
 }
@@ -115,7 +125,7 @@ func initRootCmd(rootCmd *cobra.Command, encodingConfig app.EncodingConfig) {
 	sdkCfgCmd.AddCommand(cli.AppTomlCmd(), cli.ConfigTomlCmd())
 
 	rootCmd.AddCommand(
-		cli.InitCmd(app.DefaultNodeHome, pxtypes.ChainId(), pxtypes.StakingBondDenom(), pxtypes.MintDenom(), app.NewDefAppGenesisByDenom, app.CustomConsensusParams()),
+		InitCmd(app.DefaultNodeHome, app.NewDefAppGenesisByDenom, app.CustomConsensusParams()),
 		cli.CollectGenTxsCmd(banktypes.GenesisBalancesIterator{}, app.DefaultNodeHome),
 		//genutilcli.MigrateGenesisCmd(),
 		cli.GenTxCmd(app.ModuleBasics, encodingConfig.TxConfig, banktypes.GenesisBalancesIterator{}, app.DefaultNodeHome),
@@ -265,9 +275,10 @@ func (a appCreator) newApp(logger log.Logger, db dbm.DB, traceStore io.Writer, a
 		panic(err)
 	}
 
-	gasPrice := cast.ToString(appOpts.Get(server.FlagMinGasPrices))
-	if strings.Contains(gasPrice, ".") {
-		panic("Invalid gas price, cannot contain decimals")
+	gasPricesStr := cast.ToString(appOpts.Get(server.FlagMinGasPrices))
+	gasPrices, err := sdk.ParseCoinsNormalized(gasPricesStr)
+	if err != nil {
+		panic(err)
 	}
 
 	return app.New(
@@ -278,7 +289,7 @@ func (a appCreator) newApp(logger log.Logger, db dbm.DB, traceStore io.Writer, a
 		// this line is used by starport scaffolding # stargate/root/appArgument
 		appOpts,
 		baseapp.SetPruning(pruningOpts),
-		baseapp.SetMinGasPrices(gasPrice),
+		baseapp.SetMinGasPrices(gasPrices.String()),
 		baseapp.SetMinRetainBlocks(cast.ToUint64(appOpts.Get(server.FlagMinRetainBlocks))),
 		baseapp.SetHaltHeight(cast.ToUint64(appOpts.Get(server.FlagHaltHeight))),
 		baseapp.SetHaltTime(cast.ToUint64(appOpts.Get(server.FlagHaltTime))),

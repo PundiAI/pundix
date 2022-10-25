@@ -20,3 +20,10 @@ func TestRegisterDenom(t *testing.T) {
 	assert.NoError(t, err)
 	assert.Equal(t, sdk.NewCoins(sdk.NewCoin(StakingBondDenom(), sdk.NewInt(1e18))), coin)
 }
+
+func TestParseGasPrices(t *testing.T) {
+	SetChainId(MainnetChainId)
+	coin, err := sdk.ParseCoinsNormalized("0.000002PUNDIX")
+	assert.NoError(t, err)
+	t.Log(coin.String())
+}
