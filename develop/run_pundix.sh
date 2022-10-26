@@ -17,7 +17,7 @@ if [[ "$1" == "init" ]]; then
     rm -rf ~/.pundix
   fi
   # Initialize private validator, p2p, genesis, and application configuration files
-  pundixd init --chain-id="$CHAIN_ID" --denom="$LOCAL_STAKING_BOND_DENOM" --mint-denom="$LOCAL_MINT_DENOM" local
+  pundixd init --chain-id="$CHAIN_ID" local
 
   # update pundix client config
   pundixd config config.toml instrumentation.prometheus true
