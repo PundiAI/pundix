@@ -79,10 +79,10 @@ import (
 	tmos "github.com/tendermint/tendermint/libs/os"
 	dbm "github.com/tendermint/tm-db"
 
-	// this line is used by starport scaffolding # stargate/app/moduleImport
-	"github.com/cosmos/cosmos-sdk/x/mint"
-	mintkeeper "github.com/cosmos/cosmos-sdk/x/mint/keeper"
 	minttypes "github.com/cosmos/cosmos-sdk/x/mint/types"
+	// this line is used by starport scaffolding # stargate/app/moduleImport
+	"github.com/pundix/pundix/x/mint"
+	mintkeeper "github.com/pundix/pundix/x/mint/keeper"
 
 	"github.com/pundix/pundix/x/ibc/applications/transfer"
 	ibctransferkeeper "github.com/pundix/pundix/x/ibc/applications/transfer/keeper"
@@ -124,7 +124,7 @@ var (
 		bank.AppModuleBasic{},
 		capability.AppModuleBasic{},
 		staking.AppModuleBasic{},
-		mint.AppModuleBasic{},
+		mint.AppModule{},
 		distr.AppModuleBasic{},
 		gov.NewAppModuleBasic(getGovProposalHandlers()...),
 		params.AppModuleBasic{},
