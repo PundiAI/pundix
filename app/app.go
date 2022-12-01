@@ -91,6 +91,8 @@ import (
 
 	pxtypes "github.com/pundix/pundix/types"
 
+	ibcclientclient "github.com/cosmos/ibc-go/modules/core/02-client/client"
+
 	_ "github.com/pundix/pundix/docs/statik"
 )
 
@@ -105,7 +107,7 @@ func getGovProposalHandlers() []govclient.ProposalHandler {
 		distrclient.ProposalHandler,
 		upgradeclient.ProposalHandler,
 		upgradeclient.CancelProposalHandler,
-		// this line is used by starport scaffolding # stargate/app/govProposalHandler
+		ibcclientclient.UpdateClientProposalHandler, ibcclientclient.UpgradeProposalHandler,
 	)
 
 	return govProposalHandlers
