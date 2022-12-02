@@ -22,14 +22,11 @@ import (
 	"github.com/cosmos/cosmos-sdk/server"
 	"github.com/tendermint/tendermint/privval"
 
+	"github.com/cosmos/cosmos-sdk/client"
 	cryptotypes "github.com/cosmos/cosmos-sdk/crypto/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/version"
 	"github.com/cosmos/cosmos-sdk/x/auth/types"
-	"github.com/ethereum/go-ethereum/common"
-
-	"github.com/cosmos/cosmos-sdk/client"
-	gethCommon "github.com/ethereum/go-ethereum/common"
 	"github.com/spf13/cobra"
 )
 
@@ -45,7 +42,6 @@ func Debug() *cobra.Command {
 		Base64ToString(),
 		ModuleAddressCmd(),
 		CovertTxDataToHash(),
-		ChecksumEthAddress(),
 		PubkeyCmd(),
 		VerifyTx(),
 		debug.RawBytesCmd(),
@@ -219,22 +215,6 @@ func CovertTxDataToHash() *cobra.Command {
 	return cmd
 }
 
-func ChecksumEthAddress() *cobra.Command {
-	cmd := &cobra.Command{
-		Use:   "checksum [eth address]",
-		Short: "checksum eth address",
-		Args:  cobra.ExactArgs(1),
-		RunE: func(cmd *cobra.Command, args []string) error {
-			clientCtx := client.GetClientContextFromCmd(cmd)
-			if !gethCommon.IsHexAddress(args[0]) {
-				return fmt.Errorf("not hex address:%s", args[0])
-			}
-			return clientCtx.PrintString(fmt.Sprintf("%s\n", gethCommon.HexToAddress(args[0]).Hex()))
-		},
-	}
-	return cmd
-}
-
 func PubkeyCmd() *cobra.Command {
 	return &cobra.Command{
 		Use:   "pubkey [pubkey]",
@@ -280,7 +260,6 @@ $ %s debug pubkey '{"@type":"/cosmos.crypto.ed25519.PubKey","key":"eKlxn6Xoe9LNm
 				}, "", "  ")
 			case "secp256k1":
 				data, err = json.MarshalIndent(map[string]interface{}{
-					"eip55_address":  common.BytesToAddress(pubkey.Address()).String(),
 					"acc_address":    sdk.AccAddress(pubkey.Address().Bytes()).String(),
 					"val_address":    sdk.ValAddress(pubkey.Address().Bytes()).String(),
 					"pub_key_hex":    hex.EncodeToString(pubkey.Bytes()),

@@ -4,13 +4,14 @@ import (
 	"fmt"
 	"strings"
 
+	transfertypes "github.com/cosmos/ibc-go/v3/modules/apps/transfer/types"
+
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
-	clienttypes "github.com/cosmos/ibc-go/modules/core/02-client/types"
-	host "github.com/cosmos/ibc-go/modules/core/24-host"
+	clienttypes "github.com/cosmos/ibc-go/v3/modules/core/02-client/types"
+	host "github.com/cosmos/ibc-go/v3/modules/core/24-host"
 )
 
-// msg types
 const (
 	TypeMsgTransfer = "transfer"
 )
@@ -20,14 +21,14 @@ const (
 //nolint:interfacer
 func NewMsgTransfer(
 	sourcePort, sourceChannel string,
-	token sdk.Coin, sender sdk.AccAddress, receiver string,
+	token sdk.Coin, sender string, receiver string,
 	timeoutHeight clienttypes.Height, timeoutTimestamp uint64, router string, fee sdk.Coin,
 ) *MsgTransfer {
 	return &MsgTransfer{
 		SourcePort:       sourcePort,
 		SourceChannel:    sourceChannel,
 		Token:            token,
-		Sender:           sender.String(),
+		Sender:           sender,
 		Receiver:         receiver,
 		TimeoutHeight:    timeoutHeight,
 		TimeoutTimestamp: timeoutTimestamp,
@@ -71,18 +72,13 @@ func (msg MsgTransfer) ValidateBasic() error {
 	if strings.TrimSpace(msg.Receiver) == "" {
 		return sdkerrors.Wrap(sdkerrors.ErrInvalidAddress, "missing recipient address")
 	}
-	if msg.Router != "" {
-		if !msg.Fee.IsValid() {
-			return sdkerrors.Wrap(sdkerrors.ErrInvalidCoins, msg.Fee.String())
-		}
-		if !msg.Fee.IsValid() {
-			return sdkerrors.Wrap(sdkerrors.ErrInsufficientFunds, msg.Fee.String())
-		}
-		if msg.Fee.Denom != msg.Token.Denom {
-			return sdkerrors.Wrap(ErrFeeDenomNotMatchTokenDenom, fmt.Sprintf("token denom:%s, fee denom:%s", msg.Token.Denom, msg.Fee.Denom))
-		}
+	if msg.Fee.Amount.IsNil() || !msg.Fee.IsValid() {
+		return sdkerrors.Wrap(sdkerrors.ErrInvalidCoins, "fees")
 	}
-	return ValidateIBCDenom(msg.Token.Denom)
+	if msg.Fee.Denom != msg.Token.Denom {
+		return sdkerrors.Wrap(ErrFeeDenomNotMatchTokenDenom, fmt.Sprintf("token denom:%s, fee denom:%s", msg.Token.Denom, msg.Fee.Denom))
+	}
+	return transfertypes.ValidateIBCDenom(msg.Token.Denom)
 }
 
 // GetSignBytes implements sdk.Msg.

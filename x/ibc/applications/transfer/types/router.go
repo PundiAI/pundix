@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
+	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 )
 
 type Router struct {
@@ -60,4 +61,20 @@ func (rtr *Router) GetRoute(module string) (TransactionHook, bool) {
 		return nil, false
 	}
 	return rtr.routes[module], true
+}
+
+// RefundHook IBC transfer refund hook
+var _ RefundHook = MultiRefundHook{}
+
+// MultiRefundHook multi-refund hook
+type MultiRefundHook []RefundHook
+
+func (mrh MultiRefundHook) RefundAfter(ctx sdk.Context, sourcePort, sourceChannel string,
+	sequence uint64, sender sdk.AccAddress, receiver string, amount sdk.Coin) error {
+	for i := range mrh {
+		if err := mrh[i].RefundAfter(ctx, sourcePort, sourceChannel, sequence, sender, receiver, amount); err != nil {
+			return sdkerrors.Wrapf(err, "Refund hook %T failed, error %s", mrh[i], err.Error())
+		}
+	}
+	return nil
 }

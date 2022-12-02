@@ -1,8 +1,12 @@
 package cli
 
 import (
+	"errors"
 	"fmt"
 	"strings"
+	"time"
+
+	transfertypes "github.com/cosmos/ibc-go/v3/modules/apps/transfer/types"
 
 	"github.com/pundix/pundix/x/ibc/applications/transfer/types"
 
@@ -13,8 +17,8 @@ import (
 	"github.com/cosmos/cosmos-sdk/client/tx"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/version"
-	clienttypes "github.com/cosmos/ibc-go/modules/core/02-client/types"
-	channelutils "github.com/cosmos/ibc-go/modules/core/04-channel/client/utils"
+	clienttypes "github.com/cosmos/ibc-go/v3/modules/core/02-client/types"
+	channelutils "github.com/cosmos/ibc-go/v3/modules/core/04-channel/client/utils"
 )
 
 const (
@@ -23,6 +27,7 @@ const (
 	flagAbsoluteTimeouts       = "absolute-timeouts"
 	flagIbcRouter              = "ibc-router"
 	flagIbcFee                 = "ibc-fee"
+	flagMemo                   = "memo"
 )
 
 // NewTransferTxCmd returns the command to create a NewMsgTransfer transaction
@@ -42,7 +47,7 @@ to the counterparty channel. Any timeout set to 0 is disabled.`),
 			if err != nil {
 				return err
 			}
-			sender := clientCtx.GetFromAddress()
+			sender := clientCtx.GetFromAddress().String()
 			srcPort := args[0]
 			srcChannel := args[1]
 			receiver := args[2]
@@ -53,7 +58,7 @@ to the counterparty channel. Any timeout set to 0 is disabled.`),
 			}
 
 			if !strings.HasPrefix(coin.Denom, "ibc/") {
-				denomTrace := types.ParseDenomTrace(coin.Denom)
+				denomTrace := transfertypes.ParseDenomTrace(coin.Denom)
 				coin.Denom = denomTrace.IBCDenom()
 			}
 
@@ -76,6 +81,11 @@ to the counterparty channel. Any timeout set to 0 is disabled.`),
 				return err
 			}
 
+			memo, err := cmd.Flags().GetString(flagMemo)
+			if err != nil {
+				return err
+			}
+
 			// if the timeouts are not absolute, retrieve latest block height and block timestamp
 			// for the consensus state connected to the destination port/channel
 			if !absoluteTimeouts {
@@ -92,7 +102,21 @@ to the counterparty channel. Any timeout set to 0 is disabled.`),
 				}
 
 				if timeoutTimestamp != 0 {
-					timeoutTimestamp = consensusState.GetTimestamp() + timeoutTimestamp
+					// use local clock time as reference time if it is later than the
+					// consensus state timestamp of the counter party chain, otherwise
+					// still use consensus state timestamp as reference
+					now := time.Now().UnixNano()
+					consensusStateTimestamp := consensusState.GetTimestamp()
+					if now > 0 {
+						now := uint64(now)
+						if now > consensusStateTimestamp {
+							timeoutTimestamp = now + timeoutTimestamp
+						} else {
+							timeoutTimestamp = consensusStateTimestamp + timeoutTimestamp
+						}
+					} else {
+						return errors.New("local clock time is not greater than Jan 1st, 1970 12:00 AM")
+					}
 				}
 			}
 			router, err := cmd.Flags().GetString(flagIbcRouter)
@@ -100,34 +124,30 @@ to the counterparty channel. Any timeout set to 0 is disabled.`),
 				return err
 			}
 			var ibcFee sdk.Coin
-			if router != "" {
-				ibcFeeString, err := cmd.Flags().GetString(flagIbcFee)
-				if err != nil {
-					return err
-				}
-				if ibcFeeAmount, ok := sdk.NewIntFromString(ibcFeeString); !ok {
-					return fmt.Errorf("ibc-fee invalid!!!input:%v", ibcFeeString)
-				} else {
-					ibcFee = sdk.NewCoin(coin.Denom, ibcFeeAmount)
-				}
+			ibcFeeString, err := cmd.Flags().GetString(flagIbcFee)
+			if err != nil {
+				return err
+			}
+			if ibcFeeAmount, ok := sdk.NewIntFromString(ibcFeeString); !ok {
+				return fmt.Errorf("ibc-fee invalid!!!input:%v", ibcFeeString)
+			} else {
+				ibcFee = sdk.NewCoin(coin.Denom, ibcFeeAmount)
 			}
 
 			msg := types.NewMsgTransfer(
 				srcPort, srcChannel, coin, sender, receiver, timeoutHeight, timeoutTimestamp, router, ibcFee,
 			)
-			if err := msg.ValidateBasic(); err != nil {
-				return err
-			}
-
+			msg.Memo = memo
 			return tx.GenerateOrBroadcastTxCLI(clientCtx, cmd.Flags(), msg)
 		},
 	}
 
-	cmd.Flags().String(flagPacketTimeoutHeight, types.DefaultRelativePacketTimeoutHeight, "Packet timeout block height. The timeout is disabled when set to 0-0.")
-	cmd.Flags().Uint64(flagPacketTimeoutTimestamp, types.DefaultRelativePacketTimeoutTimestamp, "Packet timeout timestamp in nanoseconds. Default is 10 minutes. The timeout is disabled when set to 0.")
-	cmd.Flags().String(flagIbcRouter, "", "Ibc transfer after router module, Default is nothing")
-	cmd.Flags().String(flagIbcFee, "", "Ibc transfer after crosschain chain fee, Default is nothing")
+	cmd.Flags().String(flagPacketTimeoutHeight, "0-0", "Packet timeout block height. Example: 0-20000, The timeout is disabled when set to 0-0.")
+	cmd.Flags().Uint64(flagPacketTimeoutTimestamp, types.DefaultRelativePacketTimeoutTimestamp, "Packet timeout timestamp in nanoseconds. Default is 12 hours. The timeout is disabled when set to 0.")
 	cmd.Flags().Bool(flagAbsoluteTimeouts, false, "Timeout flags are used as absolute timeouts.")
+	cmd.Flags().String(flagMemo, "", "Memo to be sent along with the packet.")
+	cmd.Flags().String(flagIbcRouter, "", "Ibc transfer after router module, Default is nothing")
+	cmd.Flags().String(flagIbcFee, "0", "Ibc transfer after crosschain chain fee, Default is nothing")
 	flags.AddTxFlagsToCmd(cmd)
 
 	return cmd

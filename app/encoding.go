@@ -1,43 +1,28 @@
 package app
 
 import (
-	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/codec"
 	"github.com/cosmos/cosmos-sdk/codec/types"
 	"github.com/cosmos/cosmos-sdk/std"
 	"github.com/cosmos/cosmos-sdk/x/auth/tx"
+
+	appparams "github.com/pundix/pundix/app/params"
 )
 
-// EncodingConfig specifies the concrete encoding types to use for a given app.
-// This is provided for compatibility between protobuf and amino implementations.
-type EncodingConfig struct {
-	InterfaceRegistry types.InterfaceRegistry
-	Marshaler         codec.Codec
-	TxConfig          client.TxConfig
-	Amino             *codec.LegacyAmino
-}
-
-func MakeEncodingConfig() EncodingConfig {
-	encodingConfig := makeEncodingConfig()
-	ModuleBasics.RegisterLegacyAminoCodec(encodingConfig.Amino)
-	ModuleBasics.RegisterInterfaces(encodingConfig.InterfaceRegistry)
-	return encodingConfig
-}
-
-// makeEncodingConfig creates an EncodingConfig for an amino based test configuration.
-func makeEncodingConfig() EncodingConfig {
+func MakeEncodingConfig() appparams.EncodingConfig {
 	amino := codec.NewLegacyAmino()
 	interfaceRegistry := types.NewInterfaceRegistry()
-	marshaler := codec.NewProtoCodec(interfaceRegistry)
-	txCfg := tx.NewTxConfig(marshaler, tx.DefaultSignModes)
+	cdc := codec.NewProtoCodec(interfaceRegistry)
 
-	encodingConfig := EncodingConfig{
+	encodingConfig := appparams.EncodingConfig{
 		InterfaceRegistry: interfaceRegistry,
-		Marshaler:         marshaler,
-		TxConfig:          txCfg,
+		Codec:             cdc,
+		TxConfig:          tx.NewTxConfig(cdc, tx.DefaultSignModes),
 		Amino:             amino,
 	}
 	std.RegisterLegacyAminoCodec(encodingConfig.Amino)
+	ModuleBasics.RegisterLegacyAminoCodec(encodingConfig.Amino)
 	std.RegisterInterfaces(encodingConfig.InterfaceRegistry)
+	ModuleBasics.RegisterInterfaces(encodingConfig.InterfaceRegistry)
 	return encodingConfig
 }

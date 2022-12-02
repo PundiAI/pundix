@@ -9,18 +9,14 @@ import (
 // GetQueryCmd returns the query commands for IBC connections
 func GetQueryCmd() *cobra.Command {
 	queryCmd := &cobra.Command{
-		Use:                        "ibc-transfer",
+		Use:                        "fx-ibc-transfer",
 		Short:                      "IBC fungible token transfer query subcommands",
 		DisableFlagParsing:         true,
 		SuggestionsMinimumDistance: 2,
 	}
 
 	queryCmd.AddCommand(
-		GetCmdQueryDenomTrace(),
-		GetCmdQueryDenomTraces(),
-		GetCmdParams(),
 		GetCmdDenomToIBcDenom(),
-		GetCmdGetEscrowAddress(),
 	)
 
 	return queryCmd
@@ -29,7 +25,7 @@ func GetQueryCmd() *cobra.Command {
 // NewTxCmd returns the transaction commands for IBC fungible token transfer
 func NewTxCmd() *cobra.Command {
 	txCmd := &cobra.Command{
-		Use:                        "ibc-transfer",
+		Use:                        "fx-ibc-transfer",
 		Short:                      "IBC fungible token transfer transaction subcommands",
 		DisableFlagParsing:         true,
 		SuggestionsMinimumDistance: 2,

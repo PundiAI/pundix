@@ -43,7 +43,7 @@ if [ ! -f ./build/ibc-go/README.md ]; then
     mv $(ls | grep ibc-go | grep -v grep | grep -v zip) ibc-go
     rm -rf ibc-go/.git
   )
-  rm -rf ./build/ibc-go/proto/ibc/applications/transfer
+#  rm -rf ./build/ibc-go/proto/ibc/applications/transfer
 fi
 
 proto_dirs=$(find ./proto -path -prune -o -name '*.proto' -print0 | xargs -0 -n1 dirname | sort | uniq)

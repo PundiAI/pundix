@@ -13,7 +13,6 @@ import (
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/client/flags"
 	"github.com/cosmos/cosmos-sdk/codec"
-	"github.com/ethereum/go-ethereum/common/hexutil"
 	"github.com/spf13/cobra"
 	coretypes "github.com/tendermint/tendermint/rpc/core/types"
 )
@@ -32,7 +31,7 @@ func QueryBlockResultsCmd() *cobra.Command {
 			if len(args) > 0 {
 				height, err = strconv.ParseInt(args[0], 10, 64)
 				if err != nil {
-					blockHeight, err := hexutil.DecodeUint64(args[0])
+					blockHeight, err := strconv.ParseUint(args[0], 16, 64)
 					if err != nil {
 						return err
 					}

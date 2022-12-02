@@ -7,6 +7,8 @@ import (
 	"os"
 	"path/filepath"
 
+	appparams "github.com/pundix/pundix/app/params"
+
 	"github.com/cosmos/cosmos-sdk/baseapp"
 	"github.com/cosmos/cosmos-sdk/client"
 	sdkCfg "github.com/cosmos/cosmos-sdk/client/config"
@@ -39,8 +41,6 @@ import (
 	otherCli "github.com/pundix/pundix/x/other/client/cli"
 )
 
-const envPrefix = "PX"
-
 // NewRootCmd creates a new root command for simd. It is called once in the
 // main function.
 func NewRootCmd() *cobra.Command {
@@ -48,7 +48,7 @@ func NewRootCmd() *cobra.Command {
 
 	encodingConfig := app.MakeEncodingConfig()
 	initClientCtx := client.Context{}.
-		WithCodec(encodingConfig.Marshaler).
+		WithCodec(encodingConfig.Codec).
 		WithInterfaceRegistry(encodingConfig.InterfaceRegistry).
 		WithTxConfig(encodingConfig.TxConfig).
 		WithLegacyAmino(encodingConfig.Amino).
@@ -57,7 +57,7 @@ func NewRootCmd() *cobra.Command {
 		WithAccountRetriever(types.AccountRetriever{}).
 		WithBroadcastMode(flags.BroadcastBlock).
 		WithHomeDir(app.DefaultNodeHome).
-		WithViper(envPrefix)
+		WithViper("")
 
 	rootCmd := &cobra.Command{
 		Use:   pxtypes.Name + "d",
@@ -119,7 +119,7 @@ func NewRootCmd() *cobra.Command {
 	return rootCmd
 }
 
-func initRootCmd(rootCmd *cobra.Command, encodingConfig app.EncodingConfig) {
+func initRootCmd(rootCmd *cobra.Command, encodingConfig appparams.EncodingConfig) {
 	sdkCfgCmd := sdkCfg.Cmd()
 	sdkCfgCmd.AddCommand(cli.AppTomlCmd(), cli.ConfigTomlCmd())
 
@@ -237,7 +237,7 @@ func txCommand() *cobra.Command {
 }
 
 type appCreator struct {
-	encCfg app.EncodingConfig
+	encCfg appparams.EncodingConfig
 }
 
 // newApp is an AppCreator
@@ -274,7 +274,7 @@ func (a appCreator) newApp(logger log.Logger, db dbm.DB, traceStore io.Writer, a
 		panic(err)
 	}
 
-	return app.New(
+	return app.NewPundixApp(
 		logger, db, traceStore, true, skipUpgradeHeights,
 		cast.ToString(appOpts.Get(flags.FlagHome)),
 		cast.ToUint(appOpts.Get(server.FlagInvCheckPeriod)),
@@ -300,7 +300,7 @@ func (a appCreator) appExport(
 	logger log.Logger, db dbm.DB, traceStore io.Writer, height int64, forZeroHeight bool, jailAllowedAddrs []string,
 	appOpts servertypes.AppOptions) (servertypes.ExportedApp, error) {
 
-	var anApp *app.App
+	var anApp *app.PundixApp
 
 	homePath, ok := appOpts.Get(flags.FlagHome).(string)
 	if !ok || homePath == "" {
@@ -312,7 +312,7 @@ func (a appCreator) appExport(
 		loadLatest = true
 	}
 
-	anApp = app.New(
+	anApp = app.NewPundixApp(
 		logger,
 		db,
 		traceStore,
