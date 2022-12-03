@@ -3,6 +3,7 @@ package v2
 import (
 	store "github.com/cosmos/cosmos-sdk/store/types"
 	"github.com/cosmos/cosmos-sdk/x/authz"
+	"github.com/cosmos/cosmos-sdk/x/feegrant"
 
 	"github.com/pundix/pundix/app/upgrades"
 )
@@ -20,6 +21,7 @@ var Upgrade = upgrades.Upgrade{
 	StoreUpgrades: store.StoreUpgrades{
 		Added: []string{
 			authz.ModuleName,
+			feegrant.ModuleName,
 		},
 	},
 }

@@ -233,6 +233,9 @@ func (app *PundixApp) InitChainer(ctx sdk.Context, req abci.RequestInitChain) ab
 	if err := tmjson.Unmarshal(req.AppStateBytes, &genesisState); err != nil {
 		panic(err)
 	}
+	ctx.Logger().Info("InitChainer", "module version", app.mm.GetVersionMap())
+	// InitChainer set module version, silence: cosmos-sdk v0.44.x
+	app.UpgradeKeeper.SetModuleVersionMap(ctx, app.mm.GetVersionMap())
 	return app.mm.InitGenesis(ctx, app.appCodec, genesisState)
 }
 
