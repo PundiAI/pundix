@@ -190,7 +190,9 @@ func NewPundixApp(
 				SignModeHandler: encodingConfig.TxConfig.SignModeHandler(),
 				SigGasConsumer:  ante.DefaultSigVerificationGasConsumer,
 			},
-			IBCkeeper: app.IBCKeeper,
+			IBCKeeper:                  app.IBCKeeper,
+			BypassMinFeeMsgTypes:       cast.ToStringSlice(appOpts.Get(pxtypes.BypassMinFeeMsgTypesKey)),
+			MaxBypassMinFeeMsgGasUsage: cast.ToString(appOpts.Get(pxtypes.BypassMinFeeMsgMaxGasUsageKey)),
 		},
 	)
 	if err != nil {

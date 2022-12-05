@@ -77,10 +77,6 @@ func NewRootCmd() *cobra.Command {
 				return err
 			}
 
-			initClientCtx, err = client.ReadPersistentCommandFlags(initClientCtx, cmd.Flags())
-			if err != nil {
-				return err
-			}
 			if err := client.SetCmdClientContext(cmd, initClientCtx); err != nil {
 				return err
 			}
@@ -100,12 +96,9 @@ func NewRootCmd() *cobra.Command {
 				}
 			}
 
-			defConfig := config.DefaultConfig()
-			defConfig.MinGasPrices = fmt.Sprintf("2000000000000%s", pxtypes.StakingBondDenom())
-			if err := server.InterceptConfigsPreRunHandler(cmd, config.DefaultConfigTemplate, defConfig); err != nil {
-				return err
-			}
-			return nil
+			customTemplate, customConfig := initAppConfig(fmt.Sprintf("2000000000000%s", pxtypes.StakingBondDenom()))
+
+			return server.InterceptConfigsPreRunHandler(cmd, customTemplate, customConfig)
 		},
 	}
 	initRootCmd(rootCmd, encodingConfig)
@@ -117,6 +110,16 @@ func NewRootCmd() *cobra.Command {
 		flags.FlagGasPrices:      "0.000002PUNDIX",
 	})
 	return rootCmd
+}
+
+func initAppConfig(minGasPrice string) (string, interface{}) {
+	srvCfg := config.DefaultConfig()
+	srvCfg.MinGasPrices = minGasPrice
+	customAppConfig := appparams.Config{
+		Config:       *srvCfg,
+		BypassMinFee: appparams.DefaultBypassMinFee(),
+	}
+	return appparams.DefaultConfigTemplate(), customAppConfig
 }
 
 func initRootCmd(rootCmd *cobra.Command, encodingConfig appparams.EncodingConfig) {

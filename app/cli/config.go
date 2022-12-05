@@ -5,6 +5,8 @@ import (
 	"path/filepath"
 	"strings"
 
+	appparams "github.com/pundix/pundix/app/params"
+
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/server"
 	"github.com/cosmos/cosmos-sdk/server/config"
@@ -26,6 +28,7 @@ func AppTomlCmd() *cobra.Command {
 		Short: "Create or query an `config/app.toml` file",
 		Args:  cobra.RangeArgs(0, 2),
 		RunE: func(cmd *cobra.Command, args []string) error {
+			config.SetConfigTemplate(appparams.DefaultConfigTemplate())
 			return runConfigCmd(cmd, append([]string{appFileName}, args...))
 		},
 	}
@@ -82,7 +85,7 @@ var (
 
 type appTomlConfig struct {
 	v          *viper.Viper
-	config     *config.Config
+	config     *appparams.Config
 	configName string
 }
 
@@ -143,7 +146,7 @@ func (c *configTomlConfig) save() error {
 
 func newConfig(v *viper.Viper, configName string) (cmdConfig, error) {
 	if strings.HasSuffix(configName, appFileName) {
-		var configData = config.Config{}
+		var configData = appparams.Config{}
 		if err := v.Unmarshal(&configData); err != nil {
 			return nil, err
 		}
