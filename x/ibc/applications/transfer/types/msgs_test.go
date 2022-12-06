@@ -93,6 +93,7 @@ func TestMsgTransferValidation(t *testing.T) {
 		{"missing sender address", NewMsgTransfer(validPort, validChannel, coin, emptyAddr, addr2, timeoutHeight, 0, defaultRouter, defaultFee), false},
 		{"missing recipient address", NewMsgTransfer(validPort, validChannel, coin, addr1, "", timeoutHeight, 0, defaultRouter, defaultFee), false},
 		{"empty coin", NewMsgTransfer(validPort, validChannel, sdk.Coin{}, addr1, addr2, timeoutHeight, 0, defaultRouter, defaultFee), false},
+		{"invalid fee - negative amount", NewMsgTransfer(validPort, validChannel, coin, addr1, addr2, timeoutHeight, 0, defaultRouter, sdk.Coin{}), false},
 	}
 
 	for i, tc := range testCases {
@@ -108,9 +109,11 @@ func TestMsgTransferValidation(t *testing.T) {
 // TestMsgTransferGetSigners tests GetSigners for MsgTransfer
 func TestMsgTransferGetSigners(t *testing.T) {
 	addr := sdk.AccAddress(secp256k1.GenPrivKey().PubKey().Address())
-
 	msg := NewMsgTransfer(validPort, validChannel, coin, addr.String(), addr2, timeoutHeight, 0, defaultRouter, defaultFee)
-	res := msg.GetSigners()
+	require.Equal(t, []sdk.AccAddress{addr}, msg.GetSigners())
 
-	require.Equal(t, []sdk.AccAddress{addr}, res)
+	invalidSenderMsg := NewMsgTransfer(validPort, validChannel, coin, "11111", addr2, timeoutHeight, 0, defaultRouter, defaultFee)
+	require.Panics(t, func() {
+		_ = invalidSenderMsg.GetSigners()
+	})
 }
