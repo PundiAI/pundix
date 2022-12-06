@@ -7,6 +7,8 @@ import (
 	"os"
 	"path/filepath"
 
+	stakingkeeper "github.com/cosmos/cosmos-sdk/x/staking/keeper"
+
 	"github.com/cosmos/cosmos-sdk/simapp"
 	"github.com/cosmos/cosmos-sdk/x/auth/ante"
 
@@ -46,6 +48,8 @@ import (
 
 	pxtypes "github.com/pundix/pundix/types"
 
+	ibctesting "github.com/cosmos/ibc-go/v3/testing"
+
 	_ "github.com/pundix/pundix/docs/statik"
 )
 
@@ -59,6 +63,7 @@ var (
 var (
 	_ simapp.App              = (*PundixApp)(nil)
 	_ servertypes.Application = (*PundixApp)(nil)
+	_ ibctesting.TestingApp   = (*PundixApp)(nil)
 )
 
 // App extends an ABCI application, but with most of its parameters exported.
@@ -351,6 +356,24 @@ func (app *PundixApp) setupUpgradeHandlers() {
 			),
 		)
 	}
+}
+
+// IBC Go TestingApp functions
+
+// GetBaseApp implements the TestingApp interface.
+func (app *PundixApp) GetBaseApp() *baseapp.BaseApp {
+	return app.BaseApp
+}
+
+// GetStakingKeeper implements the TestingApp interface.
+func (app *PundixApp) GetStakingKeeper() stakingkeeper.Keeper {
+	return app.StakingKeeper
+}
+
+// GetTxConfig implements the TestingApp interface.
+func (app *PundixApp) GetTxConfig() client.TxConfig {
+	cfg := MakeEncodingConfig()
+	return cfg.TxConfig
 }
 
 // RegisterSwaggerAPI registers swagger route with API Server
