@@ -62,7 +62,7 @@ func (msg MsgTransfer) ValidateBasic() error {
 		return sdkerrors.Wrap(sdkerrors.ErrInvalidCoins, msg.Token.String())
 	}
 	if !msg.Token.IsPositive() {
-		return sdkerrors.Wrap(sdkerrors.ErrInsufficientFunds, msg.Token.String())
+		return sdkerrors.Wrap(sdkerrors.ErrInvalidCoins, msg.Token.String())
 	}
 	// NOTE: sender format must be validated as it is required by the GetSigners function.
 	_, err := sdk.AccAddressFromBech32(msg.Sender)
