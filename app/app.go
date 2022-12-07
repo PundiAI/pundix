@@ -1,10 +1,13 @@
 package app
 
 import (
+	"fmt"
 	"io"
 	"net/http"
 	"os"
 	"path/filepath"
+
+	v2 "github.com/pundix/pundix/app/fork/v2"
 
 	"github.com/gorilla/mux"
 	"github.com/rakyll/statik/fs"
@@ -455,6 +458,15 @@ func (app *App) Name() string { return app.BaseApp.Name() }
 
 // BeginBlocker application updates every begin block
 func (app *App) BeginBlocker(ctx sdk.Context, req abci.RequestBeginBlock) abci.ResponseBeginBlock {
+	// hard-fork
+	//    v2 - fork
+	ctx.Logger().With("app/beginBlock").Info("beginBlock", "height", ctx.BlockHeight())
+	if ctx.BlockHeight() == int64(pxtypes.V2HardForkHeight()) {
+		err := v2.Upgrade(ctx, app.UpgradeKeeper)
+		if err != nil {
+			panic(fmt.Sprintf("failed to hard fork v2: %v", err))
+		}
+	}
 	return app.mm.BeginBlock(ctx, req)
 }
 

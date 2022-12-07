@@ -1,6 +1,7 @@
 package types
 
 import (
+	"math"
 	"os"
 	"sync"
 
@@ -12,6 +13,9 @@ const (
 	TestnetChainId          = "payalebar"
 	testnetMintDenom        = "bsc0x0BEdB58eC8D603E71556ef8aA4014c68DBd57AD7"
 	testnetStakingBondDenom = "ibc/169A52CA4862329131348484982CE75B3D6CC78AFB94C3107026C70CB66E7B2E"
+
+	testnetV2HardForkHeight = math.MaxUint64
+	testnetV2UpgradeHeight  = math.MaxUint64
 )
 
 // mainnet constant
@@ -19,6 +23,9 @@ const (
 	MainnetChainId          = "PUNDIX"
 	mainnetMintDenom        = "bsc0x29a63F4B209C29B4DC47f06FFA896F32667DAD2C"
 	mainnetStakingBondDenom = "ibc/55367B7B6572631B78A93C66EF9FDFCE87CDE372CC4ED7848DA78C1EB1DCDD78"
+
+	mainnetV2HardForkHeight = math.MaxUint64
+	mainnetV2UpgradeHeight  = math.MaxUint64
 )
 
 var (
@@ -61,4 +68,18 @@ func StakingBondDenom() string {
 		return testnetStakingBondDenom
 	}
 	return mainnetStakingBondDenom
+}
+
+func V2HardForkHeight() uint64 {
+	if TestnetChainId == ChainId() {
+		return testnetV2HardForkHeight
+	}
+	return mainnetV2HardForkHeight
+}
+
+func V2SoftwareUpgradeHeight() uint64 {
+	if TestnetChainId == ChainId() {
+		return testnetV2UpgradeHeight
+	}
+	return mainnetV2UpgradeHeight
 }
