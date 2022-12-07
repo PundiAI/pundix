@@ -1,8 +1,12 @@
 package v2
 
 import (
+	"math/big"
+
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/module"
+	govkeeper "github.com/cosmos/cosmos-sdk/x/gov/keeper"
+	stakingkeeper "github.com/cosmos/cosmos-sdk/x/staking/keeper"
 	upgradetypes "github.com/cosmos/cosmos-sdk/x/upgrade/types"
 
 	"github.com/pundix/pundix/app/keepers"
@@ -42,9 +46,35 @@ func CreateUpgradeHandler(
 		}
 		ctx.Logger().Info("running the rest of the upgrade handler...")
 
-		// do something
+		// 1. change gov min deposit
+		ChangeGovDepositParams(ctx, keepers.GovKeeper, keepers.StakingKeeper)
+
+		// 2. change gov voting period
+		ChangeGovVotingParams(ctx, keepers.GovKeeper)
 
 		ctx.Logger().Info("upgrade complete")
 		return vm, err
 	}
+}
+
+func ChangeGovDepositParams(ctx sdk.Context, govKeeper govkeeper.Keeper, stakingKeeper stakingkeeper.Keeper) {
+	bondDenom := stakingKeeper.BondDenom(ctx)
+
+	govDepositParams := govKeeper.GetDepositParams(ctx)
+	coinOne := sdk.NewIntFromBigInt(new(big.Int).Exp(big.NewInt(10), big.NewInt(18), nil))
+	for i, coin := range govDepositParams.MinDeposit {
+		if coin.Denom == bondDenom {
+			govDepositParams.MinDeposit[i].Amount = coinOne.Mul(sdk.NewInt(GovMinDeposit))
+			break
+		}
+	}
+	ctx.Logger().Info("change x/gov module deposit params:minDeposit", "params", govDepositParams)
+	govKeeper.SetDepositParams(ctx, govDepositParams)
+}
+
+func ChangeGovVotingParams(ctx sdk.Context, govKeeper govkeeper.Keeper) {
+	govVotingParams := govKeeper.GetVotingParams(ctx)
+	govVotingParams.VotingPeriod = GovVotingPeriod
+	ctx.Logger().Info("change x/gov module voting params:votingPeriod", "params", govVotingParams)
+	govKeeper.SetVotingParams(ctx, govVotingParams)
 }
