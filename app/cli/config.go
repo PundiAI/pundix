@@ -22,6 +22,32 @@ const (
 	appFileName    = "app.toml"
 )
 
+func UpdateCfgCmd() *cobra.Command {
+	cmd := &cobra.Command{
+		Use:   "update",
+		Short: "Update app.toml and config.toml files to the latest version, default only missing parts are added",
+		Args:  cobra.RangeArgs(0, 2),
+		RunE: func(cmd *cobra.Command, args []string) error {
+			serverCtx := server.GetServerContextFromCmd(cmd)
+			rootDir := serverCtx.Config.RootDir
+			fileName := filepath.Join(rootDir, "config", configFileName)
+			tmcfg.WriteConfigFile(fileName, serverCtx.Config)
+			serverCtx.Logger.Info("Update config.toml is successful", "fileName", fileName)
+
+			config.SetConfigTemplate(appparams.DefaultConfigTemplate())
+			appConfig := appparams.DefaultConfig()
+			if err := serverCtx.Viper.Unmarshal(appConfig); err != nil {
+				return err
+			}
+			fileName = filepath.Join(rootDir, "config", appFileName)
+			config.WriteConfigFile(fileName, appConfig)
+			serverCtx.Logger.Info("Update app.toml is successful", "fileName", fileName)
+			return nil
+		},
+	}
+	return cmd
+}
+
 func AppTomlCmd() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "app.toml [key] [value]",
@@ -118,6 +144,7 @@ func (c *configTomlConfig) output(ctx client.Context) error {
 		StateSync        tmcfg.StateSyncConfig       `mapstructure:"statesync"`
 		FastSync         tmcfg.FastSyncConfig        `mapstructure:"fastsync"`
 		Consensus        tmcfg.ConsensusConfig       `mapstructure:"consensus"`
+		Storage          tmcfg.StorageConfig         `mapstructure:"storage"`
 		TxIndex          tmcfg.TxIndexConfig         `mapstructure:"tx_index"`
 		Instrumentation  tmcfg.InstrumentationConfig `mapstructure:"instrumentation"`
 	}
@@ -129,6 +156,7 @@ func (c *configTomlConfig) output(ctx client.Context) error {
 		StateSync:       *c.config.StateSync,
 		FastSync:        *c.config.FastSync,
 		Consensus:       *c.config.Consensus,
+		Storage:         *c.config.Storage,
 		TxIndex:         *c.config.TxIndex,
 		Instrumentation: *c.config.Instrumentation,
 	})

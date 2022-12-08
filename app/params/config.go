@@ -1,8 +1,6 @@
 package params
 
 import (
-	"strings"
-
 	"github.com/cosmos/cosmos-sdk/server/config"
 )
 
@@ -52,9 +50,5 @@ func DefaultConfig() *Config {
 }
 
 func DefaultConfigTemplate() string {
-	config := config.DefaultConfigTemplate
-	lines := strings.Split(config, "\n")
-	// add the Gaia config at the second line of the file
-	lines[2] += CustomConfigTemplate
-	return strings.Join(lines, "\n")
+	return config.DefaultConfigTemplate + CustomConfigTemplate
 }
