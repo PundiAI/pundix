@@ -138,6 +138,7 @@ func initRootCmd(rootCmd *cobra.Command, encodingConfig appparams.EncodingConfig
 		cli.Debug(),
 		sdkCfgCmd,
 		cli.DataCmd(),
+		cli.PreUpgradeCmd(),
 	)
 
 	appCreator := appCreator{encodingConfig}
