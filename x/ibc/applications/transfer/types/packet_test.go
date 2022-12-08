@@ -1,11 +1,11 @@
 package types_test
 
 import (
+	"testing"
+
 	transfertypes "github.com/cosmos/ibc-go/v3/modules/apps/transfer/types"
 
 	types "github.com/pundix/pundix/x/ibc/applications/transfer/types"
-
-	"testing"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 

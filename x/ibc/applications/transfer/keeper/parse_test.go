@@ -24,16 +24,28 @@ func TestParseReceiveAndAmountByPacket(t *testing.T) {
 		err     error
 		expect  expect
 	}{
-		{"no router - expect address is receive", types.FungibleTokenPacketData{Receiver: sdk.AccAddress("receive1").String(), Amount: "1", Fee: "0"}, true, nil,
+		{
+			"no router - expect address is receive",
+			types.FungibleTokenPacketData{Receiver: sdk.AccAddress("receive1").String(), Amount: "1", Fee: "0"},
+			true, nil,
 			expect{address: sdk.AccAddress("receive1"), amount: sdk.NewIntFromUint64(1), fee: sdk.NewIntFromUint64(0)},
 		},
-		{"no router - expect fee is 0, input 1", types.FungibleTokenPacketData{Receiver: sdk.AccAddress("receive1").String(), Amount: "1", Fee: "0"}, true, nil,
+		{
+			"no router - expect fee is 0, input 1",
+			types.FungibleTokenPacketData{Receiver: sdk.AccAddress("receive1").String(), Amount: "1", Fee: "0"},
+			true, nil,
 			expect{address: sdk.AccAddress("receive1"), amount: sdk.NewIntFromUint64(1), fee: sdk.NewIntFromUint64(0)},
 		},
-		{"router - expect address is sender", types.FungibleTokenPacketData{Sender: sdk.AccAddress("sender1").String(), Receiver: sdk.AccAddress("receive1").String(), Amount: "1", Fee: "0", Router: "erc20"}, true, nil,
+		{
+			"router - expect address is sender",
+			types.FungibleTokenPacketData{Sender: sdk.AccAddress("sender1").String(), Receiver: sdk.AccAddress("receive1").String(), Amount: "1", Fee: "0", Router: "erc20"},
+			true, nil,
 			expect{address: sdk.AccAddress("sender1"), amount: sdk.NewIntFromUint64(1), fee: sdk.NewIntFromUint64(0)},
 		},
-		{"router - expect fee is 1, input 1", types.FungibleTokenPacketData{Sender: sdk.AccAddress("sender1").String(), Receiver: sdk.AccAddress("receive1").String(), Amount: "1", Fee: "1", Router: "erc20"}, true, nil,
+		{
+			"router - expect fee is 1, input 1",
+			types.FungibleTokenPacketData{Sender: sdk.AccAddress("sender1").String(), Receiver: sdk.AccAddress("receive1").String(), Amount: "1", Fee: "1", Router: "erc20"},
+			true, nil,
 			expect{address: sdk.AccAddress("sender1"), amount: sdk.NewIntFromUint64(1), fee: sdk.NewIntFromUint64(1)},
 		},
 	}

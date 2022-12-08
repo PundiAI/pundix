@@ -174,13 +174,13 @@ func (c *configTomlConfig) save() error {
 
 func newConfig(v *viper.Viper, configName string) (cmdConfig, error) {
 	if strings.HasSuffix(configName, appFileName) {
-		var configData = appparams.Config{}
+		configData := appparams.Config{}
 		if err := v.Unmarshal(&configData); err != nil {
 			return nil, err
 		}
 		return &appTomlConfig{config: &configData, v: v, configName: configName}, nil
 	} else if strings.HasSuffix(configName, configFileName) {
-		var configData = tmcfg.Config{}
+		configData := tmcfg.Config{}
 		if err := v.Unmarshal(&configData); err != nil {
 			return nil, err
 		}

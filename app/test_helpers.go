@@ -47,12 +47,6 @@ func GetDefaultConsensusParams() *abci.ConsensusParams {
 	}
 }
 
-func init() {
-	//cfg := sdk.GetConfig()
-	//config.SetBech32Prefixes(cfg)
-	//config.SetBip44CoinType(cfg)
-}
-
 // Setup initializes a new Evmos. A Nop logger is set in Evmos.
 func Setup(
 	isCheckTx bool,

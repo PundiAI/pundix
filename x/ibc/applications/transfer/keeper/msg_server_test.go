@@ -13,8 +13,7 @@ import (
 )
 
 func (suite *KeeperTestSuite) TestTransfer() {
-
-	var channel0IbcDenom = transfertypes.DenomTrace{
+	channel0IbcDenom := transfertypes.DenomTrace{
 		Path:      "transfer/channel-0",
 		BaseDenom: "stake",
 	}
@@ -95,7 +94,6 @@ func (suite *KeeperTestSuite) TestTransfer() {
 
 				ibcTransferMsg.Sender = sdk.AccAddress([]byte{0x1}).String()
 				ibcTransferMsg.Token = amount
-
 			},
 			false,
 			fmt.Sprintf("%s is smaller than %s: insufficient funds", "0stake", "10stake"),
@@ -138,7 +136,7 @@ func (suite *KeeperTestSuite) TestTransfer() {
 		},
 	}
 
-	var covertPxIBCToCosmosIBCTransfer = func(msg *pxtransfertypes.MsgTransfer) *transfertypes.MsgTransfer {
+	covertPxIBCToCosmosIBCTransfer := func(msg *pxtransfertypes.MsgTransfer) *transfertypes.MsgTransfer {
 		result := transfertypes.NewMsgTransfer(msg.SourcePort, msg.SourceChannel, msg.Token, msg.Sender, msg.Receiver, msg.TimeoutHeight, msg.TimeoutTimestamp)
 		result.Memo = msg.Memo
 		return result

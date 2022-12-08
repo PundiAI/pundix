@@ -20,9 +20,7 @@ import (
 	"github.com/pundix/pundix/x/mint/keeper"
 )
 
-var (
-	_ module.AppModule = AppModule{}
-)
+var _ module.AppModule = AppModule{}
 
 // AppModule implements an application module for the mint module.
 type AppModule struct {

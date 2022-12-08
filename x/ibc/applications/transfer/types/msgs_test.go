@@ -45,9 +45,7 @@ var (
 	defaultIbcFee = sdk.NewCoin("ibc/7F1D3FCF4AE79E1554D670D1AD949A9BA4E4A3C76C63093E17E446A46061A7A2", sdk.ZeroInt())
 )
 
-var (
-	NewMsgTransfer = types.NewMsgTransfer
-)
+var NewMsgTransfer = types.NewMsgTransfer
 
 // TestMsgTransferRoute tests Route for MsgTransfer
 func TestMsgTransferRoute(t *testing.T) {

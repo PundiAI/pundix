@@ -284,7 +284,6 @@ func NewAppKeeper(
 	transferIBCModule := transfer.NewIBCModule(appKeepers.TransferKeeper)
 
 	appKeepers.PundixTransferKeeper.SetRouter(pundixtransfertypes.NewRouter())
-	//appKeepers.PundixTransferKeeper.SetRefundHook(nil)
 	pundixIBCMiddleware := pundixtransfer.NewIBCModule(appKeepers.PundixTransferKeeper, transferIBCModule)
 	appKeepers.PundixTransferModule = pundixtransfer.NewAppModule(appKeepers.PundixTransferKeeper)
 

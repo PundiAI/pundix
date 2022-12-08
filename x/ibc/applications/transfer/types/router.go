@@ -70,7 +70,8 @@ var _ RefundHook = MultiRefundHook{}
 type MultiRefundHook []RefundHook
 
 func (mrh MultiRefundHook) RefundAfter(ctx sdk.Context, sourcePort, sourceChannel string,
-	sequence uint64, sender sdk.AccAddress, receiver string, amount sdk.Coin) error {
+	sequence uint64, sender sdk.AccAddress, receiver string, amount sdk.Coin,
+) error {
 	for i := range mrh {
 		if err := mrh[i].RefundAfter(ctx, sourcePort, sourceChannel, sequence, sender, receiver, amount); err != nil {
 			return sdkerrors.Wrapf(err, "Refund hook %T failed, error %s", mrh[i], err.Error())

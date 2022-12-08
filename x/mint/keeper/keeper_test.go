@@ -61,7 +61,7 @@ func (suite *KeeperTestSuite) TestSetParams() {
 	for _, tt := range tests {
 		suite.Run(fmt.Sprintf("Case %s", tt.name), func() {
 			genesisState := minttypes.NewGenesisState(minttypes.DefaultInitialMinter(), tt.params)
-			var fn = require.Panics
+			fn := require.Panics
 			if tt.expPass {
 				fn = require.NotPanics
 			}

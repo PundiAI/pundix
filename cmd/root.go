@@ -130,7 +130,6 @@ func initRootCmd(rootCmd *cobra.Command, encodingConfig appparams.EncodingConfig
 	rootCmd.AddCommand(
 		InitCmd(app.DefaultNodeHome, app.NewDefAppGenesisByDenom, app.CustomConsensusParams()),
 		cli.CollectGenTxsCmd(banktypes.GenesisBalancesIterator{}, app.DefaultNodeHome),
-		//genutilcli.MigrateGenesisCmd(),
 		cli.GenTxCmd(app.ModuleBasics, encodingConfig.TxConfig, banktypes.GenesisBalancesIterator{}, app.DefaultNodeHome),
 		genutilcli.ValidateGenesisCmd(app.ModuleBasics),
 		cli.AddGenesisAccountCmd(app.DefaultNodeHome),
@@ -303,8 +302,8 @@ func (a appCreator) newApp(logger log.Logger, db dbm.DB, traceStore io.Writer, a
 // appExport creates a new simapp (optionally at a given height)
 func (a appCreator) appExport(
 	logger log.Logger, db dbm.DB, traceStore io.Writer, height int64, forZeroHeight bool, jailAllowedAddrs []string,
-	appOpts servertypes.AppOptions) (servertypes.ExportedApp, error) {
-
+	appOpts servertypes.AppOptions,
+) (servertypes.ExportedApp, error) {
 	var anApp *app.PundixApp
 
 	homePath, ok := appOpts.Get(flags.FlagHome).(string)
