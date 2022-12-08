@@ -160,9 +160,9 @@ benchmark:
 
 protoVer=v0.2
 protoImageName=tendermintdev/sdk-proto-gen:$(protoVer)
-containerProtoGen=cosmos-sdk-proto-gen-$(protoVer)
-containerProtoGenSwagger=cosmos-sdk-proto-gen-swagger-$(protoVer)
-containerProtoFmt=cosmos-sdk-proto-fmt-$(protoVer)
+containerProtoGen=pundix-proto-gen-$(protoVer)
+containerProtoGenSwagger=pundix-proto-gen-swagger-$(protoVer)
+containerProtoFmt=pundix-proto-fmt-$(protoVer)
 
 proto-format:
 	@echo "Formatting Protobuf files"

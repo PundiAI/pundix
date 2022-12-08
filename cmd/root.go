@@ -7,6 +7,8 @@ import (
 	"os"
 	"path/filepath"
 
+	"github.com/pundix/pundix/server/grpc/base/gasprice"
+
 	appparams "github.com/pundix/pundix/app/params"
 
 	"github.com/cosmos/cosmos-sdk/baseapp"
@@ -38,7 +40,6 @@ import (
 	"github.com/pundix/pundix/app"
 	"github.com/pundix/pundix/app/cli"
 	pxtypes "github.com/pundix/pundix/types"
-	otherCli "github.com/pundix/pundix/x/other/client/cli"
 )
 
 // NewRootCmd creates a new root command for simd. It is called once in the
@@ -77,7 +78,7 @@ func NewRootCmd() *cobra.Command {
 				return err
 			}
 
-			if err := client.SetCmdClientContext(cmd, initClientCtx); err != nil {
+			if err := client.SetCmdClientContextHandler(initClientCtx, cmd); err != nil {
 				return err
 			}
 
@@ -124,7 +125,7 @@ func initAppConfig(minGasPrice string) (string, interface{}) {
 
 func initRootCmd(rootCmd *cobra.Command, encodingConfig appparams.EncodingConfig) {
 	sdkCfgCmd := sdkCfg.Cmd()
-	sdkCfgCmd.AddCommand(cli.AppTomlCmd(), cli.ConfigTomlCmd())
+	sdkCfgCmd.AddCommand(cli.UpdateCfgCmd(), cli.AppTomlCmd(), cli.ConfigTomlCmd())
 
 	rootCmd.AddCommand(
 		InitCmd(app.DefaultNodeHome, app.NewDefAppGenesisByDenom, app.CustomConsensusParams()),
@@ -203,7 +204,7 @@ func queryCommand() *cobra.Command {
 		cli.QueryStoreCmd(),
 		cli.QueryValidatorByConsAddr(),
 		cli.QueryBlockResultsCmd(),
-		otherCli.CmdGasPrice(),
+		gasprice.QueryCmd(),
 	)
 
 	app.ModuleBasics.AddQueryCommands(cmd)

@@ -21,29 +21,28 @@ fi
 
 if [ ! -f "./build/cosmos-sdk/README.md" ]; then
   commit_hash=$(go list -m -f '{{.Version}}' github.com/cosmos/cosmos-sdk)
-  if [ ! -f "./build/cosmos-sdk-44-proto.zip" ]; then
-    wget -c "https://github.com/cosmos/cosmos-sdk/archive/$commit_hash.zip" -O "./build/cosmos-sdk-44-proto.zip"
+  if [ ! -f "./build/cosmos-sdk-proto.zip" ]; then
+    wget -c "https://github.com/cosmos/cosmos-sdk/archive/$commit_hash.zip" -O "./build/cosmos-sdk-proto.zip"
   fi
   (
     cd build
-    unzip -q -o "./cosmos-sdk-44-proto.zip"
+    unzip -q -o "./cosmos-sdk-proto.zip"
     mv $(ls | grep cosmos-sdk | grep -v grep | grep -v zip) cosmos-sdk
     rm -rf cosmos-sdk/.git
   )
 fi
 
 if [ ! -f ./build/ibc-go/README.md ]; then
-  commit_hash=$(go list -m -f '{{.Version}}' github.com/cosmos/ibc-go)
-  if [ ! -f "./build/ibc-go-proto-v1.zip" ]; then
-    wget -c "https://github.com/cosmos/ibc-go/archive/$commit_hash.zip" -O "./build/ibc-go-proto-v1.zip"
+  commit_hash=$(go list -m -f '{{.Version}}' github.com/cosmos/ibc-go/v3)
+  if [ ! -f "./build/ibc-go-proto.zip" ]; then
+    wget -c "https://github.com/cosmos/ibc-go/archive/$commit_hash.zip" -O "./build/ibc-go-proto.zip"
   fi
   (
     cd build
-    unzip -q -o "./ibc-go-proto-v1.zip"
+    unzip -q -o "./ibc-go-proto.zip"
     mv $(ls | grep ibc-go | grep -v grep | grep -v zip) ibc-go
     rm -rf ibc-go/.git
   )
-#  rm -rf ./build/ibc-go/proto/ibc/applications/transfer
 fi
 
 proto_dirs=$(find ./proto -path -prune -o -name '*.proto' -print0 | xargs -0 -n1 dirname | sort | uniq)
@@ -68,19 +67,15 @@ buf protoc \
   --doc_opt=./docs/proto/proto-doc-markdown.tmpl,pundix-proto-docs.md \
   $(find "$(pwd)/proto" -maxdepth 6 -name '*.proto')
 
-buf protoc \
-    -I "build/cosmos-sdk/proto" \
-    -I "build/cosmos-sdk/third_party/proto" \
-    --doc_out=./docs/proto \
-    --doc_opt=./docs/proto/proto-doc-markdown.tmpl,cosmos-sdk-proto-docs.md \
-    $(find "$(pwd)/build/cosmos-sdk/proto" -maxdepth 6 -name '*.proto')
+for item in "cosmos-sdk" "ibc-go" ; do
 
-buf protoc \
-    -I "build/ibc-go/proto" \
-    -I "build/ibc-go/third_party/proto" \
+  buf protoc \
+    -I "build/${item}/proto" \
+    -I "build/${item}/third_party/proto" \
     --doc_out=./docs/proto \
-    --doc_opt=./docs/proto/proto-doc-markdown.tmpl,ibc-go-proto-docs.md \
-    $(find "$(pwd)/build/ibc-go/proto" -maxdepth 6 -name '*.proto')
+    --doc_opt=./docs/proto/proto-doc-markdown.tmpl,${item}-proto-docs.md \
+    $(find "$(pwd)/build/${item}/proto" -maxdepth 6 -name '*.proto')
+done
 
 cp -r github.com/pundix/pundix/* ./
 rm -rf github.com

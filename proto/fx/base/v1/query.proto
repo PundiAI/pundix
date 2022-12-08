@@ -1,0 +1,24 @@
+syntax = "proto3";
+package fx.base.v1;
+
+import "gogoproto/gogo.proto";
+import "google/api/annotations.proto";
+import "cosmos/base/v1beta1/coin.proto";
+
+option go_package = "github.com/pundix/pundix/server/grpc/base/gasprice";
+
+service Query {
+  rpc GetGasPrice(GetGasPriceRequest) returns (GetGasPriceResponse) {
+    option (google.api.http).get = "/fx/base/v1/gas_price";
+  }
+}
+
+message GetGasPriceRequest {}
+
+message GetGasPriceResponse {
+  repeated cosmos.base.v1beta1.Coin gas_prices = 1 [
+    (gogoproto.nullable) = false,
+    (gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins",
+    (gogoproto.moretags) = "yaml:\"gas_prices\""
+  ];
+}

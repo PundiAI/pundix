@@ -7,6 +7,9 @@ import (
 	"os"
 	"path/filepath"
 
+	"github.com/pundix/pundix/server/grpc/base/gasprice"
+	gaspricelegacy "github.com/pundix/pundix/server/grpc/base/gasprice/legacy"
+
 	stakingkeeper "github.com/cosmos/cosmos-sdk/x/staking/keeper"
 
 	"github.com/cosmos/cosmos-sdk/simapp"
@@ -171,7 +174,7 @@ func NewPundixApp(
 	app.mm.RegisterRoutes(app.Router(), app.QueryRouter(), encodingConfig.Amino)
 
 	app.configurator = module.NewConfigurator(app.appCodec, app.MsgServiceRouter(), app.GRPCQueryRouter())
-	app.mm.RegisterServices(app.configurator)
+	app.RegisterServices()
 
 	// create the simulation manager and define the order of the modules for deterministic simulations
 	//
@@ -295,6 +298,14 @@ func (app *PundixApp) SimulationManager() *module.SimulationManager {
 	return app.sm
 }
 
+func (app *PundixApp) RegisterServices() {
+	for _, m := range app.mm.Modules {
+		m.RegisterServices(app.configurator)
+	}
+	gasprice.RegisterQueryServer(app.configurator.QueryServer(), gasprice.Querier{})
+	gaspricelegacy.RegisterQueryServer(app.configurator.QueryServer(), gaspricelegacy.Querier{})
+}
+
 // RegisterAPIRoutes registers all application module routes with the provided
 // API server.
 func (app *PundixApp) RegisterAPIRoutes(apiSvr *api.Server, apiConfig config.APIConfig) {
@@ -306,6 +317,8 @@ func (app *PundixApp) RegisterAPIRoutes(apiSvr *api.Server, apiConfig config.API
 	authtx.RegisterGRPCGatewayRoutes(clientCtx, apiSvr.GRPCGatewayRouter)
 	// Register new tendermint queries routes from grpc-gateway.
 	tmservice.RegisterGRPCGatewayRoutes(clientCtx, apiSvr.GRPCGatewayRouter)
+	// Register gas price queries routes from grpc-gateway.
+	gasprice.RegisterGRPCGatewayRoutes(clientCtx, apiSvr.GRPCGatewayRouter)
 
 	// Register legacy and grpc-gateway routes for all modules.
 	ModuleBasics.RegisterRESTRoutes(clientCtx, apiSvr.Router)

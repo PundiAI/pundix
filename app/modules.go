@@ -45,10 +45,8 @@ import (
 
 	pundixtransfer "github.com/pundix/pundix/x/ibc/applications/transfer"
 	pundixtransfertypes "github.com/pundix/pundix/x/ibc/applications/transfer/types"
-	othertypes "github.com/pundix/pundix/x/other/types"
 
 	pundixmint "github.com/pundix/pundix/x/mint"
-	"github.com/pundix/pundix/x/other"
 
 	appparams "github.com/pundix/pundix/app/params"
 )
@@ -93,8 +91,6 @@ var ModuleBasics = module.NewBasicManager(
 	transfer.AppModuleBasic{},
 	pundixtransfer.AppModuleBasic{},
 	vesting.AppModuleBasic{},
-	// this line is used by starport scaffolding # stargate/app/moduleBasic
-	other.AppModuleBasic{},
 )
 
 func appModules(
@@ -129,7 +125,6 @@ func appModules(
 		params.NewAppModule(app.ParamsKeeper),
 		app.TransferModule,
 		app.PundixTransferModule,
-		other.NewAppModule(appCodec),
 	}
 }
 
@@ -184,7 +179,6 @@ func orderBeginBlockers() []string {
 		feegrant.ModuleName,
 		paramstypes.ModuleName,
 		vestingtypes.ModuleName,
-		othertypes.ModuleName,
 	}
 }
 
@@ -209,7 +203,6 @@ func orderEndBlockers() []string {
 		paramstypes.ModuleName,
 		upgradetypes.ModuleName,
 		vestingtypes.ModuleName,
-		othertypes.ModuleName,
 	}
 }
 
@@ -234,6 +227,5 @@ func orderInitBlockers() []string {
 		paramstypes.ModuleName,
 		upgradetypes.ModuleName,
 		vestingtypes.ModuleName,
-		othertypes.ModuleName,
 	}
 }
