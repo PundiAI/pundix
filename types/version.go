@@ -14,8 +14,8 @@ const (
 	testnetMintDenom        = "bsc0x0BEdB58eC8D603E71556ef8aA4014c68DBd57AD7"
 	testnetStakingBondDenom = "ibc/169A52CA4862329131348484982CE75B3D6CC78AFB94C3107026C70CB66E7B2E"
 
-	testnetV2HardForkHeight = math.MaxUint64
-	testnetV2UpgradeHeight  = math.MaxUint64
+	testnetV2HardForkHeight = 6052800
+	testnetV2UpgradeHeight  = 6053000
 )
 
 // mainnet constant
