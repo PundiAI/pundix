@@ -23,12 +23,10 @@ import (
 	"github.com/cosmos/cosmos-sdk/x/feegrant"
 	feegrantkeeper "github.com/cosmos/cosmos-sdk/x/feegrant/keeper"
 
-	pundixtransfer "github.com/pundix/pundix/x/ibc/applications/transfer"
-	pundixtransferkeeper "github.com/pundix/pundix/x/ibc/applications/transfer/keeper"
-	pundixtransfertypes "github.com/pundix/pundix/x/ibc/applications/transfer/types"
-
 	govkeeper "github.com/cosmos/cosmos-sdk/x/gov/keeper"
 	govtypes "github.com/cosmos/cosmos-sdk/x/gov/types"
+	pundixtransfer "github.com/pundix/pundix/x/ibc/applications/transfer"
+	pundixtransferkeeper "github.com/pundix/pundix/x/ibc/applications/transfer/keeper"
 
 	minttypes "github.com/cosmos/cosmos-sdk/x/mint/types"
 	"github.com/cosmos/cosmos-sdk/x/params"
@@ -283,7 +281,6 @@ func NewAppKeeper(
 	appKeepers.TransferModule = transfer.NewAppModule(appKeepers.TransferKeeper)
 	transferIBCModule := transfer.NewIBCModule(appKeepers.TransferKeeper)
 
-	appKeepers.PundixTransferKeeper.SetRouter(pundixtransfertypes.NewRouter())
 	pundixIBCMiddleware := pundixtransfer.NewIBCModule(appKeepers.PundixTransferKeeper, transferIBCModule)
 	appKeepers.PundixTransferModule = pundixtransfer.NewAppModule(appKeepers.PundixTransferKeeper)
 

@@ -27,8 +27,6 @@ type Keeper struct {
 	authKeeper    types.AccountKeeper
 	bankKeeper    types.BankKeeper
 	scopedKeeper  capabilitykeeper.ScopedKeeper
-	Router        *types.Router
-	RefundHook    types.RefundHook
 }
 
 // NewKeeper creates a new IBC transfer Keeper instance
@@ -54,24 +52,6 @@ func NewKeeper(keeper ibctransferkeeper.Keeper,
 		bankKeeper:    bankKeeper,
 		scopedKeeper:  scopedKeeper,
 	}
-}
-
-// SetRouter sets the Router in IBC Transfer Keeper and seals it. The method panics if
-// there is an existing router that's already sealed.
-func (k Keeper) SetRouter(rtr *types.Router) {
-	if k.Router != nil && k.Router.Sealed() {
-		panic("cannot reset a sealed router")
-	}
-	k.Router = rtr
-	k.Router.Seal()
-}
-
-func (k Keeper) GetRouter() *types.Router {
-	return k.Router
-}
-
-func (k *Keeper) SetRefundHook(hook types.RefundHook) {
-	k.RefundHook = hook
 }
 
 // Logger returns a module-specific logger.

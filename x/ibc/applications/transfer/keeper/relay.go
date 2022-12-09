@@ -200,6 +200,14 @@ func (k Keeper) OnRecvPacket(ctx sdk.Context, packet channeltypes.Packet, data t
 		return err
 	}
 
+	if len(data.Router) > 0 {
+		return sdkerrors.Wrapf(types.ErrNotSupportRouter, "router:(%s)", data.Router)
+	}
+
+	if data.Fee != sdk.ZeroInt().String() {
+		return sdkerrors.Wrapf(types.ErrNotSupportFee, "fee:(%s)", data.Router)
+	}
+
 	receiver, transferAmount, feeAmount, err := parseReceiveAndAmountByPacket(data)
 	if err != nil {
 		return err
@@ -223,33 +231,6 @@ func (k Keeper) OnRecvPacket(ctx sdk.Context, packet channeltypes.Packet, data t
 		),
 	)
 
-	if data.Router == "" || !k.Router.HasRoute(data.Router) {
-		return nil
-	}
-	if route, exists := k.Router.GetRoute(data.Router); exists {
-		ibcAmount := sdk.NewCoin(receiveDenom, transferAmount)
-		ibcFee := sdk.NewCoin(receiveDenom, feeAmount)
-		ctx.Logger().Info("IBCTransfer", "transfer route sourceChannel", packet.GetSourceChannel(),
-			"destChannel", packet.GetDestChannel(), "sequence", packet.GetSequence(), "sender", receiver.String(),
-			"receive", data.Receiver, "amount", ibcAmount, "fee", ibcFee, "router", data.Router)
-		cacheCtx, writeFn := ctx.CacheContext()
-		err = route.TransferAfter(cacheCtx, receiver.String(), data.Receiver, ibcAmount, ibcFee)
-		routerEvent := sdk.NewEvent(types.EventTypeReceiveRoute,
-			sdk.NewAttribute(types.AttributeKeyRoute, data.Router),
-			sdk.NewAttribute(types.AttributeKeyRouteSuccess, fmt.Sprintf("%t", err == nil)),
-		)
-		switch err {
-		case nil:
-			writeFn()
-			ctx.EventManager().EmitEvents(cacheCtx.EventManager().Events())
-		default:
-			ctx.Logger().Error("IBCTransfer", "transfer after route err!!!sourceChannel", packet.GetSourceChannel(), "destChannel", packet.GetDestChannel(), "sequence", packet.GetSequence(), "err", err)
-			routerEvent = routerEvent.AppendAttributes(sdk.NewAttribute(types.AttributeKeyRouteError, err.Error()))
-		}
-		ctx.EventManager().EmitEvent(routerEvent)
-
-		return nil
-	}
 	return nil
 }
 
@@ -260,10 +241,13 @@ func (k Keeper) OnRecvPacket(ctx sdk.Context, packet channeltypes.Packet, data t
 func (k Keeper) OnAcknowledgementPacket(ctx sdk.Context, packet channeltypes.Packet, data types.FungibleTokenPacketData, ack channeltypes.Acknowledgement) error {
 	switch ack.Response.(type) {
 	case *channeltypes.Acknowledgement_Error:
-		if err := k.Keeper.OnAcknowledgementPacket(ctx, packet, data.ToIBCPacketData(), ack); err != nil {
+		_, amount, fee, err := parseReceiveAndAmountByPacket(data)
+		if err != nil {
 			return err
 		}
-		return k.refundPacketTokenHook(ctx, packet, data)
+		ibcPacketData := data.ToIBCPacketData()
+		ibcPacketData.Amount = amount.Add(fee).String()
+		return k.Keeper.OnAcknowledgementPacket(ctx, packet, ibcPacketData, ack)
 	default:
 		// the acknowledgement succeeded on the receiving chain so nothing
 		// needs to be executed and no error needs to be returned
@@ -274,46 +258,11 @@ func (k Keeper) OnAcknowledgementPacket(ctx sdk.Context, packet channeltypes.Pac
 // OnTimeoutPacket refunds the sender since the original packet sent was
 // never received and has been timed out.
 func (k Keeper) OnTimeoutPacket(ctx sdk.Context, packet channeltypes.Packet, data types.FungibleTokenPacketData) error {
-	if err := k.Keeper.OnTimeoutPacket(ctx, packet, data.ToIBCPacketData()); err != nil {
-		return err
-	}
-	return k.refundPacketTokenHook(ctx, packet, data)
-}
-
-// refundPacketToken will unescrow and send back the tokens back to sender
-// if the sending chain was the source chain. Otherwise, the sent tokens
-// were burnt in the original send so new tokens are minted and sent to
-// the sending address.
-func (k Keeper) refundPacketTokenHook(ctx sdk.Context, packet channeltypes.Packet, data types.FungibleTokenPacketData) error {
-	// parse the denomination from the full denom path
-	trace := transfertypes.ParseDenomTrace(data.Denom)
-
-	amount, ok := sdk.NewIntFromString(data.Amount)
-	if !ok {
-		return sdkerrors.Wrapf(transfertypes.ErrInvalidAmount, "unable to parse transfer amount (%s) into sdk.Int", data.Amount)
-	}
-	// If the IBC router is not empty, the feeAmount refund is added.
-	if data.Router != "" {
-		feeAmount, ok := sdk.NewIntFromString(data.Fee)
-		if !ok {
-			return sdkerrors.Wrapf(transfertypes.ErrInvalidAmount, "unable to parse transfer fee (%s) into sdk.Int", data.Amount)
-		}
-		amount = amount.Add(feeAmount)
-	}
-	token := sdk.NewCoin(trace.IBCDenom(), amount)
-
-	// decode the sender address
-	sender, err := sdk.AccAddressFromBech32(data.Sender)
+	_, amount, fee, err := parseReceiveAndAmountByPacket(data)
 	if err != nil {
 		return err
 	}
-
-	if k.RefundHook != nil {
-		ctx.Logger().Info("ibc refund hook", "sourcePort", packet.SourcePort, "sourceChannel",
-			packet.SourceChannel, "sequence", fmt.Sprintf("%d", packet.Sequence), "sender", sender.String(), "token", token.String())
-		if err = k.RefundHook.RefundAfter(ctx, packet.SourcePort, packet.SourceChannel, packet.Sequence, sender, data.Receiver, token); err != nil {
-			ctx.Logger().Error("refundPacketToken", "refund hook err!!!sourceChannel", packet.GetSourceChannel(), "destChannel", packet.GetDestChannel(), "sequence", packet.GetSequence(), "err", err)
-		}
-	}
-	return nil
+	ibcPacketData := data.ToIBCPacketData()
+	ibcPacketData.Amount = amount.Add(fee).String()
+	return k.Keeper.OnTimeoutPacket(ctx, packet, ibcPacketData)
 }
