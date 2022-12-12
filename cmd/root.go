@@ -6,6 +6,12 @@ import (
 	"io"
 	"os"
 	"path/filepath"
+	"time"
+
+	"github.com/cosmos/cosmos-sdk/version"
+	tmcfg "github.com/tendermint/tendermint/config"
+	"github.com/tendermint/tendermint/node"
+	tmstore "github.com/tendermint/tendermint/store"
 
 	"github.com/pundix/pundix/server/grpc/base/gasprice"
 
@@ -178,6 +184,9 @@ func addModuleInitFlags(startCmd *cobra.Command) {
 
 		genesisDoc, err := tmtypes.GenesisDocFromFile(serverCtx.Config.GenesisFile())
 		if err != nil {
+			return err
+		}
+		if err = checkMainnetAndBlock(genesisDoc, serverCtx.Config); err != nil {
 			return err
 		}
 		pxtypes.SetChainId(genesisDoc.ChainID)
@@ -359,4 +368,24 @@ func overwriteFlagDefaults(c *cobra.Command, defaults map[string]string) {
 	for _, c := range c.Commands() {
 		overwriteFlagDefaults(c, defaults)
 	}
+}
+
+func checkMainnetAndBlock(genesisDoc *tmtypes.GenesisDoc, config *tmcfg.Config) error {
+	if genesisDoc.InitialHeight > 1 || genesisDoc.ChainID != pxtypes.MainnetChainId || config.StateSync.Enable {
+		return nil
+	}
+	genesisTime, err := time.Parse("2006-01-02T15:04:05Z", "2021-10-13T10:00:00Z")
+	if err != nil {
+		return err
+	}
+	blockStoreDB, err := node.DefaultDBProvider(&node.DBContext{ID: "blockstore", Config: config})
+	if err != nil {
+		return err
+	}
+	defer blockStoreDB.Close()
+	blockStore := tmstore.NewBlockStore(blockStoreDB)
+	if genesisDoc.GenesisTime.Equal(genesisTime) && blockStore.Height() <= 0 {
+		return fmt.Errorf("invalid version: Sync block from scratch please use use v0.1.x current %s", version.Version)
+	}
+	return nil
 }
