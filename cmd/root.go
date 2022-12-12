@@ -64,7 +64,7 @@ func NewRootCmd() *cobra.Command {
 		WithAccountRetriever(types.AccountRetriever{}).
 		WithBroadcastMode(flags.BroadcastBlock).
 		WithHomeDir(app.DefaultNodeHome).
-		WithViper("")
+		WithViper("PX")
 
 	rootCmd := &cobra.Command{
 		Use:   pxtypes.Name + "d",
