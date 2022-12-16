@@ -241,7 +241,7 @@ func (k Keeper) OnRecvPacket(ctx sdk.Context, packet channeltypes.Packet, data t
 func (k Keeper) OnAcknowledgementPacket(ctx sdk.Context, packet channeltypes.Packet, data types.FungibleTokenPacketData, ack channeltypes.Acknowledgement) error {
 	switch ack.Response.(type) {
 	case *channeltypes.Acknowledgement_Error:
-		_, amount, fee, err := parseReceiveAndAmountByPacket(data)
+		amount, fee, err := parseAmountAndFeeByPacket(data)
 		if err != nil {
 			return err
 		}
@@ -258,7 +258,7 @@ func (k Keeper) OnAcknowledgementPacket(ctx sdk.Context, packet channeltypes.Pac
 // OnTimeoutPacket refunds the sender since the original packet sent was
 // never received and has been timed out.
 func (k Keeper) OnTimeoutPacket(ctx sdk.Context, packet channeltypes.Packet, data types.FungibleTokenPacketData) error {
-	_, amount, fee, err := parseReceiveAndAmountByPacket(data)
+	amount, fee, err := parseAmountAndFeeByPacket(data)
 	if err != nil {
 		return err
 	}
