@@ -2,6 +2,7 @@ package keeper
 
 import (
 	ibctransferkeeper "github.com/cosmos/ibc-go/v3/modules/apps/transfer/keeper"
+	transfertypes "github.com/cosmos/ibc-go/v3/modules/apps/transfer/types"
 	porttypes "github.com/cosmos/ibc-go/v3/modules/core/05-port/types"
 	"github.com/tendermint/tendermint/libs/log"
 
@@ -22,18 +23,18 @@ type Keeper struct {
 	paramSpace paramtypes.Subspace
 
 	ics4Wrapper   porttypes.ICS4Wrapper
-	channelKeeper types.ChannelKeeper
-	portKeeper    types.PortKeeper
-	authKeeper    types.AccountKeeper
-	bankKeeper    types.BankKeeper
+	channelKeeper transfertypes.ChannelKeeper
+	portKeeper    transfertypes.PortKeeper
+	authKeeper    transfertypes.AccountKeeper
+	bankKeeper    transfertypes.BankKeeper
 	scopedKeeper  capabilitykeeper.ScopedKeeper
 }
 
 // NewKeeper creates a new IBC transfer Keeper instance
 func NewKeeper(keeper ibctransferkeeper.Keeper,
 	cdc codec.BinaryCodec, key sdk.StoreKey, paramSpace paramtypes.Subspace,
-	ics4Wrapper porttypes.ICS4Wrapper, channelKeeper types.ChannelKeeper, portKeeper types.PortKeeper,
-	authKeeper types.AccountKeeper, bankKeeper types.BankKeeper, scopedKeeper capabilitykeeper.ScopedKeeper,
+	ics4Wrapper porttypes.ICS4Wrapper, channelKeeper transfertypes.ChannelKeeper, portKeeper transfertypes.PortKeeper,
+	authKeeper transfertypes.AccountKeeper, bankKeeper transfertypes.BankKeeper, scopedKeeper capabilitykeeper.ScopedKeeper,
 ) Keeper {
 	// ensure ibc transfer module account is set
 	if addr := authKeeper.GetModuleAddress(types.ModuleName); addr == nil {

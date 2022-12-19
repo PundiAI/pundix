@@ -38,7 +38,7 @@ func parseIBCCoinDenom(packet channeltypes.Packet, packetDenom string) string {
 		}
 		receiveDenom = denom
 	} else {
-		// sender chain is the source, mint vouchers
+		// sender chain is the source
 
 		// since SendPacket did not prefix the denomination, we must prefix denomination here
 		sourcePrefix := transfertypes.GetDenomPrefix(packet.GetDestPort(), packet.GetDestChannel())
@@ -48,8 +48,7 @@ func parseIBCCoinDenom(packet channeltypes.Packet, packetDenom string) string {
 		// construct the denomination trace from the full raw denomination
 		denomTrace := transfertypes.ParseDenomTrace(prefixedDenom)
 
-		voucherDenom := denomTrace.IBCDenom()
-		receiveDenom = voucherDenom
+		receiveDenom = denomTrace.IBCDenom()
 	}
 	return receiveDenom
 }
