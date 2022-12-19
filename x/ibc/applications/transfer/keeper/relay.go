@@ -205,7 +205,7 @@ func (k Keeper) OnRecvPacket(ctx sdk.Context, packet channeltypes.Packet, data t
 	}
 
 	if data.Fee != sdk.ZeroInt().String() {
-		return sdkerrors.Wrapf(types.ErrNotSupportFee, "fee:(%s)", data.Router)
+		return sdkerrors.Wrapf(types.ErrNotSupportFee, "fee:(%s)", data.Fee)
 	}
 
 	receiver, transferAmount, feeAmount, err := parseReceiveAndAmountByPacket(data)
