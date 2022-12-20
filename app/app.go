@@ -460,7 +460,6 @@ func (app *App) Name() string { return app.BaseApp.Name() }
 func (app *App) BeginBlocker(ctx sdk.Context, req abci.RequestBeginBlock) abci.ResponseBeginBlock {
 	// hard-fork
 	//    v2 - fork
-	ctx.Logger().With("app/beginBlock").Info("beginBlock", "height", ctx.BlockHeight())
 	if ctx.BlockHeight() == int64(pxtypes.V2HardForkHeight()) {
 		err := v2.Upgrade(ctx, app.UpgradeKeeper)
 		if err != nil {
