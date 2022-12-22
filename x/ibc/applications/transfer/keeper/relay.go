@@ -2,6 +2,7 @@ package keeper
 
 import (
 	"fmt"
+	pxtypes "github.com/pundix/pundix/types"
 	"strings"
 
 	coretypes "github.com/cosmos/ibc-go/v3/modules/core/types"
@@ -163,8 +164,15 @@ func (k Keeper) sendTransfer(ctx sdk.Context, sourcePort, sourceChannel string, 
 		}
 	}
 
+	// hard fork: compatibility fx ibc transfer fee
+	var packetDateBytes []byte
+	if ctx.BlockHeight() >= pxtypes.CompatibilityIBCTransferHeight() {
+		packetDateBytes = packetData.CompatibilityGetBytes()
+	} else {
+		packetDateBytes = packetData.GetBytes()
+	}
 	packet := channeltypes.NewPacket(
-		packetData.GetBytes(),
+		packetDateBytes,
 		sequence,
 		sourcePort,
 		sourceChannel,

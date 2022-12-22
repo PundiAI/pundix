@@ -76,8 +76,36 @@ func TestUnmarshalJSON(t *testing.T) {
 			},
 		},
 		{
+			name:   "fx transfer packet - no router - Compatibility",
+			data:   types.NewFungibleTokenPacketData("FX", "100", "Add1", "Add2", "", "0").CompatibilityGetBytes(),
+			pass:   true,
+			expErr: nil,
+			exp: types.FungibleTokenPacketData{
+				Denom:    "FX",
+				Amount:   "100",
+				Sender:   "Add1",
+				Receiver: "Add2",
+				Router:   "",
+				Fee:      "0",
+			},
+		},
+		{
 			name:   "fx transfer packet - router with 0fee",
 			data:   types.NewFungibleTokenPacketData("FX", "100", "Add1", "Add2", "router", "0").GetBytes(),
+			pass:   true,
+			expErr: nil,
+			exp: types.FungibleTokenPacketData{
+				Denom:    "FX",
+				Amount:   "100",
+				Sender:   "Add1",
+				Receiver: "Add2",
+				Router:   "router",
+				Fee:      "0",
+			},
+		},
+		{
+			name:   "fx transfer packet - router with 0fee",
+			data:   types.NewFungibleTokenPacketData("FX", "100", "Add1", "Add2", "router", "0").CompatibilityGetBytes(),
 			pass:   true,
 			expErr: nil,
 			exp: types.FungibleTokenPacketData{
