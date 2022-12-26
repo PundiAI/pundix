@@ -1,7 +1,6 @@
 package types
 
 import (
-	"math"
 	"os"
 	"sync"
 
@@ -23,7 +22,7 @@ const (
 	mainnetMintDenom        = "bsc0x29a63F4B209C29B4DC47f06FFA896F32667DAD2C"
 	mainnetStakingBondDenom = "ibc/55367B7B6572631B78A93C66EF9FDFCE87CDE372CC4ED7848DA78C1EB1DCDD78"
 
-	mainnetCompatibilityIBCTransferHeight = math.MaxInt64
+	mainnetCompatibilityIBCTransferHeight = 6951720
 )
 
 var (
