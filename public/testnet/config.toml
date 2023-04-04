@@ -182,10 +182,10 @@ laddr = "tcp://0.0.0.0:26656"
 external_address = ""
 
 # Comma separated list of seed nodes to connect to
-seeds = "c77303a511a90a41c562d5925b170d7a68975569@payalebar-seed-node-1.pundix.com:26656"
+seeds = "c77303a511a90a41c562d5925b170d7a68975569@payalebar-seed-node-1.pundix.com:26656,777fba974bb085daea6b83b6e76c6619d96eed50@payalebar-node-1.pundix.com:26656,9a296821d069a3c599ea2be5cd8698ec927ca5ce@payalebar-node-2.pundix.com:26656"
 
 # Comma separated list of nodes to keep persistent connections to
-persistent_peers = "777fba974bb085daea6b83b6e76c6619d96eed50@payalebar-node-1.pundix.com:26656,9a296821d069a3c599ea2be5cd8698ec927ca5ce@payalebar-node-2.pundix.com:26656"
+persistent_peers = ""
 
 # UPNP port forwarding
 upnp = false
