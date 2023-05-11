@@ -10,6 +10,7 @@ import (
 	"strings"
 
 	"github.com/cosmos/cosmos-sdk/client/debug"
+	tmcli "github.com/tendermint/tendermint/libs/cli"
 
 	"github.com/cosmos/cosmos-sdk/x/auth/legacy/legacytx"
 	authsigning "github.com/cosmos/cosmos-sdk/x/auth/signing"
@@ -45,7 +46,9 @@ func Debug() *cobra.Command {
 		PubkeyCmd(),
 		VerifyTx(),
 		debug.RawBytesCmd(),
+		AddrCmd(),
 	)
+	cmd.PersistentFlags().StringP(tmcli.OutputFlag, "o", "json", "Output format (text|json)")
 	return cmd
 }
 
@@ -272,6 +275,45 @@ $ %s debug pubkey '{"@type":"/cosmos.crypto.ed25519.PubKey","key":"eKlxn6Xoe9LNm
 				return err
 			}
 			return clientCtx.PrintString(string(data))
+		},
+	}
+}
+
+func AddrCmd() *cobra.Command {
+	return &cobra.Command{
+		Use:   "addr [address]",
+		Short: "Convert an address between hex and bech32",
+		Long:  "Convert an address between hex encoding and bech32.",
+		Args:  cobra.ExactArgs(1),
+		RunE: func(cmd *cobra.Command, args []string) error {
+			clientCtx, err := client.GetClientQueryContext(cmd)
+			if err != nil {
+				return err
+			}
+			addrString := args[0]
+			var addr []byte
+
+			// try hex, then bech32
+			addr, err = hex.DecodeString(addrString)
+			if err != nil {
+				var err2 error
+				addr, err2 = sdk.AccAddressFromBech32(addrString)
+				if err2 != nil {
+					var err3 error
+					addr, err3 = sdk.ValAddressFromBech32(addrString)
+
+					if err3 != nil {
+						return fmt.Errorf("expected hex or bech32. Got errors: hex: %v, bech32 acc: %v, bech32 val: %v", err, err2, err3)
+					}
+				}
+			}
+
+			return PrintOutput(clientCtx, map[string]interface{}{
+				"base64":      addr,
+				"hex":         hex.EncodeToString(addr),
+				"acc_address": sdk.AccAddress(addr),
+				"val_address": sdk.ValAddress(addr),
+			})
 		},
 	}
 }
