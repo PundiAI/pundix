@@ -2,23 +2,20 @@ package keeper
 
 import (
 	"fmt"
-	pxtypes "github.com/pundix/pundix/types"
 	"strings"
 
-	coretypes "github.com/cosmos/ibc-go/v3/modules/core/types"
-
-	transfertypes "github.com/cosmos/ibc-go/v3/modules/apps/transfer/types"
-
-	"github.com/pundix/pundix/x/ibc/applications/transfer/types"
-
 	"github.com/armon/go-metrics"
-
 	"github.com/cosmos/cosmos-sdk/telemetry"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
+	transfertypes "github.com/cosmos/ibc-go/v3/modules/apps/transfer/types"
 	clienttypes "github.com/cosmos/ibc-go/v3/modules/core/02-client/types"
 	channeltypes "github.com/cosmos/ibc-go/v3/modules/core/04-channel/types"
 	host "github.com/cosmos/ibc-go/v3/modules/core/24-host"
+	coretypes "github.com/cosmos/ibc-go/v3/modules/core/types"
+
+	pxtypes "github.com/pundix/pundix/types"
+	"github.com/pundix/pundix/x/ibc/applications/transfer/types"
 )
 
 // SendTransfer handles transfer sending logic. There are 2 possible cases:

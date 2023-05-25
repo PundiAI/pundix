@@ -7,23 +7,6 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/pundix/pundix/server/grpc/base/gasprice"
-	gaspricelegacy "github.com/pundix/pundix/server/grpc/base/gasprice/legacy"
-
-	stakingkeeper "github.com/cosmos/cosmos-sdk/x/staking/keeper"
-
-	"github.com/cosmos/cosmos-sdk/simapp"
-	"github.com/cosmos/cosmos-sdk/x/auth/ante"
-
-	pundixante "github.com/pundix/pundix/ante"
-	"github.com/pundix/pundix/app/keepers"
-	appparams "github.com/pundix/pundix/app/params"
-	"github.com/pundix/pundix/app/upgrades"
-	v2 "github.com/pundix/pundix/app/upgrades/v2"
-
-	"github.com/gorilla/mux"
-	"github.com/rakyll/statik/fs"
-
 	"github.com/cosmos/cosmos-sdk/baseapp"
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/client/grpc/tmservice"
@@ -33,15 +16,21 @@ import (
 	"github.com/cosmos/cosmos-sdk/server/api"
 	"github.com/cosmos/cosmos-sdk/server/config"
 	servertypes "github.com/cosmos/cosmos-sdk/server/types"
+	"github.com/cosmos/cosmos-sdk/simapp"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/module"
 	"github.com/cosmos/cosmos-sdk/version"
+	"github.com/cosmos/cosmos-sdk/x/auth/ante"
 	authrest "github.com/cosmos/cosmos-sdk/x/auth/client/rest"
 	authtx "github.com/cosmos/cosmos-sdk/x/auth/tx"
 	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
 	"github.com/cosmos/cosmos-sdk/x/crisis"
 	govtypes "github.com/cosmos/cosmos-sdk/x/gov/types"
+	stakingkeeper "github.com/cosmos/cosmos-sdk/x/staking/keeper"
 	upgradetypes "github.com/cosmos/cosmos-sdk/x/upgrade/types"
+	ibctesting "github.com/cosmos/ibc-go/v3/testing"
+	"github.com/gorilla/mux"
+	"github.com/rakyll/statik/fs"
 	"github.com/spf13/cast"
 	abci "github.com/tendermint/tendermint/abci/types"
 	tmjson "github.com/tendermint/tendermint/libs/json"
@@ -49,11 +38,15 @@ import (
 	tmos "github.com/tendermint/tendermint/libs/os"
 	dbm "github.com/tendermint/tm-db"
 
-	pxtypes "github.com/pundix/pundix/types"
-
-	ibctesting "github.com/cosmos/ibc-go/v3/testing"
-
+	pundixante "github.com/pundix/pundix/ante"
+	"github.com/pundix/pundix/app/keepers"
+	appparams "github.com/pundix/pundix/app/params"
+	"github.com/pundix/pundix/app/upgrades"
+	v2 "github.com/pundix/pundix/app/upgrades/v2"
 	_ "github.com/pundix/pundix/docs/statik"
+	"github.com/pundix/pundix/server/grpc/base/gasprice"
+	gaspricelegacy "github.com/pundix/pundix/server/grpc/base/gasprice/legacy"
+	pxtypes "github.com/pundix/pundix/types"
 )
 
 var (

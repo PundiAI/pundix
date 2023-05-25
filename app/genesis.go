@@ -5,13 +5,6 @@ import (
 	"math/big"
 	"time"
 
-	pundixtransfertypes "github.com/pundix/pundix/x/ibc/applications/transfer/types"
-
-	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
-	"github.com/tendermint/tendermint/types"
-
-	pxtypes "github.com/pundix/pundix/types"
-
 	"github.com/cosmos/cosmos-sdk/codec"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	banktypes "github.com/cosmos/cosmos-sdk/x/bank/types"
@@ -21,11 +14,15 @@ import (
 	minttypes "github.com/cosmos/cosmos-sdk/x/mint/types"
 	slashingtypes "github.com/cosmos/cosmos-sdk/x/slashing/types"
 	stakingtypes "github.com/cosmos/cosmos-sdk/x/staking/types"
+	ibctransfertypes "github.com/cosmos/ibc-go/v3/modules/apps/transfer/types"
 	ibchost "github.com/cosmos/ibc-go/v3/modules/core/24-host"
 	ibcexported "github.com/cosmos/ibc-go/v3/modules/core/exported"
 	ibctypes "github.com/cosmos/ibc-go/v3/modules/core/types"
+	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
+	"github.com/tendermint/tendermint/types"
 
-	ibctransfertypes "github.com/cosmos/ibc-go/v3/modules/apps/transfer/types"
+	pxtypes "github.com/pundix/pundix/types"
+	pundixtransfertypes "github.com/pundix/pundix/x/ibc/applications/transfer/types"
 )
 
 // GenesisState The genesis state of the blockchain is represented here as a map of raw json

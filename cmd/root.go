@@ -8,15 +8,6 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/cosmos/cosmos-sdk/version"
-	tmcfg "github.com/tendermint/tendermint/config"
-	"github.com/tendermint/tendermint/node"
-	tmstore "github.com/tendermint/tendermint/store"
-
-	"github.com/pundix/pundix/server/grpc/base/gasprice"
-
-	appparams "github.com/pundix/pundix/app/params"
-
 	"github.com/cosmos/cosmos-sdk/baseapp"
 	"github.com/cosmos/cosmos-sdk/client"
 	sdkCfg "github.com/cosmos/cosmos-sdk/client/config"
@@ -29,6 +20,7 @@ import (
 	"github.com/cosmos/cosmos-sdk/snapshots"
 	"github.com/cosmos/cosmos-sdk/store"
 	sdk "github.com/cosmos/cosmos-sdk/types"
+	"github.com/cosmos/cosmos-sdk/version"
 	authcmd "github.com/cosmos/cosmos-sdk/x/auth/client/cli"
 	"github.com/cosmos/cosmos-sdk/x/auth/types"
 	vestingcli "github.com/cosmos/cosmos-sdk/x/auth/vesting/client/cli"
@@ -38,13 +30,18 @@ import (
 	"github.com/spf13/cast"
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
+	tmcfg "github.com/tendermint/tendermint/config"
 	tmcli "github.com/tendermint/tendermint/libs/cli"
 	"github.com/tendermint/tendermint/libs/log"
+	"github.com/tendermint/tendermint/node"
+	tmstore "github.com/tendermint/tendermint/store"
 	tmtypes "github.com/tendermint/tendermint/types"
 	dbm "github.com/tendermint/tm-db"
 
 	"github.com/pundix/pundix/app"
 	"github.com/pundix/pundix/app/cli"
+	appparams "github.com/pundix/pundix/app/params"
+	"github.com/pundix/pundix/server/grpc/base/gasprice"
 	pxtypes "github.com/pundix/pundix/types"
 )
 

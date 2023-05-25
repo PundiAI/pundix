@@ -2,6 +2,7 @@ package keepers
 
 import (
 	"github.com/cosmos/cosmos-sdk/baseapp"
+	_ "github.com/cosmos/cosmos-sdk/client/docs/statik"
 	"github.com/cosmos/cosmos-sdk/codec"
 	servertypes "github.com/cosmos/cosmos-sdk/server/types"
 	"github.com/cosmos/cosmos-sdk/store/streaming"
@@ -22,12 +23,8 @@ import (
 	evidencetypes "github.com/cosmos/cosmos-sdk/x/evidence/types"
 	"github.com/cosmos/cosmos-sdk/x/feegrant"
 	feegrantkeeper "github.com/cosmos/cosmos-sdk/x/feegrant/keeper"
-
 	govkeeper "github.com/cosmos/cosmos-sdk/x/gov/keeper"
 	govtypes "github.com/cosmos/cosmos-sdk/x/gov/types"
-	pundixtransfer "github.com/pundix/pundix/x/ibc/applications/transfer"
-	pundixtransferkeeper "github.com/pundix/pundix/x/ibc/applications/transfer/keeper"
-
 	minttypes "github.com/cosmos/cosmos-sdk/x/mint/types"
 	"github.com/cosmos/cosmos-sdk/x/params"
 	paramskeeper "github.com/cosmos/cosmos-sdk/x/params/keeper"
@@ -52,10 +49,9 @@ import (
 	ibckeeper "github.com/cosmos/ibc-go/v3/modules/core/keeper"
 	tmos "github.com/tendermint/tendermint/libs/os"
 
+	pundixtransfer "github.com/pundix/pundix/x/ibc/applications/transfer"
+	pundixtransferkeeper "github.com/pundix/pundix/x/ibc/applications/transfer/keeper"
 	pundixmintkeeper "github.com/pundix/pundix/x/mint/keeper"
-
-	// unnamed import of statik for swagger UI support
-	_ "github.com/cosmos/cosmos-sdk/client/docs/statik"
 )
 
 type AppKeepers struct {

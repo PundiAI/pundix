@@ -5,9 +5,8 @@ import (
 	"fmt"
 	"strings"
 
-	minttypes "github.com/cosmos/cosmos-sdk/x/mint/types"
-
 	sdk "github.com/cosmos/cosmos-sdk/types"
+	minttypes "github.com/cosmos/cosmos-sdk/x/mint/types"
 	paramtypes "github.com/cosmos/cosmos-sdk/x/params/types"
 )
 

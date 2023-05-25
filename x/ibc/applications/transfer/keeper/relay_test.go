@@ -10,12 +10,13 @@ import (
 	clienttypes "github.com/cosmos/ibc-go/v3/modules/core/02-client/types"
 	channeltypes "github.com/cosmos/ibc-go/v3/modules/core/04-channel/types"
 	ibcgotesting "github.com/cosmos/ibc-go/v3/testing"
+	"github.com/stretchr/testify/require"
+	"github.com/tendermint/tendermint/libs/rand"
+
 	"github.com/pundix/pundix/app"
 	pxtypes "github.com/pundix/pundix/types"
 	pundixtransfer "github.com/pundix/pundix/x/ibc/applications/transfer"
 	pxtransfertypes "github.com/pundix/pundix/x/ibc/applications/transfer/types"
-	"github.com/stretchr/testify/require"
-	"github.com/tendermint/tendermint/libs/rand"
 )
 
 func (suite *KeeperTestSuite) TestOnRecvPacket() {

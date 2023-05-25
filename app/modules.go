@@ -43,12 +43,10 @@ import (
 	ibcclientclient "github.com/cosmos/ibc-go/v3/modules/core/02-client/client"
 	ibchost "github.com/cosmos/ibc-go/v3/modules/core/24-host"
 
+	appparams "github.com/pundix/pundix/app/params"
 	pundixtransfer "github.com/pundix/pundix/x/ibc/applications/transfer"
 	pundixtransfertypes "github.com/pundix/pundix/x/ibc/applications/transfer/types"
-
 	pundixmint "github.com/pundix/pundix/x/mint"
-
-	appparams "github.com/pundix/pundix/app/params"
 )
 
 var maccPerms = map[string][]string{

@@ -6,19 +6,17 @@ import (
 	"strings"
 	"time"
 
-	transfertypes "github.com/cosmos/ibc-go/v3/modules/apps/transfer/types"
-
-	"github.com/pundix/pundix/x/ibc/applications/transfer/types"
-
-	"github.com/spf13/cobra"
-
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/client/flags"
 	"github.com/cosmos/cosmos-sdk/client/tx"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/version"
+	transfertypes "github.com/cosmos/ibc-go/v3/modules/apps/transfer/types"
 	clienttypes "github.com/cosmos/ibc-go/v3/modules/core/02-client/types"
 	channelutils "github.com/cosmos/ibc-go/v3/modules/core/04-channel/client/utils"
+	"github.com/spf13/cobra"
+
+	"github.com/pundix/pundix/x/ibc/applications/transfer/types"
 )
 
 const (

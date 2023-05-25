@@ -124,12 +124,20 @@ draw-deps:
 
 lint:
 	@echo "--> Running linter"
-	golangci-lint run -v --timeout 5m
+	@go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
+	@go install mvdan.cc/gofumpt@latest
+	golangci-lint run -v --go=1.18 --timeout 10m
+	find . -name '*.go' -type f -not -path "./build*" -not -name "statik.go" -not -name "*.pb.go" -not -name "*.pb.gw.go" | xargs gofumpt -d
 
-format:
-	find . -name '*.go' -type f -not -path "./vendor*" -not -path "./build*" -not -path "*.git*" -not -path "./docs/statik/statik.go" -not -name "*.pb.go" -not -name "*.pb.gw.go" -not -name "*.pulsar.go" -not -path "./crypto/keys/secp256k1/*" | xargs gofumpt -w -l
+format: format-goimports
+	find . -name '*.go' -type f -not -path "./build*" -not -name "statik.go" -not -name "*.pb.go" -not -name "*.pb.gw.go" | xargs gofumpt -w -l
 	golangci-lint run --fix
-.PHONY: format
+
+format-goimports:
+	@go install github.com/incu6us/goimports-reviser/v3@latest
+	@find . -name '*.go' -type f -not -path './build*' -not -name 'statik.go' -not -name '*.pb.go' -not -name '*.pb.gw.go' -exec goimports-reviser -use-cache -rm-unused {} \;
+
+.PHONY: format lint
 
 ###############################################################################
 ###                           Tests & Simulation                            ###

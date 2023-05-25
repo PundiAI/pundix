@@ -5,8 +5,6 @@ import (
 	"path/filepath"
 	"strings"
 
-	appparams "github.com/pundix/pundix/app/params"
-
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/server"
 	"github.com/cosmos/cosmos-sdk/server/config"
@@ -15,6 +13,8 @@ import (
 	"github.com/spf13/viper"
 	tmcfg "github.com/tendermint/tendermint/config"
 	tmcli "github.com/tendermint/tendermint/libs/cli"
+
+	appparams "github.com/pundix/pundix/app/params"
 )
 
 const (

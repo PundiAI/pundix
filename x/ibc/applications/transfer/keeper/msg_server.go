@@ -3,11 +3,10 @@ package keeper
 import (
 	"context"
 
+	sdk "github.com/cosmos/cosmos-sdk/types"
 	transfertypes "github.com/cosmos/ibc-go/v3/modules/apps/transfer/types"
 
 	"github.com/pundix/pundix/x/ibc/applications/transfer/types"
-
-	sdk "github.com/cosmos/cosmos-sdk/types"
 )
 
 var (

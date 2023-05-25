@@ -3,13 +3,11 @@ package types_test
 import (
 	"testing"
 
+	sdk "github.com/cosmos/cosmos-sdk/types"
 	transfertypes "github.com/cosmos/ibc-go/v3/modules/apps/transfer/types"
+	"github.com/stretchr/testify/require"
 
 	types "github.com/pundix/pundix/x/ibc/applications/transfer/types"
-
-	sdk "github.com/cosmos/cosmos-sdk/types"
-
-	"github.com/stretchr/testify/require"
 )
 
 const (

@@ -3,15 +3,13 @@ package transfer
 import (
 	"fmt"
 
-	"github.com/cosmos/ibc-go/v3/modules/apps/transfer"
-	transfertypes "github.com/cosmos/ibc-go/v3/modules/apps/transfer/types"
-
-	"github.com/cosmos/ibc-go/v3/modules/core/exported"
-
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
+	"github.com/cosmos/ibc-go/v3/modules/apps/transfer"
+	transfertypes "github.com/cosmos/ibc-go/v3/modules/apps/transfer/types"
 	channeltypes "github.com/cosmos/ibc-go/v3/modules/core/04-channel/types"
 	porttypes "github.com/cosmos/ibc-go/v3/modules/core/05-port/types"
+	"github.com/cosmos/ibc-go/v3/modules/core/exported"
 
 	"github.com/pundix/pundix/x/ibc/applications/transfer/keeper"
 	"github.com/pundix/pundix/x/ibc/applications/transfer/types"

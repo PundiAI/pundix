@@ -5,19 +5,16 @@ import (
 	"fmt"
 
 	"github.com/cosmos/cosmos-sdk/client"
-
-	"github.com/pundix/pundix/x/mint/types"
-
-	"github.com/cosmos/cosmos-sdk/x/mint"
-	mintkeeper "github.com/cosmos/cosmos-sdk/x/mint/keeper"
-	abci "github.com/tendermint/tendermint/abci/types"
-
 	"github.com/cosmos/cosmos-sdk/codec"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/module"
+	"github.com/cosmos/cosmos-sdk/x/mint"
+	mintkeeper "github.com/cosmos/cosmos-sdk/x/mint/keeper"
 	minttypes "github.com/cosmos/cosmos-sdk/x/mint/types"
+	abci "github.com/tendermint/tendermint/abci/types"
 
 	"github.com/pundix/pundix/x/mint/keeper"
+	"github.com/pundix/pundix/x/mint/types"
 )
 
 var _ module.AppModule = AppModule{}
