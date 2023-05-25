@@ -84,7 +84,11 @@ func NewRootCmd() *cobra.Command {
 				return err
 			}
 
-			if err := client.SetCmdClientContextHandler(initClientCtx, cmd); err != nil {
+			initClientCtx, err = client.ReadPersistentCommandFlags(initClientCtx, cmd.Flags())
+			if err != nil {
+				return err
+			}
+			if err = client.SetCmdClientContext(cmd, initClientCtx); err != nil {
 				return err
 			}
 
@@ -93,7 +97,10 @@ func NewRootCmd() *cobra.Command {
 			}
 
 			if f := cmd.Flags().Lookup(flags.FlagGasPrices); f != nil {
-				gasPricesStr, _ := cmd.Flags().GetString(flags.FlagGasPrices)
+				gasPricesStr, err := cmd.Flags().GetString(flags.FlagGasPrices)
+				if err != nil {
+					return err
+				}
 				gasPrices, err := sdk.ParseCoinsNormalized(gasPricesStr)
 				if err != nil {
 					return err

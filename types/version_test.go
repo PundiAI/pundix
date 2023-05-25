@@ -16,14 +16,16 @@ func TestSetChainId(t *testing.T) {
 
 func TestRegisterDenom(t *testing.T) {
 	SetChainId(MainnetChainId)
-	coin, err := sdk.ParseCoinsNormalized("1PUNDIX")
+	coin, err := sdk.ParseCoinNormalized("1PUNDIX")
 	assert.NoError(t, err)
-	assert.Equal(t, sdk.NewCoins(sdk.NewCoin(StakingBondDenom(), sdk.NewInt(1e18))), coin)
+	assert.Equal(t, sdk.NewCoin(StakingBondDenom(), sdk.NewInt(1e18)).String(), coin.String())
+	t.Log(coin.String())
 }
 
 func TestParseGasPrices(t *testing.T) {
 	SetChainId(MainnetChainId)
-	coin, err := sdk.ParseCoinsNormalized("0.000002PUNDIX")
+	coin, err := sdk.ParseCoinNormalized("0.000002PUNDIX")
 	assert.NoError(t, err)
+	assert.Equal(t, sdk.NewCoin(StakingBondDenom(), sdk.NewInt(2e12)).String(), coin.String())
 	t.Log(coin.String())
 }

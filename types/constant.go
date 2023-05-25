@@ -9,8 +9,6 @@ import (
 const (
 	Name          = "pundix"
 	AddressPrefix = "px"
-
-	DenomUnit = 18
 )
 
 func init() {
