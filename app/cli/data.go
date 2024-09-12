@@ -7,6 +7,7 @@ import (
 	"sync"
 	"time"
 
+	dbm "github.com/cometbft/cometbft-db"
 	"github.com/cosmos/cosmos-sdk/server"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
@@ -15,7 +16,6 @@ import (
 	"github.com/tendermint/tendermint/node"
 	sm "github.com/tendermint/tendermint/state"
 	"github.com/tendermint/tendermint/store"
-	dbm "github.com/tendermint/tm-db"
 )
 
 const (
